@@ -8,7 +8,7 @@ const FlicScanner = fliclib.FlicScanner;
 const client = new FlicClient("apple-pi.kevinghadyani.com", 5551);
 
 const buttonConfigs = {
-	'80:e4:da:72:9d:27': () => fetch('http://tablettron:30061/toggle-scene/Ashlee\'s Vanity')
+	'80:e4:da:72:9d:27': () => fetch('http://tablettron:30061/toggle-scene/Late Night Bedroom')
 }
 
 const listenToButton = (bdAddr) => {
