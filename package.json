@@ -5,7 +5,7 @@
     "api:debug": "node --inspect --debug-brk index.js",
     "api:mon": "nodemon index.js",
     "api:test": "tape-watch index.test.js -p tap-spec",
-    "start": "api"
+    "start": "npm run api"
   },
   "engines": {
     "node": "7.2.0",
