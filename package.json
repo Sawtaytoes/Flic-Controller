@@ -2,10 +2,10 @@
   "private": true,
   "scripts": {
     "api": "node index.js",
-    "api-debug": "node --inspect --debug-brk index.js",
-    "api-mon": "nodemon index.js",
-    "api-test": "tape-watch index.test.js -p tap-spec",
-    "start": "node index.js"
+    "api:debug": "node --inspect --debug-brk index.js",
+    "api:mon": "nodemon index.js",
+    "api:test": "tape-watch index.test.js -p tap-spec",
+    "start": "api"
   },
   "engines": {
     "node": "7.2.0",

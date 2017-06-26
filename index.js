@@ -1,33 +1,55 @@
-// Global Dir Hack
-global.baseDir = `${__dirname}/`
+const fetch = require('node-fetch')
 
-// Load Config settings
-const dir = require(`${global.baseDir}/global-dirs`)
-const flicClient = require(`${dir.services}setup-flic-client`)
-const setupServer = require(`${dir.server}setup-server`)
-const startServer = require(`${dir.server}start-server`)
+const fliclib = require("./fliclibNodeJs");
+const FlicClient = fliclib.FlicClient;
+const FlicConnectionChannel = fliclib.FlicConnectionChannel;
+const FlicScanner = fliclib.FlicScanner;
 
-// Load Middleware
-const discoverDevices = require(`${dir.middleware}discover-devices`)
+const client = new FlicClient("apple-pi.kevinghadyani.com", 5551);
 
-flicClient.init()
-
-const flicMiddleware = {
-	get: action => (req, res) => res.send(
-		action(flicClient)(req.params.name)
-	)
+const buttonConfigs = {
+	'80:e4:da:72:9d:27': () => fetch('http://tablettron:30061/toggle-scene/Parent\'s Vanity')
 }
 
-const serverSettings = setupServer()
+const listenToButton = (bdAddr) => {
+	const cc = new FlicConnectionChannel(bdAddr);
+	client.addConnectionChannel(cc);
+	cc.on("buttonUpOrDown", (...args) => {
+		buttonConfigs[bdAddr]()
+		.then(() => console.log('Command Executed Successfully'))
+		.catch(err => console.error(err))
+		console.log(args);
+	});
+	// cc.on("buttonUpOrDown", (clickType, wasQueued, timeDiff) => {
+	// 	console.log(bdAddr + " " + clickType + " " + (wasQueued ? "wasQueued" : "notQueued") + " " + timeDiff + " seconds ago");
+	// });
+	cc.on("connectionStatusChanged", (connectionStatus, disconnectReason) => {
+		console.log(bdAddr + " " + connectionStatus + (connectionStatus == "Disconnected" ? " " + disconnectReason : ""));
+	});
+}
 
-serverSettings.get(
-	'/',
-	(req, res) => res.end('You no be hearz.')
-)
+client.once("ready", function() {
+	console.log("Connected to daemon!");
+	client.getInfo(function(info) {
+		info.bdAddrOfVerifiedButtons.forEach(function(bdAddr) {
+			listenToButton(bdAddr);
+		});
+	});
+});
 
-serverSettings.get(
-	'/discover-devices',
-	flicMiddleware.get(discoverDevices)
-)
+client.on("bluetoothControllerStateChange", function(state) {
+	console.log("Bluetooth controller state change: " + state);
+});
 
-startServer(serverSettings)
+client.on("newVerifiedButton", function(bdAddr) {
+	console.log("A new button was added: " + bdAddr);
+	listenToButton(bdAddr);
+});
+
+client.on("error", function(error) {
+	console.log("Daemon connection error: " + error);
+});
+
+client.on("close", function(hadError) {
+	console.log("Connection to daemon is now closed");
+});
