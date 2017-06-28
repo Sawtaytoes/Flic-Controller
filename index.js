@@ -6,12 +6,25 @@ const FlicConnectionChannel = fliclib.FlicConnectionChannel
 const FlicScanner = fliclib.FlicScanner
 
 const client = new FlicClient("apple-pi.kevinghadyani.com", 5551)
+const LIFX_API = 'http://lifx.kevinghadyani.com:36001/'
+
+const LIGHTS = {
+	LATE_NIGHT_BATHROOM: 'Late Night Bathroom',
+	MASTER_BATHROOM: 'Master Bathroom',
+	SHOWER: 'shower',
+}
+
+const changeLightState = changeType => name => fetch(`${LIFX_API}${changeType}/${name}`)
+const toggleGroup = changeLightState('toggle-group')
+const toggleScene = changeLightState('toggle-scene')
+
 
 const buttonConfigs = {
 	'80:e4:da:72:9d:27': {
-		SingleClick: () => fetch('http://lifx.kevinghadyani.com:36001/toggle-scene/Shower'),
-		DoubleClick: () => fetch('http://lifx.kevinghadyani.com:36001/toggle-scene/Late Night Bathroom'),
-		Hold: () => fetch('http://lifx.kevinghadyani.com:36001/toggle-group/Master Bathroom'),
+		name: 'Master Bedroom',
+		SingleClick: toggleScene(LIGHTS.SHOWER),
+		DoubleClick: toggleScene(LIGHTS.LATE_NIGHT_BATHROOM),
+		Hold: toggleGroup(LIGHTS.MASTER_BATHROOM),
 	}
 }
 
@@ -34,29 +47,38 @@ const listenToButton = (bluetoothAddress) => {
 	})
 }
 
-client.once("ready", function() {
-	console.log("Connected to daemon!")
+client.once(
+	'ready',
+	() => {
+		console.log("Connected to daemon!")
 
-	client.getInfo(info => (
-		info.bdAddrOfVerifiedButtons.forEach(
-			bluetoothAddress => listenToButton(bluetoothAddress)
-		)
-	))
-})
+		client.getInfo(info => (
+			info.bdAddrOfVerifiedButtons.forEach(
+				bluetoothAddress => listenToButton(bluetoothAddress)
+			)
+		))
+	}
+)
 
-client.on("bluetoothControllerStateChange", function(state) {
-	console.log("Bluetooth controller state change: " + state)
-})
+client.on(
+	'bluetoothControllerStateChange',
+	state => console.log('Bluetooth controller state change: ' + state)
+)
 
-client.on("newVerifiedButton", function(bdAddr) {
-	console.log("A new button was added: " + bdAddr)
-	listenToButton(bdAddr)
-})
+client.on(
+	'newVerifiedButton',
+	bdAddr => {
+		console.log('A new button was added: ' + bdAddr)
+		listenToButton(bdAddr)
+	}
+)
 
-client.on("error", function(error) {
-	console.log("Daemon connection error: " + error)
-})
+client.on(
+	'error',
+	error => console.log('Daemon connection error: ' + error)
+)
 
-client.on("close", function(hadError) {
-	console.log("Connection to daemon is now closed")
-})
+client.on(
+	'close',
+	hadError => console.log('Connection to daemon is now closed')
+)
