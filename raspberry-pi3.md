@@ -27,7 +27,7 @@ pm2 completion install
 pm2 startup
 pm2 save
 
-sudo apt dist-upgrade
+sudo apt -y dist-upgrade
 sudo apt -y remove cups*
 sudo apt -y remove gnome*
 sudo apt -y remove x11-common*
