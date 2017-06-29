@@ -5,16 +5,19 @@ const FlicClient = fliclib.FlicClient
 const FlicConnectionChannel = fliclib.FlicConnectionChannel
 const FlicScanner = fliclib.FlicScanner
 
-const client = new FlicClient("apple-pi.kevinghadyani.com", 5551)
+const client = new FlicClient("cherry-pi.kevinghadyani.com", 5551)
 const LIFX_API = 'http://lifx.kevinghadyani.com:36001/'
 
 const LIGHTS = {
 	LATE_NIGHT_BATHROOM: 'Late Night Bathroom',
 	MASTER_BATHROOM: 'Master Bathroom',
-	SHOWER: 'shower',
+	SHOWER: 'Shower',
 }
 
-const changeLightState = changeType => name => fetch(`${LIFX_API}${changeType}/${name}`)
+const changeLightState = changeType => name => (
+	() => fetch(`${LIFX_API}${changeType}/${name}`)
+)
+
 const toggleGroup = changeLightState('toggle-group')
 const toggleScene = changeLightState('toggle-scene')
 
