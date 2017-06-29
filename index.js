@@ -6,30 +6,11 @@ const FlicConnectionChannel = fliclib.FlicConnectionChannel
 const FlicScanner = fliclib.FlicScanner
 
 const client = new FlicClient("cherry-pi.kevinghadyani.com", 5551)
-const LIFX_API = 'http://lifx.kevinghadyani.com:36001/'
+const LIFX_API = 'http://localhost:36001/'
 
-const LIGHTS = {
-	LATE_NIGHT_BATHROOM: 'Late Night Bathroom',
-	MASTER_BATHROOM: 'Master Bathroom',
-	SHOWER: 'Shower',
-}
+const changeLightsState = changeType => name => fetch(`${LIFX_API}${changeType}/${name}`)
 
-const changeLightState = changeType => name => (
-	() => fetch(`${LIFX_API}${changeType}/${name}`)
-)
-
-const toggleGroup = changeLightState('toggle-group')
-const toggleScene = changeLightState('toggle-scene')
-
-
-const buttonConfigs = {
-	'80:e4:da:72:9d:27': {
-		name: 'Master Bedroom',
-		SingleClick: toggleScene(LIGHTS.SHOWER),
-		DoubleClick: toggleScene(LIGHTS.LATE_NIGHT_BATHROOM),
-		Hold: toggleGroup(LIGHTS.MASTER_BATHROOM),
-	}
-}
+const buttonConfigs = require('./lights-config.sample.js')
 
 const listenToButton = (bluetoothAddress) => {
 	const cc = new FlicConnectionChannel(bluetoothAddress)
@@ -38,7 +19,9 @@ const listenToButton = (bluetoothAddress) => {
 	cc.on("buttonSingleOrDoubleClickOrHold", clickType => {
 		console.log('clickType', clickType)
 
-		buttonConfigs[bluetoothAddress][clickType.replace('Button', '')]()
+		const { action, lights } = buttonConfigs[bluetoothAddress][clickType.replace('Button', '')]
+
+		changeLightsState(action)(lights)
 		.then(() => console.log('Command Executed Successfully'))
 		.catch(err => console.error(err))
 	})
