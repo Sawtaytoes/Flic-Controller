@@ -1,10 +1,10 @@
 # Running Flic Daemon
 
 ## Development
-sudo ./bin/armv6l/flicd -f flic-db.sqlite3 -w -s 0.0.0.0
+sudo ~/projects/fliclib-linux-hci/bin/armv6l/flicd -f flic-db.sqlite3 -w -s 0.0.0.0
 
 ## Production
-sudo ./bin/armv6l/flicd -f flic-db.sqlite3 -w -d
+sudo ~/projects/fliclib-linux-hci/bin/armv6l/flicd -f flic-db.sqlite3 -w -d
 
 
 # Raspberry Pi Config
@@ -35,8 +35,7 @@ sudo apt -y autoremove
 
 
 # [Wi-Fi Setup](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md)
-echo network={\
-    ssid="testing" >> /etc/wpa_supplicant/wpa_supplicant.conf
+```shell
+sudo su -
 wpa_passphrase "ssid" "password" >> /etc/wpa_supplicant/wpa_supplicant.conf
-} >> /etc/wpa_supplicant/wpa_supplicant.conf
 ```
