@@ -10,8 +10,8 @@ const LIGHTS = {
 }
 
 const buttonConfigs = {
-	'80:e4:da:72:9d:27': {
-		name: 'Master Bedroom',
+	'00:00:00:00:00:00': {
+		name: 'Master Bathroom',
 		SingleClick: {
 			action: ACTIONS.TOGGLE_SCENE,
 			lights: LIGHTS.SHOWER,
