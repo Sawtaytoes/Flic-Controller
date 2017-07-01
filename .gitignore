@@ -24,3 +24,5 @@ newrelic.js
 [Tt]humbs.db
 *.dmp
 ._*
+
+lights-config\.js

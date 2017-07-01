@@ -1,16 +1,14 @@
 const fetch = require('node-fetch')
 
 const fliclib = require("./fliclibNodeJs")
-const FlicClient = fliclib.FlicClient
-const FlicConnectionChannel = fliclib.FlicConnectionChannel
-const FlicScanner = fliclib.FlicScanner
+const { FlicClient, FlicConnectionChannel, FlicScanner } = fliclib
 
-const client = new FlicClient("cherry-pi.kevinghadyani.com", 5551)
-const LIFX_API = 'http://localhost:36001/'
+const client = new FlicClient("localhost", 5551)
+const LIFX_API = 'http://apple-pi.kevinghadyani.com:36001/'
 
 const changeLightsState = changeType => name => fetch(`${LIFX_API}${changeType}/${name}`)
 
-const buttonConfigs = require('./lights-config.sample.js')
+const buttonConfigs = require('./lights-config.js')
 
 const listenToButton = (bluetoothAddress) => {
 	const cc = new FlicConnectionChannel(bluetoothAddress)
@@ -19,15 +17,21 @@ const listenToButton = (bluetoothAddress) => {
 	cc.on("buttonSingleOrDoubleClickOrHold", clickType => {
 		console.log('clickType', clickType)
 
-		const { action, lights } = buttonConfigs[bluetoothAddress][clickType.replace('Button', '')]
+		const flicButton = buttonConfigs[bluetoothAddress]
+
+		if (!flicButton) return
+
+		const { action, lights } = flicButton[clickType.replace('Button', '')]
+
+		console.log(`${action}:`, lights)
 
 		changeLightsState(action)(lights)
 		.then(() => console.log('Command Executed Successfully'))
 		.catch(err => console.error(err))
 	})
-	cc.on("buttonUpOrDown", (clickType, wasQueued, timeDiff) => {
-		console.log(bluetoothAddress + " " + clickType + " " + (wasQueued ? "wasQueued" : "notQueued") + " " + timeDiff + " seconds ago")
-	})
+	// cc.on("buttonUpOrDown", (clickType, wasQueued, timeDiff) => {
+	// 	console.log(bluetoothAddress + " " + clickType + " " + (wasQueued ? "wasQueued" : "notQueued") + " " + timeDiff + " seconds ago")
+	// })
 	cc.on("connectionStatusChanged", (connectionStatus, disconnectReason) => {
 		console.log(bluetoothAddress + " " + connectionStatus + (connectionStatus == "Disconnected" ? " " + disconnectReason : ""))
 	})
