@@ -15,7 +15,7 @@ const listenToButton = (bluetoothAddress) => {
 
 	client.addConnectionChannel(cc)
 	cc.on('buttonSingleOrDoubleClickOrHold', clickType => {
-		console.log('clickType', clickType)
+		console.log('clickType: ', clickType)
 
 		const flicButton = buttonConfigs[bluetoothAddress]
 
