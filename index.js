@@ -14,7 +14,7 @@ const listenToButton = (bluetoothAddress) => {
 	const cc = new FlicConnectionChannel(bluetoothAddress)
 
 	client.addConnectionChannel(cc)
-	cc.on("buttonSingleOrDoubleClickOrHold", clickType => {
+	cc.on('buttonSingleOrDoubleClickOrHold', clickType => {
 		console.log('clickType', clickType)
 
 		const flicButton = buttonConfigs[bluetoothAddress]
@@ -29,10 +29,10 @@ const listenToButton = (bluetoothAddress) => {
 		.then(() => console.log('Command Executed Successfully'))
 		.catch(err => console.error(err))
 	})
-	// cc.on("buttonUpOrDown", (clickType, wasQueued, timeDiff) => {
+	// cc.on('buttonUpOrDown', (clickType, wasQueued, timeDiff) => {
 	// 	console.log(bluetoothAddress + " " + clickType + " " + (wasQueued ? "wasQueued" : "notQueued") + " " + timeDiff + " seconds ago")
 	// })
-	cc.on("connectionStatusChanged", (connectionStatus, disconnectReason) => {
+	cc.on('connectionStatusChanged', (connectionStatus, disconnectReason) => {
 		console.log(bluetoothAddress + " " + connectionStatus + (connectionStatus == "Disconnected" ? " " + disconnectReason : ""))
 	})
 }
@@ -40,7 +40,7 @@ const listenToButton = (bluetoothAddress) => {
 client.once(
 	'ready',
 	() => {
-		console.log("Connected to daemon!")
+		console.log('Connected to daemon!')
 
 		client.getInfo(info => (
 			info.bdAddrOfVerifiedButtons.forEach(
@@ -70,5 +70,9 @@ client.on(
 
 client.on(
 	'close',
-	hadError => console.log('Connection to daemon is now closed')
+	hadError => (
+		hadError
+		? console.error(hadError)
+		: console.log('Connection to daemon is now closed')
+	)
 )
