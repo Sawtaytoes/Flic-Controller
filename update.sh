@@ -7,7 +7,6 @@ export NODE_ENV=production
 
 git reset --hard HEAD
 git pull
-npm prune
-npm install
+yarn
 chown -R www-data:www-data .
 pm2 gracefulReload ${PWD##*/}
