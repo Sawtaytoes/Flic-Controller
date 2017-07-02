@@ -55,6 +55,21 @@ const CONFIG = {
 }
 
 const ACTION_SETS = {
+	ASHLEE_VANITY: {
+		SingleClick: {
+			action: ACTION.TOGGLE_SCENE,
+			config: CONFIG.ASHLEE_VANITY,
+		},
+		DoubleClick: {
+			action: ACTION.TOGGLE_SCENE,
+			config: CONFIG.ASHLEE_VANITY,
+		},
+		Hold: {
+			action: ACTION.TOGGLE_SCENE,
+			config: CONFIG.ASHLEE_VANITY,
+		},
+	},
+
 	EAT_IN_KITCHEN: {
 		SingleClick: {
 			action: ACTION.TOGGLE_SCENE,
@@ -88,7 +103,7 @@ const ACTION_SETS = {
 	KEVIN_VANITY: {
 		SingleClick: {
 			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.SHOWER,
+			config: CONFIG.KEVIN_VANITY,
 		},
 		DoubleClick: {
 			action: ACTION.TOGGLE_SCENE,
@@ -96,7 +111,7 @@ const ACTION_SETS = {
 		},
 		Hold: {
 			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.ASHLEE_VANITY,
+			config: CONFIG.KEVIN_VANITY,
 		},
 	},
 
@@ -159,10 +174,25 @@ const ACTION_SETS = {
 			config: CONFIG.LATE_NIGHT_MASTER_BEDROOM,
 		},
 	},
+
+	SHOWER: {
+		SingleClick: {
+			action: ACTION.TOGGLE_SCENE,
+			config: CONFIG.SHOWER,
+		},
+		DoubleClick: {
+			action: ACTION.TOGGLE_SCENE,
+			config: CONFIG.SHOWER,
+		},
+		Hold: {
+			action: ACTION.TOGGLE_SCENE,
+			config: CONFIG.SHOWER,
+		},
+	},
 }
 
 const buttonConfigs = {
-	'80:e4:da:72:35:d3': Object.assign({}, ACTION_SETS.ASHLEE_VANITY, {
+	'80:e4:da:72:3c:c9': Object.assign({}, ACTION_SETS.ASHLEE_VANITY, {
 		location: "Ashlee's Vanity",
 		color: COLOR.BLACK,
 	}),
@@ -177,7 +207,7 @@ const buttonConfigs = {
 		color: COLOR.BLACK,
 	}),
 
-	'80:e4:da:72:3c:c9': Object.assign({}, ACTION_SETS.KEVIN_VANITY, {
+	'80:e4:da:72:35:d3': Object.assign({}, ACTION_SETS.KEVIN_VANITY, {
 		location: "Kevin's Vanity",
 		color: COLOR.BLACK,
 	}),
