@@ -21,11 +21,11 @@ const listenToButton = (bluetoothAddress) => {
 
 		if (!flicButton) return
 
-		const { action, lights } = flicButton[clickType.replace('Button', '')]
+		const { action, config } = flicButton[clickType.replace('Button', '')]
 
-		console.log(`${action}:`, lights)
+		console.log(`${action}:`, config)
 
-		changeLightsState(action)(lights)
+		changeLightsState(action)(config)
 		.then(() => console.log('Command Executed Successfully'))
 		.catch(err => console.error(err))
 	})
