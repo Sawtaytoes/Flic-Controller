@@ -7,6 +7,12 @@ const LIGHTS = {
 	// Entryway
 	NORMAL_ENTRYWAY: 'Normal Entryway',
 
+	// Family Room
+	BRIGHT_FAMILY_ROOM: 'Bright Family Room',
+	LATE_NIGHT_FAMILY_ROOM: 'Late Night Family Room',
+	FAMILY_ROOM: 'Master Family Room',
+	NORMAL_FAMILY_ROOM: 'Normal Family Room',
+
 	// Kitchen
 	BRIGHT_KITCHEN: 'Bright Kitchen',
 	KITCHEN: 'Master Kitchen',
@@ -36,6 +42,7 @@ const LIGHTS = {
 }
 
 const BUTTONS = {
+	FAMILY_ROOM: '80:e4:da:72:4d:eb',
 	KITCHEN: '80:e4:da:72:a8:a1',
 	LIVING_ROOM: '80:e4:da:72:98:19',
 	MASTER_BATHROOM: '80:e4:da:72:a3:49',
@@ -58,6 +65,22 @@ const buttonConfigs = {
 		Hold: {
 			action: ACTIONS.TOGGLE_SCENE,
 			lights: LIGHTS.NORMAL_ENTRYWAY,
+		},
+	},
+
+	[BUTTONS.FAMILY_ROOM]: {
+		color: 'black',
+		SingleClick: {
+			action: ACTIONS.TOGGLE_SCENE,
+			lights: LIGHTS.NORMAL_FAMILY_ROOM,
+		},
+		DoubleClick: {
+			action: ACTIONS.TOGGLE_SCENE,
+			lights: LIGHTS.BRIGHT_FAMILY_ROOM,
+		},
+		Hold: {
+			action: ACTIONS.TOGGLE_SCENE,
+			lights: LIGHTS.LATE_NIGHT_FAMILY_ROOM,
 		},
 	},
 
