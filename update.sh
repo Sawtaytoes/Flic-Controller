@@ -8,5 +8,4 @@ export NODE_ENV=production
 git reset --hard HEAD
 git pull
 yarn
-chown -R www-data:www-data .
 pm2 gracefulReload ${PWD##*/}
