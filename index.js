@@ -8,6 +8,16 @@ const LIFX_API = 'http://apple-pi.kevinghadyani.com:36001/'
 
 const changeLightsState = changeType => name => fetch(`${LIFX_API}${changeType}/${name}`)
 
+const executeAction = actionSetClickType => {
+	const { action, config } = actionSetClickType
+
+	console.log(`${action}:`, config)
+
+	changeLightsState(action)(config)
+	.then(() => console.log(`Action ${action}/${config} Executed Successfully`))
+	.catch(err => console.error(err))
+}
+
 const buttonConfigs = require('./lights-config.js')
 
 const listenToButton = (bluetoothAddress) => {
@@ -21,20 +31,24 @@ const listenToButton = (bluetoothAddress) => {
 
 		if (!flicButton) return
 
-		const { action, config } = flicButton[clickType.replace('Button', '')]
+		const actionSetClickType = flicButton[clickType]
 
-		console.log(`${action}:`, config)
+		if (actionSetClickType instanceof Array) {
+			actionSetClickType.forEach(executeAction)
 
-		changeLightsState(action)(config)
-		.then(() => console.log('Command Executed Successfully'))
-		.catch(err => console.error(err))
+		} else if (actionSetClickType) {
+			executeAction(actionSetClickType)
+
+		} else {
+			throw 'Error: You need to assign an action set to this click type'
+		}
 	})
-	// cc.on('buttonUpOrDown', (clickType, wasQueued, timeDiff) => {
-	// 	console.log(bluetoothAddress + " " + clickType + " " + (wasQueued ? "wasQueued" : "notQueued") + " " + timeDiff + " seconds ago")
+	cc.on('buttonUpOrDown', (clickType, wasQueued, timeDiff) => {
+		console.log(bluetoothAddress + " " + clickType + " " + (wasQueued ? "wasQueued" : "notQueued") + " " + timeDiff + " seconds ago")
+	})
+	// cc.on('connectionStatusChanged', (connectionStatus, disconnectReason) => {
+	// 	console.log(bluetoothAddress + " " + connectionStatus + (connectionStatus == "Disconnected" ? " " + disconnectReason : ""))
 	// })
-	cc.on('connectionStatusChanged', (connectionStatus, disconnectReason) => {
-		console.log(bluetoothAddress + " " + connectionStatus + (connectionStatus == "Disconnected" ? " " + disconnectReason : ""))
-	})
 }
 
 client.once(
