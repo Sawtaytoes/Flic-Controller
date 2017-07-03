@@ -44,9 +44,9 @@ const listenToButton = (bluetoothAddress) => {
 			throw 'Error: You need to assign an action set to this click type'
 		}
 	})
-	cc.on('buttonUpOrDown', (clickType, wasQueued, timeDiff) => {
-		console.log(bluetoothAddress + " " + clickType + " " + (wasQueued ? "wasQueued" : "notQueued") + " " + timeDiff + " seconds ago")
-	})
+	// cc.on('buttonUpOrDown', (clickType, wasQueued, timeDiff) => {
+	// 	console.log(bluetoothAddress + " " + clickType + " " + (wasQueued ? "wasQueued" : "notQueued") + " " + timeDiff + " seconds ago")
+	// })
 	// cc.on('connectionStatusChanged', (connectionStatus, disconnectReason) => {
 	// 	console.log(bluetoothAddress + " " + connectionStatus + (connectionStatus == "Disconnected" ? " " + disconnectReason : ""))
 	// })
