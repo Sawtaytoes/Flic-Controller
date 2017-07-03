@@ -5,6 +5,12 @@ const COLOR = {
 	WHITE: 'white',
 }
 
+const CLICK = {
+	SINGLE: 'ButtonSingleClick',
+	DOUBLE: 'ButtonDoubleClick',
+	HOLD: 'ButtonHold',
+}
+
 const ACTION = {
 	TOGGLE_GROUP: 'toggle-group',
 	TOGGLE_SCENE: 'toggle-scene',
@@ -56,140 +62,156 @@ const CONFIG = {
 
 const ACTION_SETS = {
 	ASHLEE_VANITY: {
-		SingleClick: {
+		[CLICK.SINGLE]: {
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.ASHLEE_VANITY,
 		},
-		DoubleClick: {
+		[CLICK.DOUBLE]: {
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.ASHLEE_VANITY,
 		},
-		Hold: {
+		[CLICK.HOLD]: {
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.ASHLEE_VANITY,
 		},
 	},
 
 	EAT_IN_KITCHEN: {
-		SingleClick: {
+		[CLICK.SINGLE]: {
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.NORMAL_EAT_IN_KITCHEN,
 		},
-		DoubleClick: {
+		[CLICK.DOUBLE]: {
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.BRIGHT_EAT_IN_KITCHEN,
 		},
-		Hold: {
+		[CLICK.HOLD]: {
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.LATE_NIGHT_EAT_IN_KITCHEN,
 		},
 	},
 
 	FAMILY_ROOM: {
-		SingleClick: {
+		[CLICK.SINGLE]: {
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.NORMAL_FAMILY_ROOM,
 		},
-		DoubleClick: {
+		[CLICK.DOUBLE]: {
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.BRIGHT_FAMILY_ROOM,
 		},
-		Hold: {
+		[CLICK.HOLD]: {
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.LATE_NIGHT_FAMILY_ROOM,
 		},
 	},
 
 	KEVIN_VANITY: {
-		SingleClick: {
+		[CLICK.SINGLE]: {
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.KEVIN_VANITY,
 		},
-		DoubleClick: {
+		[CLICK.DOUBLE]: {
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.KEVIN_VANITY,
 		},
-		Hold: {
+		[CLICK.HOLD]: {
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.KEVIN_VANITY,
 		},
 	},
 
 	KITCHEN: {
-		SingleClick: {
+		[CLICK.SINGLE]: {
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.NORMAL_KITCHEN,
 		},
-		DoubleClick: {
+		[CLICK.DOUBLE]: {
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.BRIGHT_KITCHEN,
 		},
-		Hold: {
+		[CLICK.HOLD]: {
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.LATE_NIGHT_KITCHEN,
 		},
 	},
 
 	LIVING_ROOM: {
-		SingleClick: {
+		[CLICK.SINGLE]: {
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.NORMAL_LIVING_ROOM,
 		},
-		DoubleClick: {
+		[CLICK.DOUBLE]: {
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.BRIGHT_LIVING_ROOM,
 		},
-		Hold: {
+		[CLICK.HOLD]: {
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.LATE_NIGHT_LIVING_ROOM,
 		},
 	},
 
 	MASTER_BATHROOM: {
-		SingleClick: {
+		[CLICK.SINGLE]: {
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.NORMAL_MASTER_BATHROOM,
 		},
-		DoubleClick: {
+		[CLICK.DOUBLE]: {
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.BRIGHT_MASTER_BATHROOM,
 		},
-		Hold: {
+		[CLICK.HOLD]: {
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.LATE_NIGHT_MASTER_BATHROOM,
 		},
 	},
 
 	MASTER_BEDROOM: {
-		SingleClick: {
+		[CLICK.SINGLE]: {
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.NORMAL_MASTER_BEDROOM,
 		},
-		DoubleClick: {
+		[CLICK.DOUBLE]: {
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.BRIGHT_MASTER_BEDROOM,
 		},
-		Hold: {
+		[CLICK.HOLD]: {
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.LATE_NIGHT_MASTER_BEDROOM,
 		},
 	},
 
 	SHOWER: {
-		SingleClick: {
+		[CLICK.SINGLE]: {
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.SHOWER,
 		},
-		DoubleClick: {
+		[CLICK.DOUBLE]: {
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.SHOWER,
 		},
-		Hold: {
+		[CLICK.HOLD]: {
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.SHOWER,
 		},
 	},
 }
+
+const combineSets = actionSets => (
+	Object.values(CLICK)
+	.map(clickType => ({
+		clickType,
+		actionSetClickValues: (
+			actionSets
+			.map(actionSet => actionSet[clickType])
+		)
+	}))
+	.reduce((object, { clickType, actionSetClickValues }) => (
+		Object.assign({}, object, {
+			[clickType]: actionSetClickValues
+		})
+	), {})
+)
 
 const buttonConfigs = {
 	'80:e4:da:72:3c:c9': Object.assign({}, ACTION_SETS.ASHLEE_VANITY, {
@@ -197,10 +219,24 @@ const buttonConfigs = {
 		color: COLOR.BLACK,
 	}),
 
-	'80:e4:da:72:60:ce': Object.assign({}, ACTION_SETS.EAT_IN_KITCHEN, {
+	'80:e4:da:72:a8:bf': Object.assign({}, ACTION_SETS.EAT_IN_KITCHEN, {
+		location: "Eat-In Kitchen Table",
+		color: COLOR.WHITE,
+	}),
+
+	'80:e4:da:72:60:ce': Object.assign({}, combineSets([
+		ACTION_SETS.EAT_IN_KITCHEN,
+		ACTION_SETS.FAMILY_ROOM,
+		ACTION_SETS.KITCHEN,
+	]), {
 		location: "Eat-In Kitchen Table",
 		color: COLOR.BLACK,
 	}),
+
+	// '80:e4:da:72:4c:01': Object.assign({}, ACTION_SETS.EAT_IN_KITCHEN, {
+	// 	location: "Eat-In Kitchen Table",
+	// 	color: COLOR.BLACK,
+	// }),
 
 	'80:e4:da:72:4d:eb': Object.assign({}, ACTION_SETS.FAMILY_ROOM, {
 		location: "Eat-In Kitchen Table",
