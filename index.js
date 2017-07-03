@@ -3,14 +3,12 @@ const fetch = require('node-fetch')
 const fliclib = require("./fliclibNodeJs")
 const { FlicClient, FlicConnectionChannel, FlicScanner } = fliclib
 
-const client = new FlicClient("localhost", 5551)
-const LIFX_API = 'http://apple-pi.kevinghadyani.com:36001/'
+const client = new FlicClient('cherry-pi.kevinghadyani.com', 5551)
+const LIFX_API = 'http://localhost:36001/'
 
 const changeLightsState = changeType => name => fetch(`${LIFX_API}${changeType}/${name}`)
 
-const executeAction = actionSetClickType => {
-	const { action, config } = actionSetClickType
-
+const executeAction = ({ action, config }) => {
 	console.log(`${action}:`, config)
 
 	changeLightsState(action)(config)
@@ -35,7 +33,15 @@ const listenToButton = (bluetoothAddress) => {
 		const actionSetClickType = flicButton[clickType]
 
 		if (actionSetClickType instanceof Array) {
-			actionSetClickType.forEach(executeAction)
+			const sceneNames = actionSetClickType.map(({ config }) => config)
+
+			console.log(JSON.stringify({ sceneNames }));
+
+			fetch(`${LIFX_API}toggle-scenes`, {
+				body: JSON.stringify({ sceneNames }),
+				headers: { 'Content-Type': 'application/json' },
+				method: 'PUT',
+			})
 
 		} else if (actionSetClickType) {
 			executeAction(actionSetClickType)
