@@ -27,11 +27,29 @@ pm2 completion install
 pm2 startup
 pm2 save
 
+
 sudo apt -y dist-upgrade
 sudo apt -y remove cups*
 sudo apt -y remove gnome*
 sudo apt -y remove x11-common*
 sudo apt -y autoremove
+
+
+mkdir scripts
+
+nano scripts/scan-new-clients.sh
+
+#!/bin/bash
+node ~/projects/fliclib-linux-hci/clientlib/nodejs/newscanwizard.js
+
+nano scripts/start-flic-daemon.sh
+
+#!/bin/bash
+sudo ~/projects/fliclib-linux-hci/bin/armv6l/flicd -f ~/flic-db.sqlite3 -w -s 0.0.0.0 -d
+
+
+crontab -e
+@reboot /home/pi/scripts/start-flic-daemon.sh
 
 
 # [Wi-Fi Setup](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md)
