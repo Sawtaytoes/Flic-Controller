@@ -3,8 +3,8 @@ const fetch = require('node-fetch')
 const fliclib = require("./fliclibNodeJs")
 const { FlicClient, FlicConnectionChannel, FlicScanner } = fliclib
 
-const client = new FlicClient('cherry-pi.kevinghadyani.com', 5551)
-const LIFX_API = 'http://localhost:36001/'
+const client = new FlicClient("localhost", 5551)
+const LIFX_API = 'http://apple-pi.kevinghadyani.com:36001/'
 
 const changeLightsState = changeType => name => fetch(`${LIFX_API}${changeType}/${name}`)
 
