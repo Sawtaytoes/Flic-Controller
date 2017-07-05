@@ -435,7 +435,7 @@ const buttonConfigs = {
 		color: COLOR.BLACK,
 	}),
 
-	'80:e4:da:72:60:ce': Object.assign({}, MULTI_ACTION_SET.ALL_LIVING_ROOM, {
+	'80:e4:da:72:60:e2': Object.assign({}, MULTI_ACTION_SET.ALL_LIVING_ROOM, {
 		location: "Living Room Coffee Table",
 		color: COLOR.BLACK,
 	}),
