@@ -16,7 +16,7 @@ const executeAction = ({ action, config }) => {
 	.catch(err => console.error(err))
 }
 
-const buttonConfigs = require('./lights-config.js')
+const buttonConfigs = require('./button-configs.js')
 
 const listenToButton = (bluetoothAddress) => {
 	const cc = new FlicConnectionChannel(bluetoothAddress)
