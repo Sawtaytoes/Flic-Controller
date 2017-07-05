@@ -18,7 +18,7 @@ const executeAction = ({ action, config }) => {
 
 const buttonConfigs = require('./button-configs.js')
 
-const listenToButton = (bluetoothAddress) => {
+const listenToButton = bluetoothAddress => {
 	const cc = new FlicConnectionChannel(bluetoothAddress)
 
 	client.addConnectionChannel(cc)
