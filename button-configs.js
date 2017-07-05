@@ -210,6 +210,24 @@ const ACTION_SET = {
 		},
 	},
 
+	KITCHEN_SINK: {
+		[CLICK.SINGLE]: {
+			device: DEVICE.WEMO,
+			action: ACTION.TOGGLE_DEVICE,
+			config: CONFIG.GARBAGE_DISPOSAL,
+		},
+		[CLICK.DOUBLE]: {
+			device: DEVICE.WEMO,
+			action: ACTION.TOGGLE_DEVICE,
+			config: CONFIG.GARBAGE_DISPOSAL,
+		},
+		[CLICK.HOLD]: {
+			device: DEVICE.WEMO,
+			action: ACTION.TOGGLE_DEVICE,
+			config: CONFIG.GARBAGE_DISPOSAL,
+		},
+	},
+
 	HALLWAY: {
 		[CLICK.SINGLE]: {
 			device: DEVICE.LIFX,
@@ -445,6 +463,11 @@ const buttonConfigs = {
 	'80:e4:da:72:4c:01': Object.assign({}, ACTION_SET.FAMILY_ROOM, {
 		location: "Eat-In Kitchen Table",
 		color: COLOR.BLACK,
+	}),
+
+	'80:e4:da:72:a8:c1': Object.assign({}, ACTION_SET.KITCHEN_SINK, {
+		location: "Kitchen Sink",
+		color: COLOR.WHITE,
 	}),
 
 	'80:e4:da:72:35:d3': Object.assign({}, ACTION_SET.KEVIN_VANITY, {
