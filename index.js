@@ -4,14 +4,24 @@ const fliclib = require("./fliclibNodeJs")
 const { FlicClient, FlicConnectionChannel, FlicScanner } = fliclib
 
 const client = new FlicClient("localhost", 5551)
+// const client = new FlicClient("apple-pi.kevinghadyani.com", 5551)
 const LIFX_API = 'http://lifx.kevinghadyani.com/'
+const WEMO_API = 'http://wemo.kevinghadyani.com/'
+// const WEMO_API = 'http://localhost:36002/'
 
-const changeLightsState = changeType => name => fetch(`${LIFX_API}${changeType}/${name}`)
+const changeLightsState = actionType => name => fetch(`${LIFX_API}${actionType}/${name}`)
+const changeWemoDeviceState = actionType => name => fetch(`${WEMO_API}${actionType}/${name}`)
 
-const executeAction = ({ action, config }) => {
-	console.log(`${action}:`, config)
+const changeState = device => (
+	device === 'lifx' ? changeLightsState
+	: device === 'wemo' ? changeWemoDeviceState
+	: () => () => {}
+)
 
-	changeLightsState(action)(config)
+const executeAction = ({ action, config, device }) => {
+	console.log(`${device} ${action}:`, config)
+
+	changeState(device)(action)(config)
 	.then(() => console.log(`Action ${action}/${config} Executed Successfully`))
 	.catch(err => console.error(err))
 }
@@ -33,12 +43,27 @@ const listenToButton = bluetoothAddress => {
 		const actionSetClickType = flicButton[clickType]
 
 		if (actionSetClickType instanceof Array) {
-			const sceneNames = actionSetClickType.map(({ config }) => config)
+			console.log(actionSetClickType);
+			const sceneNames = (
+				actionSetClickType
+				.filter(({ device }) => device === 'lifx')
+				.map(({ config }) => config)
+			)
 
-			console.log(JSON.stringify({ sceneNames }));
+			const deviceNames = (
+				actionSetClickType
+				.filter(({ device }) => device === 'wemo')
+				.map(({ config }) => config)
+			)
 
 			fetch(`${LIFX_API}toggle-scenes`, {
 				body: JSON.stringify({ sceneNames }),
+				headers: { 'Content-Type': 'application/json' },
+				method: 'PUT',
+			})
+
+			fetch(`${WEMO_API}toggle-devices`, {
+				body: JSON.stringify({ deviceNames }),
 				headers: { 'Content-Type': 'application/json' },
 				method: 'PUT',
 			})

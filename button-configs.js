@@ -23,6 +23,10 @@ const ACTION = {
 }
 
 const CONFIG = {
+	// Colissio
+	COLISSIO_SPEAKERS: 'Colissio Speakers',
+	MICROPHONE_PRE_AMP: 'Microphone Pre-amp',
+
 	// Dining Room
 	DINING_ROOM: 'Dining Room',
 	NORMAL_DINING_ROOM: 'Normal Dining Room',
@@ -58,6 +62,8 @@ const CONFIG = {
 	NORMAL_KITCHEN: 'Normal Kitchen',
 	BRIGHT_KITCHEN: 'Bright Kitchen',
 	LATE_NIGHT_KITCHEN: 'Late Night Kitchen',
+	GARBAGE_DISPOSAL: 'Garbage Disposal',
+	WAX_WARMER: 'Kitchen Wax Warmer',
 
 	// Living Room
 	LIVING_ROOM: 'Living Room',
@@ -103,6 +109,32 @@ const ACTION_SET = {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.ASHLEE_VANITY,
+		},
+	},
+
+	COLISSIO_MICROPHONE: {
+		[CLICK.DOUBLE]: {
+			device: DEVICE.WEMO,
+			action: ACTION.TOGGLE_DEVICE,
+			config: CONFIG.MICROPHONE_PRE_AMP,
+		},
+		[CLICK.HOLD]: {
+			device: DEVICE.WEMO,
+			action: ACTION.TOGGLE_DEVICE,
+			config: CONFIG.MICROPHONE_PRE_AMP,
+		},
+	},
+
+	COLISSIO_SPEAKERS: {
+		[CLICK.SINGLE]: {
+			device: DEVICE.WEMO,
+			action: ACTION.TOGGLE_DEVICE,
+			config: CONFIG.COLISSIO_SPEAKERS,
+		},
+		[CLICK.HOLD]: {
+			device: DEVICE.WEMO,
+			action: ACTION.TOGGLE_DEVICE,
+			config: CONFIG.COLISSIO_SPEAKERS,
 		},
 	},
 
@@ -330,6 +362,7 @@ const combineSets = actionSets => (
 		actionSetClickValues: (
 			actionSets
 			.map(actionSet => actionSet[clickType])
+			.filter(actionSetClickValue => actionSetClickValue)
 		)
 	}))
 	.reduce((object, { clickType, actionSetClickValues }) => (
@@ -366,6 +399,11 @@ const MULTI_ACTION_SET = {
 		ACTION_SET.MASTER_BATHROOM,
 		ACTION_SET.MASTER_BEDROOM,
 	]),
+
+	COLISSIO: combineSets([
+		ACTION_SET.COLISSIO_MICROPHONE,
+		ACTION_SET.COLISSIO_SPEAKERS,
+	]),
 }
 
 const buttonConfigs = {
@@ -375,13 +413,18 @@ const buttonConfigs = {
 	}),
 
 	'80:e4:da:72:60:ce': Object.assign({}, MULTI_ACTION_SET.ALL_LIVING_ROOM, {
-		location: "Eat-In Kitchen Table Edge",
+		location: "Colissio",
 		color: COLOR.BLACK,
 	}),
 
 	'80:e4:da:72:a8:e3': Object.assign({}, MULTI_ACTION_SET.ALL_UPSTAIRS, {
 		location: "Kevin's Bedstand",
 		color: COLOR.WHITE,
+	}),
+
+	'80:e4:da:72:62:9e': Object.assign({}, MULTI_ACTION_SET.COLISSIO, {
+		location: "Colissio",
+		color: COLOR.GREEN,
 	}),
 
 	'80:e4:da:72:3c:c9': Object.assign({}, ACTION_SET.ASHLEE_VANITY, {
