@@ -112,7 +112,12 @@ const ACTION_SET = {
 		},
 	},
 
-	COLISSIO_MICROPHONE: {
+	COLISSIO: {
+		[CLICK.SINGLE]: {
+			device: DEVICE.WEMO,
+			action: ACTION.TOGGLE_DEVICE,
+			config: CONFIG.COLISSIO_SPEAKERS,
+		},
 		[CLICK.DOUBLE]: {
 			device: DEVICE.WEMO,
 			action: ACTION.TOGGLE_DEVICE,
@@ -122,19 +127,6 @@ const ACTION_SET = {
 			device: DEVICE.WEMO,
 			action: ACTION.TOGGLE_DEVICE,
 			config: CONFIG.MICROPHONE_PRE_AMP,
-		},
-	},
-
-	COLISSIO_SPEAKERS: {
-		[CLICK.SINGLE]: {
-			device: DEVICE.WEMO,
-			action: ACTION.TOGGLE_DEVICE,
-			config: CONFIG.COLISSIO_SPEAKERS,
-		},
-		[CLICK.HOLD]: {
-			device: DEVICE.WEMO,
-			action: ACTION.TOGGLE_DEVICE,
-			config: CONFIG.COLISSIO_SPEAKERS,
 		},
 	},
 
@@ -417,11 +409,6 @@ const MULTI_ACTION_SET = {
 		ACTION_SET.MASTER_BATHROOM,
 		ACTION_SET.MASTER_BEDROOM,
 	]),
-
-	COLISSIO: combineSets([
-		ACTION_SET.COLISSIO_MICROPHONE,
-		ACTION_SET.COLISSIO_SPEAKERS,
-	]),
 }
 
 const buttonConfigs = {
@@ -450,14 +437,14 @@ const buttonConfigs = {
 		color: COLOR.WHITE,
 	}),
 
-	'80:e4:da:72:62:9e': Object.assign({}, MULTI_ACTION_SET.COLISSIO, {
-		location: "Colissio",
-		color: COLOR.GREEN,
-	}),
-
 	'80:e4:da:72:3c:c9': Object.assign({}, ACTION_SET.ASHLEE_VANITY, {
 		location: "Ashlee's Vanity",
 		color: COLOR.BLACK,
+	}),
+
+	'80:e4:da:72:62:9e': Object.assign({}, ACTION_SET.COLISSIO, {
+		location: "Colissio",
+		color: COLOR.GREEN,
 	}),
 
 	'80:e4:da:72:a8:bf': Object.assign({}, ACTION_SET.EAT_IN_KITCHEN, {
