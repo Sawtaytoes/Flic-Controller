@@ -23,10 +23,6 @@ const ACTION = {
 }
 
 const CONFIG = {
-	// Colissio
-	COLISSIO_SPEAKERS: 'Colissio Speakers',
-	MICROPHONE_PRE_AMP: 'Microphone Pre-amp',
-
 	// Dining Room
 	DINING_ROOM: 'Dining Room',
 	NORMAL_DINING_ROOM: 'Normal Dining Room',
@@ -91,6 +87,9 @@ const CONFIG = {
 	NORMAL_OFFICE: 'Normal Office',
 	BRIGHT_OFFICE: 'Bright Office',
 	LATE_NIGHT_OFFICE: 'Late Night Office',
+	LATE_NIGHT_COMPUTING: 'Late Night Computing',
+	COLISSIO_SPEAKERS: 'Colissio Speakers',
+	MICROPHONE_PRE_AMP: 'Microphone Pre-amp',
 }
 
 const ACTION_SET = {
@@ -124,9 +123,9 @@ const ACTION_SET = {
 			config: CONFIG.MICROPHONE_PRE_AMP,
 		},
 		[CLICK.HOLD]: {
-			device: DEVICE.WEMO,
-			action: ACTION.TOGGLE_DEVICE,
-			config: CONFIG.MICROPHONE_PRE_AMP,
+			device: DEVICE.LIFX,
+			action: ACTION.TOGGLE_SCENE,
+			config: CONFIG.LATE_NIGHT_COMPUTING,
 		},
 	},
 
