@@ -112,7 +112,12 @@ const ACTION_SET = {
 		},
 	},
 
-	DESKTOP_PC_MICROPHONE: {
+	DESKTOP_PC: {
+		[CLICK.SINGLE]: {
+			device: DEVICE.WEMO,
+			action: ACTION.TOGGLE_DEVICE,
+			config: CONFIG.DESKTOP_PC_SPEAKERS,
+		},
 		[CLICK.DOUBLE]: {
 			device: DEVICE.WEMO,
 			action: ACTION.TOGGLE_DEVICE,
@@ -122,19 +127,6 @@ const ACTION_SET = {
 			device: DEVICE.WEMO,
 			action: ACTION.TOGGLE_DEVICE,
 			config: CONFIG.MICROPHONE_PRE_AMP,
-		},
-	},
-
-	DESKTOP_PC_SPEAKERS: {
-		[CLICK.SINGLE]: {
-			device: DEVICE.WEMO,
-			action: ACTION.TOGGLE_DEVICE,
-			config: CONFIG.DESKTOP_PC_SPEAKERS,
-		},
-		[CLICK.HOLD]: {
-			device: DEVICE.WEMO,
-			action: ACTION.TOGGLE_DEVICE,
-			config: CONFIG.DESKTOP_PC_SPEAKERS,
 		},
 	},
 
@@ -417,11 +409,6 @@ const MULTI_ACTION_SET = {
 		ACTION_SET.MASTER_BATHROOM,
 		ACTION_SET.MASTER_BEDROOM,
 	]),
-
-	DESKTOP_PC: combineSets([
-		ACTION_SET.DESKTOP_PC_MICROPHONE,
-		ACTION_SET.DESKTOP_PC_SPEAKERS,
-	]),
 }
 
 const buttonConfigs = {
@@ -450,14 +437,14 @@ const buttonConfigs = {
 		color: COLOR.WHITE,
 	}),
 
-	'80:e4:da:72:62:9e': Object.assign({}, MULTI_ACTION_SET.DESKTOP_PC, {
-		location: "Desktop PC",
-		color: COLOR.GREEN,
-	}),
-
 	'80:e4:da:72:3c:c9': Object.assign({}, ACTION_SET.PARENT_VANITY, {
 		location: "Parent's Vanity",
 		color: COLOR.BLACK,
+	}),
+
+	'80:e4:da:72:62:9e': Object.assign({}, ACTION_SET.DESKTOP_PC, {
+		location: "Desktop PC",
+		color: COLOR.GREEN,
 	}),
 
 	'80:e4:da:72:a8:bf': Object.assign({}, ACTION_SET.EAT_IN_KITCHEN, {
