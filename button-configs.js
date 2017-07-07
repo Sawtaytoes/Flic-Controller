@@ -69,18 +69,18 @@ const CONFIG = {
 
 	// Master Bathroom
 	MASTER_BATHROOM: 'Master Bathroom',
-	NORMAL_MASTER_BATHROOM: 'Normal Bathroom',
-	BRIGHT_MASTER_BATHROOM: 'Bright Bathroom',
-	LATE_NIGHT_MASTER_BATHROOM: 'Late Night Bathroom',
+	NORMAL_MASTER_BATHROOM: 'Normal Master Bathroom',
+	BRIGHT_MASTER_BATHROOM: 'Bright Master Bathroom',
+	LATE_NIGHT_MASTER_BATHROOM: 'Late Night Master Bathroom',
 	ASHLEE_VANITY: 'Ashlee\'s Vanity',
 	KEVIN_VANITY: 'Kevin\'s Vanity',
 	SHOWER: 'Shower',
 
 	// Master Bedroom
 	MASTER_BEDROOM: 'Master Bedroom',
-	NORMAL_MASTER_BEDROOM: 'Normal Bedroom',
-	BRIGHT_MASTER_BEDROOM: 'Bright Bedroom',
-	LATE_NIGHT_MASTER_BEDROOM: 'Late Night Bedroom',
+	NORMAL_MASTER_BEDROOM: 'Normal Master Bedroom',
+	BRIGHT_MASTER_BEDROOM: 'Bright Master Bedroom',
+	LATE_NIGHT_MASTER_BEDROOM: 'Late Night Master Bedroom',
 
 	// Office
 	OFFICE: 'Office',
