@@ -494,6 +494,16 @@ const buttonConfigs = {
 		color: COLOR.GREEN,
 	}),
 
+	'80:e4:da:72:aa:5b': Object.assign({}, ACTION_SET.DINING_ROOM, {
+		location: "Dining Room Kitchen Doorway",
+		color: COLOR.WHITE,
+	}),
+
+	'80:e4:da:72:a8:9e': Object.assign({}, ACTION_SET.DINING_ROOM, {
+		location: "Dining Room Entryway",
+		color: COLOR.WHITE,
+	}),
+
 	'80:e4:da:72:a8:bf': Object.assign({}, ACTION_SET.EAT_IN_KITCHEN, {
 		location: "Eat-In Kitchen Table",
 		color: COLOR.WHITE,
