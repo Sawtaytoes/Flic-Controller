@@ -65,6 +65,7 @@ const CONFIG = {
 	BRIGHT_KITCHEN: 'Bright Kitchen',
 	LATE_NIGHT_KITCHEN: 'Late Night Kitchen',
 	GARBAGE_DISPOSAL: 'Garbage Disposal',
+	WASHING_DISHES: 'Washing Dishes',
 	WAX_WARMER: 'Kitchen Wax Warmer',
 
 	// Living Room
@@ -232,9 +233,9 @@ const ACTION_SET = {
 			config: CONFIG.GARBAGE_DISPOSAL,
 		},
 		[CLICK.DOUBLE]: {
-			device: DEVICE.WEMO,
-			action: ACTION.TOGGLE_DEVICE,
-			config: CONFIG.GARBAGE_DISPOSAL,
+			device: DEVICE.LIFX,
+			action: ACTION.TOGGLE_SCENE,
+			config: CONFIG.WASHING_DISHES,
 		},
 		[CLICK.HOLD]: {
 			device: DEVICE.WEMO,
@@ -448,23 +449,18 @@ const MULTI_ACTION_SET = {
 }
 
 const buttonConfigs = {
-	'80:e4:da:72:a8:62': Object.assign({}, MULTI_ACTION_SET.ALL_DOWNSTAIRS, {
-		location: "Basement Door",
-		color: COLOR.WHITE,
-	}),
-
-	'80:e4:da:72:4c:20': Object.assign({}, MULTI_ACTION_SET.ALL_INSIDE, {
+	'80:e4:da:72:4c:20': Object.assign({}, MULTI_ACTION_SET.ALL_KITCHEN, {
 		location: "Kitchen Desk",
 		color: COLOR.BLACK,
 	}),
 
-	'80:e4:da:72:9d:27': Object.assign({}, MULTI_ACTION_SET.ALL_KITCHEN, {
-		location: "Kitchen Desk",
+	'80:e4:da:72:a8:62': Object.assign({}, MULTI_ACTION_SET.ALL_KITCHEN, {
+		location: "Kevin's Desk",
 		color: COLOR.WHITE,
 	}),
 
 	'80:e4:da:72:60:ce': Object.assign({}, MULTI_ACTION_SET.ALL_LIVING_ROOM, {
-		location: "Colissio",
+		location: "Kevin's Desk",
 		color: COLOR.BLACK,
 	}),
 
@@ -494,7 +490,7 @@ const buttonConfigs = {
 	}),
 
 	'80:e4:da:72:62:9e': Object.assign({}, ACTION_SET.COLISSIO, {
-		location: "Colissio",
+		location: "Kevin's Desk",
 		color: COLOR.GREEN,
 	}),
 
@@ -513,11 +509,6 @@ const buttonConfigs = {
 		color: COLOR.BLACK,
 	}),
 
-	'80:e4:da:72:a8:c1': Object.assign({}, ACTION_SET.KITCHEN_SINK, {
-		location: "Kitchen Sink",
-		color: COLOR.WHITE,
-	}),
-
 	'80:e4:da:72:35:d3': Object.assign({}, ACTION_SET.KEVIN_VANITY, {
 		location: "Kevin's Vanity",
 		color: COLOR.BLACK,
@@ -525,6 +516,16 @@ const buttonConfigs = {
 
 	'80:e4:da:72:a8:a1': Object.assign({}, ACTION_SET.KITCHEN, {
 		location: "Kitchen Island",
+		color: COLOR.WHITE,
+	}),
+
+	'80:e4:da:72:9d:27': Object.assign({}, ACTION_SET.KITCHEN, {
+		location: "Kitchen Desk",
+		color: COLOR.WHITE,
+	}),
+
+	'80:e4:da:72:a8:c1': Object.assign({}, ACTION_SET.KITCHEN_SINK, {
+		location: "Kitchen Sink",
 		color: COLOR.WHITE,
 	}),
 
