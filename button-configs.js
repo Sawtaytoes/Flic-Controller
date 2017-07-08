@@ -23,6 +23,12 @@ const ACTION = {
 }
 
 const CONFIG = {
+	// Basement
+	BASEMENT: 'Basement',
+	NORMAL_BASEMENT: 'Normal Basement',
+	BRIGHT_BASEMENT: 'Bright Basement',
+	LATE_NIGHT_BASEMENT: 'Late Night Basement',
+
 	// Dining Room
 	DINING_ROOM: 'Dining Room',
 	NORMAL_DINING_ROOM: 'Normal Dining Room',
@@ -108,6 +114,24 @@ const ACTION_SET = {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.ASHLEE_VANITY,
+		},
+	},
+
+	BASEMENT: {
+		[CLICK.SINGLE]: {
+			device: DEVICE.LIFX,
+			action: ACTION.TOGGLE_SCENE,
+			config: CONFIG.NORMAL_BASEMENT,
+		},
+		[CLICK.DOUBLE]: {
+			device: DEVICE.LIFX,
+			action: ACTION.TOGGLE_SCENE,
+			config: CONFIG.BRIGHT_BASEMENT,
+		},
+		[CLICK.HOLD]: {
+			device: DEVICE.LIFX,
+			action: ACTION.TOGGLE_SCENE,
+			config: CONFIG.LATE_NIGHT_BASEMENT,
 		},
 	},
 
@@ -392,6 +416,19 @@ const MULTI_ACTION_SET = {
 		ACTION_SET.OFFICE,
 	]),
 
+	ALL_INSIDE: combineSets([
+		ACTION_SET.DINING_ROOM,
+		ACTION_SET.EAT_IN_KITCHEN,
+		ACTION_SET.ENTRYWAY,
+		ACTION_SET.FAMILY_ROOM,
+		ACTION_SET.HALLWAY,
+		ACTION_SET.KITCHEN,
+		ACTION_SET.LIVING_ROOM,
+		ACTION_SET.MASTER_BATHROOM,
+		ACTION_SET.MASTER_BEDROOM,
+		ACTION_SET.OFFICE,
+	]),
+
 	ALL_KITCHEN: combineSets([
 		ACTION_SET.EAT_IN_KITCHEN,
 		ACTION_SET.FAMILY_ROOM,
@@ -411,6 +448,16 @@ const MULTI_ACTION_SET = {
 }
 
 const buttonConfigs = {
+	'80:e4:da:72:a8:62': Object.assign({}, MULTI_ACTION_SET.ALL_DOWNSTAIRS, {
+		location: "Basement Door",
+		color: COLOR.WHITE,
+	}),
+
+	'80:e4:da:72:4c:20': Object.assign({}, MULTI_ACTION_SET.ALL_INSIDE, {
+		location: "Kitchen Desk",
+		color: COLOR.BLACK,
+	}),
+
 	'80:e4:da:72:9d:27': Object.assign({}, MULTI_ACTION_SET.ALL_KITCHEN, {
 		location: "Kitchen Desk",
 		color: COLOR.WHITE,
@@ -438,6 +485,11 @@ const buttonConfigs = {
 
 	'80:e4:da:72:3c:c9': Object.assign({}, ACTION_SET.ASHLEE_VANITY, {
 		location: "Ashlee's Vanity",
+		color: COLOR.BLACK,
+	}),
+
+	'80:e4:da:72:5a:41': Object.assign({}, ACTION_SET.BASEMENT, {
+		location: "Basement Door",
 		color: COLOR.BLACK,
 	}),
 
