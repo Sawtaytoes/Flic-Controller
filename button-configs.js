@@ -428,6 +428,11 @@ const MULTI_ACTION_SET = {
 		ACTION_SET.OFFICE,
 	]),
 
+	ALL_STAIRWAY: combineSets([
+		ACTION_SET.ENTRYWAY,
+		ACTION_SET.HALLWAY,
+	]),
+
 	ALL_UPSTAIRS: combineSets([
 		ACTION_SET.HALLWAY,
 		ACTION_SET.MASTER_BATHROOM,
@@ -453,6 +458,11 @@ const buttonConfigs = {
 
 	'80:e4:da:72:60:e2': Object.assign({}, MULTI_ACTION_SET.ALL_LIVING_ROOM, {
 		location: "Living Room Coffee Table",
+		color: COLOR.BLACK,
+	}),
+
+	'80:e4:da:72:4d:9e': Object.assign({}, MULTI_ACTION_SET.ALL_STAIRWAY, {
+		location: "Dining Room Entryway",
 		color: COLOR.BLACK,
 	}),
 
@@ -482,12 +492,12 @@ const buttonConfigs = {
 	}),
 
 	'80:e4:da:72:aa:5b': Object.assign({}, ACTION_SET.DINING_ROOM, {
-		location: "Dining Room Kitchen Doorway",
+		location: "Dining Room Entryway",
 		color: COLOR.WHITE,
 	}),
 
 	'80:e4:da:72:a8:9e': Object.assign({}, ACTION_SET.DINING_ROOM, {
-		location: "Dining Room Entryway",
+		location: "Dining Room Kitchen Doorway",
 		color: COLOR.WHITE,
 	}),
 
