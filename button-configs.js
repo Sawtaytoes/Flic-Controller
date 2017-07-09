@@ -52,7 +52,7 @@ const CONFIG = {
 	NORMAL_FAMILY_ROOM: 'Normal Family Room',
 	BRIGHT_FAMILY_ROOM: 'Bright Family Room',
 	LATE_NIGHT_FAMILY_ROOM: 'Late Night Family Room',
-	THEATER: 'theater',
+	THEATER: 'Theater',
 
 	// Hallway
 	HALLWAY: 'Hallway',
