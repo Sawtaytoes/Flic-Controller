@@ -52,6 +52,7 @@ const CONFIG = {
 	NORMAL_FAMILY_ROOM: 'Normal Family Room',
 	BRIGHT_FAMILY_ROOM: 'Bright Family Room',
 	LATE_NIGHT_FAMILY_ROOM: 'Late Night Family Room',
+	THEATER: 'theater',
 
 	// Hallway
 	HALLWAY: 'Hallway',
@@ -387,6 +388,24 @@ const ACTION_SET = {
 			config: CONFIG.SHOWER,
 		},
 	},
+
+	THEATER: {
+		[CLICK.SINGLE]: {
+			device: DEVICE.LIFX,
+			action: ACTION.TOGGLE_SCENE,
+			config: CONFIG.THEATER,
+		},
+		[CLICK.DOUBLE]: {
+			device: DEVICE.LIFX,
+			action: ACTION.TOGGLE_SCENE,
+			config: CONFIG.THEATER,
+		},
+		[CLICK.HOLD]: {
+			device: DEVICE.LIFX,
+			action: ACTION.TOGGLE_SCENE,
+			config: CONFIG.THEATER,
+		},
+	},
 }
 
 const combineSets = actionSets => (
@@ -559,6 +578,11 @@ const buttonConfigs = {
 	'80:e4:da:72:a8:60': Object.assign({}, ACTION_SET.SHOWER, {
 		location: "Kevin's Vanity",
 		color: COLOR.WHITE,
+	}),
+
+	'80:e4:da:72:63:f5': Object.assign({}, ACTION_SET.THEATER, {
+		location: "TV Area",
+		color: COLOR.GREEN,
 	}),
 }
 
