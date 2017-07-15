@@ -486,7 +486,7 @@ const buttonConfigs = {
 	}),
 
 	'80:e4:da:72:a8:bc': Object.assign({}, MULTI_ACTION_SET.ALL_UPSTAIRS, {
-		location: "Ashlee's Bedstand",
+		location: "Master Bedroom Bed",
 		color: COLOR.WHITE,
 	}),
 
@@ -523,11 +523,6 @@ const buttonConfigs = {
 	'80:e4:da:72:a8:bf': Object.assign({}, ACTION_SET.EAT_IN_KITCHEN, {
 		location: "Eat-In Kitchen Table",
 		color: COLOR.WHITE,
-	}),
-
-	'80:e4:da:72:4d:eb': Object.assign({}, ACTION_SET.FAMILY_ROOM, {
-		location: "Eat-In Kitchen Table",
-		color: COLOR.BLACK,
 	}),
 
 	'80:e4:da:72:4c:01': Object.assign({}, ACTION_SET.FAMILY_ROOM, {
@@ -568,6 +563,11 @@ const buttonConfigs = {
 	'80:e4:da:72:a3:49': Object.assign({}, ACTION_SET.MASTER_BATHROOM, {
 		location: "Master Bathroom Bathtub",
 		color: COLOR.TEAL,
+	}),
+
+	'80:e4:da:72:4d:eb': Object.assign({}, ACTION_SET.MASTER_BEDROOM, {
+		location: "Ashlee's Bedstand",
+		color: COLOR.BLACK,
 	}),
 
 	'80:e4:da:72:40:7c': Object.assign({}, ACTION_SET.MASTER_BEDROOM, {
