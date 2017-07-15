@@ -18,8 +18,7 @@ add `deb http://mirrordirector.raspbian.org/raspbian/ testing main contrib non-f
 80:e4:da:72:9d:27
 
 sudo apt install htop curl git software-properties-common yarn python-pip
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
-nvm install stable
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash nvm install stable
 sudo ln -s `which nodejs` /usr/local/bin/node
 npm i -g pm2@latest
 pm2 completion install
