@@ -337,6 +337,24 @@ const ACTION_SET = {
 		},
 	},
 
+	MASTER_BATHROOM_SHOWER: {
+		[CLICK.SINGLE]: {
+			device: DEVICE.LIFX,
+			action: ACTION.TOGGLE_SCENE,
+			config: CONFIG.MASTER_BATHROOM_SHOWER,
+		},
+		[CLICK.DOUBLE]: {
+			device: DEVICE.LIFX,
+			action: ACTION.TOGGLE_SCENE,
+			config: CONFIG.MASTER_BATHROOM_SHOWER,
+		},
+		[CLICK.HOLD]: {
+			device: DEVICE.LIFX,
+			action: ACTION.TOGGLE_SCENE,
+			config: CONFIG.MASTER_BATHROOM_SHOWER,
+		},
+	},
+
 	MASTER_BATHROOM_TOILET: {
 		[CLICK.SINGLE]: {
 			device: DEVICE.LIFX,
@@ -388,24 +406,6 @@ const ACTION_SET = {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.LATE_NIGHT_OFFICE,
-		},
-	},
-
-	MASTER_BATHROOM_SHOWER: {
-		[CLICK.SINGLE]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.MASTER_BATHROOM_SHOWER,
-		},
-		[CLICK.DOUBLE]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.MASTER_BATHROOM_SHOWER,
-		},
-		[CLICK.HOLD]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.MASTER_BATHROOM_SHOWER,
 		},
 	},
 
