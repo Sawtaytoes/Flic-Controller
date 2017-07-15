@@ -8,6 +8,7 @@ const client = new FlicClient("localhost", 5551)
 // const client = new FlicClient("blueberry-pi.kevinghadyani.com", 5551)
 // const client = new FlicClient("cherry-pi.kevinghadyani.com", 5551)
 const LIFX_API = 'http://lifx.kevinghadyani.com/'
+// const LIFX_API = 'http://localhost:36001/'
 const WEMO_API = 'http://wemo.kevinghadyani.com/'
 // const WEMO_API = 'http://localhost:36002/'
 
