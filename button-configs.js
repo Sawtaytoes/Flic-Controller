@@ -505,6 +505,11 @@ const buttonConfigs = {
 		color: COLOR.BLACK,
 	}),
 
+	'80:e4:da:72:a8:bc': Object.assign({}, MULTI_ACTION_SET.ALL_UPSTAIRS, {
+		location: "Ashlee's Bedstand",
+		color: COLOR.WHITE,
+	}),
+
 	'80:e4:da:72:a8:e3': Object.assign({}, MULTI_ACTION_SET.ALL_UPSTAIRS, {
 		location: "Kevin's Bedstand",
 		color: COLOR.WHITE,
@@ -580,9 +585,14 @@ const buttonConfigs = {
 		color: COLOR.TEAL,
 	}),
 
-	'80:e4:da:72:a8:bc': Object.assign({}, ACTION_SET.MASTER_BATHROOM_TOILET, {
-		location: "Ashlee's Vanity",
+	'80:e4:da:72:a8:60': Object.assign({}, ACTION_SET.MASTER_BATHROOM_SHOWER, {
+		location: "Master Bedroom Shower Entryway",
 		color: COLOR.WHITE,
+	}),
+
+	'80:e4:da:72:af:40': Object.assign({}, ACTION_SET.MASTER_BATHROOM_TOILET, {
+		location: "Master Bathroom Toilet Area",
+		color: COLOR.TEAL,
 	}),
 
 	'80:e4:da:72:4d:eb': Object.assign({}, ACTION_SET.MASTER_BEDROOM, {
@@ -593,16 +603,6 @@ const buttonConfigs = {
 	'80:e4:da:72:40:7c': Object.assign({}, ACTION_SET.MASTER_BEDROOM, {
 		location: "Kevin's Bedstand",
 		color: COLOR.BLACK,
-	}),
-
-	'80:e4:da:72:a8:60': Object.assign({}, ACTION_SET.MASTER_BATHROOM_SHOWER, {
-		location: "Kevin's Vanity",
-		color: COLOR.WHITE,
-	}),
-
-	'80:e4:da:72:af:40': Object.assign({}, ACTION_SET.MASTER_BATHROOM_SHOWER, {
-		location: "Master Bedroom Shower Entryway",
-		color: COLOR.TEAL,
 	}),
 
 	'80:e4:da:72:63:f5': Object.assign({}, ACTION_SET.THEATER, {
