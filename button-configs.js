@@ -114,7 +114,7 @@ const CONFIG = {
 	MICROPHONE_PRE_AMP: 'Microphone Pre-amp',
 }
 
-const getStandardLightingActions = roomName => ({
+const getStandardLightingActionSet = roomName => ({
 	[CLICK.SINGLE]: {
 		device: DEVICE.LIFX,
 		action: ACTION.TOGGLE_SCENE,
@@ -151,7 +151,7 @@ const ACTION_SET = {
 		},
 	},
 
-	BASEMENT: getStandardLightingActions('BASEMENT'),
+	BASEMENT: getStandardLightingActionSet('BASEMENT'),
 
 	COLISSIO: {
 		[CLICK.SINGLE]: {
@@ -171,12 +171,12 @@ const ACTION_SET = {
 		},
 	},
 
-	DINING_ROOM: getStandardLightingActions('DINING_ROOM'),
-	EAT_IN_KITCHEN: getStandardLightingActions('EAT_IN_KITCHEN'),
-	ENTRYWAY: getStandardLightingActions('ENTRYWAY'),
-	EXTRA_BEDROOM: getStandardLightingActions('EXTRA_BEDROOM'),
-	FAMILY_ROOM: getStandardLightingActions('FAMILY_ROOM'),
-	GUEST_BEDROOM: getStandardLightingActions('GUEST_BEDROOM'),
+	DINING_ROOM: getStandardLightingActionSet('DINING_ROOM'),
+	EAT_IN_KITCHEN: getStandardLightingActionSet('EAT_IN_KITCHEN'),
+	ENTRYWAY: getStandardLightingActionSet('ENTRYWAY'),
+	EXTRA_BEDROOM: getStandardLightingActionSet('EXTRA_BEDROOM'),
+	FAMILY_ROOM: getStandardLightingActionSet('FAMILY_ROOM'),
+	GUEST_BEDROOM: getStandardLightingActionSet('GUEST_BEDROOM'),
 
 	KITCHEN_SINK: {
 		[CLICK.SINGLE]: {
@@ -196,7 +196,7 @@ const ACTION_SET = {
 		},
 	},
 
-	HALLWAY: getStandardLightingActions('HALLWAY'),
+	HALLWAY: getStandardLightingActionSet('HALLWAY'),
 
 	KEVIN_VANITY: {
 		[CLICK.SINGLE]: {
@@ -216,9 +216,9 @@ const ACTION_SET = {
 		},
 	},
 
-	KITCHEN: getStandardLightingActions('KITCHEN'),
-	LIVING_ROOM: getStandardLightingActions('LIVING_ROOM'),
-	MASTER_BATHROOM: getStandardLightingActions('MASTER_BATHROOM'),
+	KITCHEN: getStandardLightingActionSet('KITCHEN'),
+	LIVING_ROOM: getStandardLightingActionSet('LIVING_ROOM'),
+	MASTER_BATHROOM: getStandardLightingActionSet('MASTER_BATHROOM'),
 
 	MASTER_BATHROOM_SHOWER: {
 		[CLICK.SINGLE]: {
@@ -256,7 +256,7 @@ const ACTION_SET = {
 		},
 	},
 
-	MASTER_BEDROOM: getStandardLightingActions('MASTER_BEDROOM'),
+	MASTER_BEDROOM: getStandardLightingActionSet('MASTER_BEDROOM'),
 
 	OFFICE: {
 		[CLICK.SINGLE]: {
