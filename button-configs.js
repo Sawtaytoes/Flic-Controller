@@ -84,7 +84,7 @@ const CONFIG = {
 	ASHLEE_VANITY: 'Ashlee\'s Vanity',
 	KEVIN_VANITY: 'Kevin\'s Vanity',
 	MASTER_BATHROOM_TOILET: 'Master Bathroom Toilet',
-	SHOWER: 'Shower',
+	MASTER_BATHROOM_SHOWER: 'Shower',
 
 	// Master Bedroom
 	MASTER_BEDROOM: 'Master Bedroom',
@@ -391,21 +391,21 @@ const ACTION_SET = {
 		},
 	},
 
-	SHOWER: {
+	MASTER_BATHROOM_SHOWER: {
 		[CLICK.SINGLE]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.SHOWER,
+			config: CONFIG.MASTER_BATHROOM_SHOWER,
 		},
 		[CLICK.DOUBLE]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.SHOWER,
+			config: CONFIG.MASTER_BATHROOM_SHOWER,
 		},
 		[CLICK.HOLD]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.SHOWER,
+			config: CONFIG.MASTER_BATHROOM_SHOWER,
 		},
 	},
 
@@ -595,9 +595,14 @@ const buttonConfigs = {
 		color: COLOR.BLACK,
 	}),
 
-	'80:e4:da:72:a8:60': Object.assign({}, ACTION_SET.SHOWER, {
+	'80:e4:da:72:a8:60': Object.assign({}, ACTION_SET.MASTER_BATHROOM_SHOWER, {
 		location: "Kevin's Vanity",
 		color: COLOR.WHITE,
+	}),
+
+	'80:e4:da:72:af:40': Object.assign({}, ACTION_SET.MASTER_BATHROOM_SHOWER, {
+		location: "Master Bedroom Shower Entryway",
+		color: COLOR.TEAL,
 	}),
 
 	'80:e4:da:72:63:f5': Object.assign({}, ACTION_SET.THEATER, {
