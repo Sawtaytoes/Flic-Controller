@@ -48,12 +48,24 @@ const CONFIG = {
 	BRIGHT_ENTRYWAY: 'Bright Entryway',
 	LATE_NIGHT_ENTRYWAY: 'Late Night Entryway',
 
+	// Extra Bedroom
+	EXTRA_BEDROOM: 'Extra Bedroom',
+	NORMAL_EXTRA_BEDROOM: 'Normal Extra Bedroom',
+	BRIGHT_EXTRA_BEDROOM: 'Bright Extra Bedroom',
+	LATE_NIGHT_EXTRA_BEDROOM: 'Late Night Extra Bedroom',
+
 	// Family Room
 	FAMILY_ROOM: 'Master Family Room',
 	NORMAL_FAMILY_ROOM: 'Normal Family Room',
 	BRIGHT_FAMILY_ROOM: 'Bright Family Room',
 	LATE_NIGHT_FAMILY_ROOM: 'Late Night Family Room',
 	THEATER: 'Theater',
+
+	// Guest Bedroom
+	GUEST_BEDROOM: 'Guest Bedroom',
+	NORMAL_GUEST_BEDROOM: 'Normal Guest Bedroom',
+	BRIGHT_GUEST_BEDROOM: 'Bright Guest Bedroom',
+	LATE_NIGHT_GUEST_BEDROOM: 'Late Night Guest Bedroom',
 
 	// Hallway
 	HALLWAY: 'Hallway',
