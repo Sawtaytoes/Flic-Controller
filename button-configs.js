@@ -114,6 +114,24 @@ const CONFIG = {
 	MICROPHONE_PRE_AMP: 'Microphone Pre-amp',
 }
 
+const getStandardLightingActions = roomName => ({
+	[CLICK.SINGLE]: {
+		device: DEVICE.LIFX,
+		action: ACTION.TOGGLE_SCENE,
+		config: CONFIG[`NORMAL_${roomName}`],
+	},
+	[CLICK.DOUBLE]: {
+		device: DEVICE.LIFX,
+		action: ACTION.TOGGLE_SCENE,
+		config: CONFIG[`BRIGHT_${roomName}`],
+	},
+	[CLICK.HOLD]: {
+		device: DEVICE.LIFX,
+		action: ACTION.TOGGLE_SCENE,
+		config: CONFIG[`LATE_NIGHT_${roomName}`],
+	},
+})
+
 const ACTION_SET = {
 	ASHLEE_VANITY: {
 		[CLICK.SINGLE]: {
@@ -133,23 +151,7 @@ const ACTION_SET = {
 		},
 	},
 
-	BASEMENT: {
-		[CLICK.SINGLE]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.NORMAL_BASEMENT,
-		},
-		[CLICK.DOUBLE]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.BRIGHT_BASEMENT,
-		},
-		[CLICK.HOLD]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.LATE_NIGHT_BASEMENT,
-		},
-	},
+	BASEMENT: getStandardLightingActions('BASEMENT'),
 
 	COLISSIO: {
 		[CLICK.SINGLE]: {
@@ -169,77 +171,12 @@ const ACTION_SET = {
 		},
 	},
 
-	DINING_ROOM: {
-		[CLICK.SINGLE]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.NORMAL_DINING_ROOM,
-		},
-		[CLICK.DOUBLE]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.BRIGHT_DINING_ROOM,
-		},
-		[CLICK.HOLD]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.LATE_NIGHT_DINING_ROOM,
-		},
-	},
-
-	EAT_IN_KITCHEN: {
-		[CLICK.SINGLE]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.NORMAL_EAT_IN_KITCHEN,
-		},
-		[CLICK.DOUBLE]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.BRIGHT_EAT_IN_KITCHEN,
-		},
-		[CLICK.HOLD]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.LATE_NIGHT_EAT_IN_KITCHEN,
-		},
-	},
-
-	ENTRYWAY: {
-		[CLICK.SINGLE]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.NORMAL_ENTRYWAY,
-		},
-		[CLICK.DOUBLE]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.BRIGHT_ENTRYWAY,
-		},
-		[CLICK.HOLD]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.LATE_NIGHT_ENTRYWAY,
-		},
-	},
-
-	FAMILY_ROOM: {
-		[CLICK.SINGLE]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.NORMAL_FAMILY_ROOM,
-		},
-		[CLICK.DOUBLE]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.BRIGHT_FAMILY_ROOM,
-		},
-		[CLICK.HOLD]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.LATE_NIGHT_FAMILY_ROOM,
-		},
-	},
+	DINING_ROOM: getStandardLightingActions('DINING_ROOM'),
+	EAT_IN_KITCHEN: getStandardLightingActions('EAT_IN_KITCHEN'),
+	ENTRYWAY: getStandardLightingActions('ENTRYWAY'),
+	EXTRA_BEDROOM: getStandardLightingActions('EXTRA_BEDROOM'),
+	FAMILY_ROOM: getStandardLightingActions('FAMILY_ROOM'),
+	GUEST_BEDROOM: getStandardLightingActions('GUEST_BEDROOM'),
 
 	KITCHEN_SINK: {
 		[CLICK.SINGLE]: {
@@ -259,23 +196,7 @@ const ACTION_SET = {
 		},
 	},
 
-	HALLWAY: {
-		[CLICK.SINGLE]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.NORMAL_HALLWAY,
-		},
-		[CLICK.DOUBLE]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.BRIGHT_HALLWAY,
-		},
-		[CLICK.HOLD]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.LATE_NIGHT_HALLWAY,
-		},
-	},
+	HALLWAY: getStandardLightingActions('HALLWAY'),
 
 	KEVIN_VANITY: {
 		[CLICK.SINGLE]: {
@@ -295,59 +216,9 @@ const ACTION_SET = {
 		},
 	},
 
-	KITCHEN: {
-		[CLICK.SINGLE]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.NORMAL_KITCHEN,
-		},
-		[CLICK.DOUBLE]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.BRIGHT_KITCHEN,
-		},
-		[CLICK.HOLD]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.LATE_NIGHT_KITCHEN,
-		},
-	},
-
-	LIVING_ROOM: {
-		[CLICK.SINGLE]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.NORMAL_LIVING_ROOM,
-		},
-		[CLICK.DOUBLE]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.BRIGHT_LIVING_ROOM,
-		},
-		[CLICK.HOLD]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.LATE_NIGHT_LIVING_ROOM,
-		},
-	},
-
-	MASTER_BATHROOM: {
-		[CLICK.SINGLE]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.NORMAL_MASTER_BATHROOM,
-		},
-		[CLICK.DOUBLE]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.BRIGHT_MASTER_BATHROOM,
-		},
-		[CLICK.HOLD]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.LATE_NIGHT_MASTER_BATHROOM,
-		},
-	},
+	KITCHEN: getStandardLightingActions('KITCHEN'),
+	LIVING_ROOM: getStandardLightingActions('LIVING_ROOM'),
+	MASTER_BATHROOM: getStandardLightingActions('MASTER_BATHROOM'),
 
 	MASTER_BATHROOM_SHOWER: {
 		[CLICK.SINGLE]: {
@@ -385,23 +256,7 @@ const ACTION_SET = {
 		},
 	},
 
-	MASTER_BEDROOM: {
-		[CLICK.SINGLE]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.NORMAL_MASTER_BEDROOM,
-		},
-		[CLICK.DOUBLE]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.BRIGHT_MASTER_BEDROOM,
-		},
-		[CLICK.HOLD]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.LATE_NIGHT_MASTER_BEDROOM,
-		},
-	},
+	MASTER_BEDROOM: getStandardLightingActions('MASTER_BEDROOM'),
 
 	OFFICE: {
 		[CLICK.SINGLE]: {
@@ -485,6 +340,8 @@ const MULTI_ACTION_SET = {
 	]),
 
 	ALL_UPSTAIRS: combineSets([
+		ACTION_SET.EXTRA_BEDROOM,
+		ACTION_SET.GUEST_BEDROOM,
 		ACTION_SET.HALLWAY,
 		ACTION_SET.MASTER_BATHROOM,
 		ACTION_SET.MASTER_BEDROOM,
