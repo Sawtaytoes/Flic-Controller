@@ -19,6 +19,7 @@ const DEVICE = {
 const ACTION = {
 	TOGGLE_DEVICE: 'toggle-device',
 	TOGGLE_GROUP: 'toggle-group',
+	TOGGLE_LIGHT: 'toggle-light',
 	TOGGLE_SCENE: 'toggle-scene',
 }
 
@@ -82,6 +83,7 @@ const CONFIG = {
 	LATE_NIGHT_MASTER_BATHROOM: 'Late Night Master Bathroom',
 	ASHLEE_VANITY: 'Ashlee\'s Vanity',
 	KEVIN_VANITY: 'Kevin\'s Vanity',
+	MASTER_BATHROOM_TOILET: 'Master Bathroom Toilet',
 	SHOWER: 'Shower',
 
 	// Master Bedroom
@@ -335,6 +337,24 @@ const ACTION_SET = {
 		},
 	},
 
+	MASTER_BATHROOM_TOILET: {
+		[CLICK.SINGLE]: {
+			device: DEVICE.LIFX,
+			action: ACTION.TOGGLE_LIGHT,
+			config: CONFIG.MASTER_BATHROOM_TOILET,
+		},
+		[CLICK.DOUBLE]: {
+			device: DEVICE.LIFX,
+			action: ACTION.TOGGLE_LIGHT,
+			config: CONFIG.MASTER_BATHROOM_TOILET,
+		},
+		[CLICK.HOLD]: {
+			device: DEVICE.LIFX,
+			action: ACTION.TOGGLE_LIGHT,
+			config: CONFIG.MASTER_BATHROOM_TOILET,
+		},
+	},
+
 	MASTER_BEDROOM: {
 		[CLICK.SINGLE]: {
 			device: DEVICE.LIFX,
@@ -485,11 +505,6 @@ const buttonConfigs = {
 		color: COLOR.BLACK,
 	}),
 
-	'80:e4:da:72:a8:bc': Object.assign({}, MULTI_ACTION_SET.ALL_UPSTAIRS, {
-		location: "Master Bedroom Bed",
-		color: COLOR.WHITE,
-	}),
-
 	'80:e4:da:72:a8:e3': Object.assign({}, MULTI_ACTION_SET.ALL_UPSTAIRS, {
 		location: "Kevin's Bedstand",
 		color: COLOR.WHITE,
@@ -563,6 +578,11 @@ const buttonConfigs = {
 	'80:e4:da:72:a3:49': Object.assign({}, ACTION_SET.MASTER_BATHROOM, {
 		location: "Master Bathroom Bathtub",
 		color: COLOR.TEAL,
+	}),
+
+	'80:e4:da:72:a8:bc': Object.assign({}, ACTION_SET.MASTER_BATHROOM_TOILET, {
+		location: "Ashlee's Vanity",
+		color: COLOR.WHITE,
 	}),
 
 	'80:e4:da:72:4d:eb': Object.assign({}, ACTION_SET.MASTER_BEDROOM, {
