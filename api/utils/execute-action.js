@@ -1,3 +1,5 @@
+const fetch = require('node-fetch')
+
 const dir = require(`${global.baseDir}global-dirs`)
 const config = require(`${dir.configs}config-settings`)
 const logger = require(`${dir.utils}logger`)
