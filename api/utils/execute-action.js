@@ -22,7 +22,7 @@ const changeState = deviceType => deviceTypes[deviceType]
 
 const executeAction = ({ action, config, device }) => (
 	logger.log(`${device} ${action}:`, config)
-	&& (
+	|| (
 		changeState(device)(action)(config)
 		.then(() => logger.log(`Action ${action}/${config} Executed Successfully`))
 		.catch(err => logger.logError(err))
