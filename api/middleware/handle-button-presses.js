@@ -1,3 +1,5 @@
+const fetch = require('node-fetch')
+
 const dir = require(`${global.baseDir}global-dirs`)
 const buttonConfigs = require(`${dir.configs}button-configs`)
 const config = require(`${dir.configs}config-settings`)
@@ -26,6 +28,7 @@ const listenToButton = flicClient => bluetoothAddress => {
 
 		if (actionSetClickType instanceof Array) {
 			logger.log(actionSetClickType);
+
 			const sceneNames = (
 				actionSetClickType
 				.filter(({ device }) => device === 'lifx')
@@ -69,9 +72,8 @@ const listenToButton = flicClient => bluetoothAddress => {
 
 const handleButtonPresses = flicClient => () => (
 	flicClient.getInfo(info => (
-		info.bdAddrOfVerifiedButtons.forEach(
-			bluetoothAddress => listenToButton(bluetoothAddress)
-		)
+		info.bdAddrOfVerifiedButtons
+		.map(listenToButton(flicClient))
 	))
 )
 

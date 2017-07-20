@@ -1,4 +1,4 @@
-const extend = require('extend')
+const merge = require('lodash/merge')
 
 const dir = require(`${global.baseDir}global-dirs`)
 
@@ -49,11 +49,15 @@ const configEnv = {
 	},
 }
 
-Object.keys(configEnv)
-.forEach(key => typeof configEnv[key] === 'undefined' && delete configEnv[key])
+const config = merge({}, configDefaults, configEnv, configCustom)
 
-const config = extend({}, configDefaults, configEnv, configCustom)
-config.port = Number(config.port)
+const uris = [
+	config.flicClient,
+	config.lifxApi,
+	config.wemoApi,
+]
+
+uris.forEach(uri => uri.port = Number(uri.port))
 
 const assembleUri = ({ hostname, port, protocol }) => (
 	`${protocol}://${hostname}:${port}`
