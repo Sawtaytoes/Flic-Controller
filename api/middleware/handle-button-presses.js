@@ -41,13 +41,13 @@ const listenToButton = flicClient => bluetoothAddress => {
 				.map(({ config }) => config)
 			)
 
-			fetch(`${LIFX_API}toggle-scenes`, {
+			fetch(`${LIFX_API}/toggle-scenes`, {
 				body: JSON.stringify({ sceneNames }),
 				headers: { 'Content-Type': 'application/json' },
 				method: 'PUT',
 			})
 
-			fetch(`${WEMO_API}toggle-devices`, {
+			fetch(`${WEMO_API}/toggle-devices`, {
 				body: JSON.stringify({ deviceNames }),
 				headers: { 'Content-Type': 'application/json' },
 				method: 'PUT',
