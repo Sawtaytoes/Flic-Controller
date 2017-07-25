@@ -11,11 +11,11 @@ const LIFX_API = config.getLifxApiUri()
 const WEMO_API = config.getWemoApiUri()
 
 const listenToButton = flicClient => bluetoothAddress => {
-	const cc = new FlicConnectionChannel(bluetoothAddress)
+	const flicConnectionChannel = new FlicConnectionChannel(bluetoothAddress)
 
-	flicClient.addConnectionChannel(cc)
+	flicClient.addConnectionChannel(flicConnectionChannel)
 
-	cc
+	flicConnectionChannel
 	.on('buttonSingleOrDoubleClickOrHold', clickType => {
 		logger.log('Bluetooth Address:', bluetoothAddress)
 		logger.log('Click Type:', clickType)
