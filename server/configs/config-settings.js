@@ -60,7 +60,7 @@ const uris = [
 uris.forEach(uri => uri.port = Number(uri.port))
 
 const assembleUri = ({ hostname, port, protocol }) => (
-	`${protocol}://${hostname}:${port}`
+	`${protocol}://${hostname}:${port}/`
 )
 
 module.exports = {
