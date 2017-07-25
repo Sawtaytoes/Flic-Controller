@@ -7,12 +7,14 @@ const logger = require(`${dir.utils}logger`)
 const LIFX_API = config.getLifxApiUri()
 const WEMO_API = config.getWemoApiUri()
 
-const changeLifxState = actionType => name => (
-	fetch(`${LIFX_API}/${actionType}/${name}`)
+const changeLifxState = actionType => value => (
+	value instanceof Array
+	? fetch(`${LIFX_API}/${actionType}/${value.join('/')}`)
+	: fetch(`${LIFX_API}/${actionType}/${value}`)
 )
 
-const changeWemoDeviceState = actionType => name => (
-	fetch(`${WEMO_API}/${actionType}/${name}`)
+const changeWemoDeviceState = actionType => value => (
+	fetch(`${WEMO_API}/${actionType}/${value}`)
 )
 
 const deviceTypes = {

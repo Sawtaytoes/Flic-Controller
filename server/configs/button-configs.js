@@ -17,6 +17,7 @@ const DEVICE = {
 }
 
 const ACTION = {
+	SET_LIGHT_BRIGHTNESS: 'set-light-brightness',
 	TOGGLE_DEVICE: 'toggle-device',
 	TOGGLE_GROUP: 'toggle-group',
 	TOGGLE_LIGHT: 'toggle-light',
@@ -246,35 +247,24 @@ const ACTION_SET = {
 		},
 		[CLICK.DOUBLE]: {
 			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_LIGHT,
-			config: CONFIG.MASTER_BATHROOM_TOILET,
+			action: ACTION.SET_LIGHT_BRIGHTNESS,
+			config: [
+				CONFIG.MASTER_BATHROOM_TOILET,
+				100,
+			],
 		},
 		[CLICK.HOLD]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_LIGHT,
-			config: CONFIG.MASTER_BATHROOM_TOILET,
+			config: [
+				CONFIG.MASTER_BATHROOM_TOILET,
+				10,
+			],
 		},
 	},
 
 	MASTER_BEDROOM: getStandardLightingActionSet('MASTER_BEDROOM'),
-
-	OFFICE: {
-		[CLICK.SINGLE]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.NORMAL_OFFICE,
-		},
-		[CLICK.DOUBLE]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.BRIGHT_OFFICE,
-		},
-		[CLICK.HOLD]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.LATE_NIGHT_OFFICE,
-		},
-	},
+	OFFICE: getStandardLightingActionSet('OFFICE'),
 
 	THEATER: {
 		[CLICK.SINGLE]: {
