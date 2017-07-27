@@ -409,8 +409,18 @@ const buttonConfigs = {
 		color: COLOR.WHITE,
 	}),
 
+	'80:e4:da:72:5f:2b': Object.assign({}, ACTION_SET.EXTRA_BEDROOM, {
+		location: "Extra Bedroom Wall",
+		color: COLOR.BLACK,
+	}),
+
 	'80:e4:da:72:4c:01': Object.assign({}, ACTION_SET.FAMILY_ROOM, {
 		location: "Eat-In Kitchen Table",
+		color: COLOR.BLACK,
+	}),
+
+	'80:e4:da:72:45:77': Object.assign({}, ACTION_SET.GUEST_BEDROOM, {
+		location: "Guest Bedroom Wall",
 		color: COLOR.BLACK,
 	}),
 
