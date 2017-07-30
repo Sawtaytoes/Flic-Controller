@@ -101,10 +101,15 @@ const CONFIG = {
 
 	// Master Bedroom
 	MASTER_BEDROOM: 'Master Bedroom',
-	MASTER_BEDROOM_CLOSET: 'Master Bedroom Closet',
 	NORMAL_MASTER_BEDROOM: 'Normal Master Bedroom',
 	BRIGHT_MASTER_BEDROOM: 'Bright Master Bedroom',
 	LATE_NIGHT_MASTER_BEDROOM: 'Late Night Master Bedroom',
+
+	// Master Bedroom Closet
+	MASTER_BEDROOM_CLOSET: 'Master Bedroom Closet',
+	NORMAL_MASTER_BEDROOM_CLOSET: 'Normal Master Bedroom Closet',
+	BRIGHT_MASTER_BEDROOM_CLOSET: 'Bright Master Bedroom Closet',
+	LATE_NIGHT_MASTER_BEDROOM_CLOSET: 'Late Night Master Bedroom Closet',
 
 	// Office
 	OFFICE: 'Office',
