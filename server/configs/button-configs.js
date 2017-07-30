@@ -256,7 +256,7 @@ const ACTION_SET = {
 		},
 		[CLICK.HOLD]: {
 			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_LIGHT,
+			action: ACTION.SET_LIGHT_BRIGHTNESS,
 			config: [
 				CONFIG.MASTER_BATHROOM_TOILET,
 				10,
