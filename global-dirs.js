@@ -3,6 +3,7 @@ const base = global.baseDir
 
 const api = `${base}api/`
 const cache = `${base}.cache/`
+const lib = `${base}lib/`
 const server = `${base}server/`
 
 const middleware = `${api}middleware/`
@@ -16,6 +17,7 @@ module.exports = {
 	base,
 	cache,
 	configs,
+	lib,
 	middleware,
 	server,
 	services,
