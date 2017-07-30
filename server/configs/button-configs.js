@@ -101,6 +101,7 @@ const CONFIG = {
 
 	// Master Bedroom
 	MASTER_BEDROOM: 'Master Bedroom',
+	MASTER_BEDROOM_CLOSET: 'Master Bedroom Closet',
 	NORMAL_MASTER_BEDROOM: 'Normal Master Bedroom',
 	BRIGHT_MASTER_BEDROOM: 'Bright Master Bedroom',
 	LATE_NIGHT_MASTER_BEDROOM: 'Late Night Master Bedroom',
@@ -264,6 +265,7 @@ const ACTION_SET = {
 	},
 
 	MASTER_BEDROOM: getStandardLightingActionSet('MASTER_BEDROOM'),
+	MASTER_BEDROOM_CLOSET: getStandardLightingActionSet('MASTER_BEDROOM_CLOSET'),
 	OFFICE: getStandardLightingActionSet('OFFICE'),
 
 	THEATER: {
@@ -335,6 +337,7 @@ const MULTI_ACTION_SET = {
 		ACTION_SET.HALLWAY,
 		ACTION_SET.MASTER_BATHROOM,
 		ACTION_SET.MASTER_BEDROOM,
+		ACTION_SET.MASTER_BEDROOM_CLOSET,
 	]),
 }
 
@@ -459,16 +462,6 @@ const buttonConfigs = {
 		color: COLOR.TEAL,
 	}),
 
-	'80:e4:da:72:a8:60': Object.assign({}, ACTION_SET.MASTER_BATHROOM_SHOWER, {
-		location: "Master Bedroom Shower Entryway",
-		color: COLOR.WHITE,
-	}),
-
-	'80:e4:da:72:af:40': Object.assign({}, ACTION_SET.MASTER_BATHROOM_TOILET, {
-		location: "Master Bathroom Toilet Area",
-		color: COLOR.TEAL,
-	}),
-
 	'80:e4:da:72:4d:eb': Object.assign({}, ACTION_SET.MASTER_BEDROOM, {
 		location: "Ashlee's Bedstand",
 		color: COLOR.BLACK,
@@ -477,6 +470,21 @@ const buttonConfigs = {
 	'80:e4:da:72:40:7c': Object.assign({}, ACTION_SET.MASTER_BEDROOM, {
 		location: "Kevin's Bedstand",
 		color: COLOR.BLACK,
+	}),
+
+	'80:e4:da:72:a5:96': Object.assign({}, ACTION_SET.MASTER_BEDROOM_CLOSET, {
+		location: "Master Bedroom Closet Doorway",
+		color: COLOR.TEAL,
+	}),
+
+	'80:e4:da:72:a8:60': Object.assign({}, ACTION_SET.MASTER_BATHROOM_SHOWER, {
+		location: "Master Bedroom Shower Entryway",
+		color: COLOR.WHITE,
+	}),
+
+	'80:e4:da:72:af:40': Object.assign({}, ACTION_SET.MASTER_BATHROOM_TOILET, {
+		location: "Master Bathroom Toilet Area",
+		color: COLOR.TEAL,
 	}),
 
 	'80:e4:da:72:63:f5': Object.assign({}, ACTION_SET.THEATER, {
