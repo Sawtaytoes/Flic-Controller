@@ -367,6 +367,11 @@ const buttonConfigs = {
 		color: COLOR.BLACK,
 	}),
 
+	'80:e4:da:72:3d:6b': Object.assign({}, MULTI_ACTION_SET.ALL_LIVING_ROOM, {
+		location: "Office Entryway",
+		color: COLOR.BLACK,
+	}),
+
 	'80:e4:da:72:3a:24': Object.assign({}, MULTI_ACTION_SET.ALL_STAIRWAY, {
 		location: "Bedrooms Hallway",
 		color: COLOR.BLACK,
