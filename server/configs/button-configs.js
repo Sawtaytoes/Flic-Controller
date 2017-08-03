@@ -96,8 +96,13 @@ const CONFIG = {
 	LATE_NIGHT_MASTER_BATHROOM: 'Late Night Master Bathroom',
 	ASHLEE_VANITY: 'Ashlee\'s Vanity',
 	KEVIN_VANITY: 'Kevin\'s Vanity',
-	MASTER_BATHROOM_TOILET: 'Master Bathroom Toilet',
 	MASTER_BATHROOM_SHOWER: 'Shower',
+
+	// Master Bathroom Toilet
+	MASTER_BATHROOM_TOILET: 'Master Bathroom Toilet',
+	NORMAL_MASTER_BATHROOM_TOILET: 'Normal Master Bathroom Toilet',
+	BRIGHT_MASTER_BATHROOM_TOILET: 'Bright Master Bathroom Toilet',
+	LATE_NIGHT_MASTER_BATHROOM_TOILET: 'Late Night Master Bathroom Toilet',
 
 	// Master Bedroom
 	MASTER_BEDROOM: 'Master Bedroom',
@@ -245,30 +250,7 @@ const ACTION_SET = {
 		},
 	},
 
-	MASTER_BATHROOM_TOILET: {
-		[CLICK.SINGLE]: {
-			device: DEVICE.LIFX,
-			action: ACTION.TOGGLE_LIGHT,
-			config: CONFIG.MASTER_BATHROOM_TOILET,
-		},
-		[CLICK.DOUBLE]: {
-			device: DEVICE.LIFX,
-			action: ACTION.SET_LIGHT_BRIGHTNESS,
-			config: [
-				CONFIG.MASTER_BATHROOM_TOILET,
-				100,
-			],
-		},
-		[CLICK.HOLD]: {
-			device: DEVICE.LIFX,
-			action: ACTION.SET_LIGHT_BRIGHTNESS,
-			config: [
-				CONFIG.MASTER_BATHROOM_TOILET,
-				10,
-			],
-		},
-	},
-
+	MASTER_BATHROOM_TOILET: getStandardLightingActionSet('MASTER_BATHROOM_TOILET'),
 	MASTER_BEDROOM: getStandardLightingActionSet('MASTER_BEDROOM'),
 	MASTER_BEDROOM_CLOSET: getStandardLightingActionSet('MASTER_BEDROOM_CLOSET'),
 	OFFICE: getStandardLightingActionSet('OFFICE'),
