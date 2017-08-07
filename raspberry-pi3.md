@@ -15,10 +15,14 @@ sudo raspi-config
 # Add Bluetooth to Raspberry Pi 3
 add `deb http://mirrordirector.raspbian.org/raspbian/ testing main contrib non-free rpi` to /etc/apt/sources.list
 
-80:e4:da:72:9d:27
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 
+sudo apt update
 sudo apt install htop curl git software-properties-common yarn python-pip
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash nvm install stable
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+bash
+nvm install stable
 sudo ln -s `which nodejs` /usr/local/bin/node
 npm i -g pm2@latest
 pm2 completion install
@@ -55,4 +59,5 @@ crontab -e
 ```shell
 sudo su -
 wpa_passphrase "ssid" "password" >> /etc/wpa_supplicant/wpa_supplicant.conf
+wpa_cli reconfigure
 ```
