@@ -62,6 +62,12 @@ const CONFIG = {
 	LATE_NIGHT_FAMILY_ROOM: 'Late Night Family Room',
 	THEATER: 'Theater',
 
+	// Guest Bathroom
+	GUEST_BATHROOM: 'Guest Bathroom',
+	NORMAL_GUEST_BATHROOM: 'Normal Guest Bathroom',
+	BRIGHT_GUEST_BATHROOM: 'Bright Guest Bathroom',
+	LATE_NIGHT_GUEST_BATHROOM: 'Late Night Guest Bathroom',
+
 	// Guest Bedroom
 	GUEST_BEDROOM: 'Guest Bedroom',
 	NORMAL_GUEST_BEDROOM: 'Normal Guest Bedroom',
@@ -188,6 +194,7 @@ const ACTION_SET = {
 	ENTRYWAY: getStandardLightingActionSet('ENTRYWAY'),
 	EXTRA_BEDROOM: getStandardLightingActionSet('EXTRA_BEDROOM'),
 	FAMILY_ROOM: getStandardLightingActionSet('FAMILY_ROOM'),
+	GUEST_BATHROOM: getStandardLightingActionSet('GUEST_BATHROOM'),
 	GUEST_BEDROOM: getStandardLightingActionSet('GUEST_BEDROOM'),
 
 	KITCHEN_SINK: {
@@ -320,6 +327,7 @@ const MULTI_ACTION_SET = {
 
 	ALL_UPSTAIRS: combineSets([
 		ACTION_SET.EXTRA_BEDROOM,
+		ACTION_SET.GUEST_BATHROOM,
 		ACTION_SET.GUEST_BEDROOM,
 		ACTION_SET.HALLWAY,
 		ACTION_SET.MASTER_BATHROOM,
@@ -412,6 +420,16 @@ const buttonConfigs = {
 	'80:e4:da:72:4c:01': Object.assign({}, ACTION_SET.FAMILY_ROOM, {
 		location: "Eat-In Kitchen Table",
 		color: COLOR.BLACK,
+	}),
+
+	'80:e4:da:72:63:3c': Object.assign({}, ACTION_SET.GUEST_BATHROOM, {
+		location: "Guest Bathroom Toilet Wall",
+		color: COLOR.GREEN,
+	}),
+
+	'80:e4:da:72:62:29': Object.assign({}, ACTION_SET.GUEST_BATHROOM, {
+		location: "Guest Bedroom Tub Wall",
+		color: COLOR.GREEN,
 	}),
 
 	'80:e4:da:72:45:77': Object.assign({}, ACTION_SET.GUEST_BEDROOM, {
