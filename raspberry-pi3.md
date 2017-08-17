@@ -13,8 +13,6 @@ sudo raspi-config
 ```
 
 # Add Bluetooth to Raspberry Pi 3
-add `deb http://mirrordirector.raspbian.org/raspbian/ testing main contrib non-free rpi` to /etc/apt/sources.list
-
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 
