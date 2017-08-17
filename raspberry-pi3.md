@@ -33,7 +33,7 @@ sudo apt -y dist-upgrade
 sudo apt -y remove cups*
 sudo apt -y remove gnome*
 sudo apt -y remove x11-common*
-sudo apt -y autoremove
+sudo apt-get -y autoremove
 
 
 mkdir scripts
