@@ -49,11 +49,11 @@ const CONFIG = {
 	BRIGHT_ENTRYWAY: 'Bright Entryway',
 	LATE_NIGHT_ENTRYWAY: 'Late Night Entryway',
 
-	// Extra Bedroom
-	EXTRA_BEDROOM: 'Extra Bedroom',
-	NORMAL_EXTRA_BEDROOM: 'Normal Extra Bedroom',
-	BRIGHT_EXTRA_BEDROOM: 'Bright Extra Bedroom',
-	LATE_NIGHT_EXTRA_BEDROOM: 'Late Night Extra Bedroom',
+	// Spare Bedroom
+	SPARE_BEDROOM: 'Spare Bedroom',
+	NORMAL_SPARE_BEDROOM: 'Normal Spare Bedroom',
+	BRIGHT_SPARE_BEDROOM: 'Bright Spare Bedroom',
+	LATE_NIGHT_SPARE_BEDROOM: 'Late Night Spare Bedroom',
 
 	// Family Room
 	FAMILY_ROOM: 'Master Family Room',
@@ -192,7 +192,7 @@ const ACTION_SET = {
 	DINING_ROOM: getStandardLightingActionSet('DINING_ROOM'),
 	EAT_IN_KITCHEN: getStandardLightingActionSet('EAT_IN_KITCHEN'),
 	ENTRYWAY: getStandardLightingActionSet('ENTRYWAY'),
-	EXTRA_BEDROOM: getStandardLightingActionSet('EXTRA_BEDROOM'),
+	SPARE_BEDROOM: getStandardLightingActionSet('SPARE_BEDROOM'),
 	FAMILY_ROOM: getStandardLightingActionSet('FAMILY_ROOM'),
 	GUEST_BATHROOM: getStandardLightingActionSet('GUEST_BATHROOM'),
 	GUEST_BEDROOM: getStandardLightingActionSet('GUEST_BEDROOM'),
@@ -326,7 +326,7 @@ const MULTI_ACTION_SET = {
 	]),
 
 	ALL_UPSTAIRS: combineSets([
-		ACTION_SET.EXTRA_BEDROOM,
+		ACTION_SET.SPARE_BEDROOM,
 		ACTION_SET.GUEST_BATHROOM,
 		ACTION_SET.GUEST_BEDROOM,
 		ACTION_SET.HALLWAY,
@@ -412,8 +412,8 @@ const buttonConfigs = {
 		color: COLOR.WHITE,
 	}),
 
-	'80:e4:da:72:5f:2b': Object.assign({}, ACTION_SET.EXTRA_BEDROOM, {
-		location: "Extra Bedroom Wall",
+	'80:e4:da:72:5f:2b': Object.assign({}, ACTION_SET.SPARE_BEDROOM, {
+		location: "Spare Bedroom Wall",
 		color: COLOR.BLACK,
 	}),
 
