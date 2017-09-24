@@ -1,4 +1,7 @@
-const dir = require(`${global.baseDir}/global-dirs`)
+const merge = require('lodash/merge')
+
+const dir = require(`${global.baseDir}global-dirs`)
+
 let configCustom = {}
 try {
 	configCustom = require(`${dir.configs}config`)
@@ -7,45 +10,68 @@ try {
 }
 
 const configDefaults = {
-	env: 'production',        // Can be 'development' or 'production'.
+	env: 'production', // Can be 'development' or 'production'.
 
-	//- Server (use this in your browser)
-	protocol: 'http',         // Using `https` requires valid certificates.
-	hostname: '0.0.0.0',      // Can be 0.0.0.0 for binding to all ports.
-	port: 3000,               // Port of webserver.
+	flicClient: {
+		hostname: 'localhost',
+		port: 5551,
+	},
 
-	apiToken: '',               // LIFX HTTP API Key (https://api.developer.lifx.com/)
+	lifxApi: {
+		protocol: 'http',
+		hostname: 'localhost',
+		port: 36001,
+	},
+
+	wemoApi: {
+		protocol: 'http',
+		hostname: 'localhost',
+		port: 36002,
+	},
 }
 
 const configEnv = {
-	env: process.env.NODE_ENV,
+	flicClient: {
+		hostname: process.env.FLIC_CLIENT_HOSTNAME,
+		port: process.env.FLIC_CLIENT_PORT,
+	},
 
-	protocol: process.env.PROTOCOL,
-	hostname: process.env.HOSTNAME,
-	port: process.env.PORT,
+	lifxApi: {
+		protocol: process.env.LIFX_API_PROTOCOL,
+		hostname: process.env.LIFX_API_HOSTNAME,
+		port: process.env.LIFX_API_PORT,
+	},
 
-	apiToken: process.env.API_TOKEN,
+	wemoApi: {
+		protocol: process.env.WEMO_API_PROTOCOL,
+		hostname: process.env.WEMO_API_HOSTNAME,
+		port: process.env.WEMO_API_PORT,
+	},
 }
 
-Object.keys(configEnv)
-.forEach(key => typeof configEnv[key] === 'undefined' && delete configEnv[key])
+const config = merge({}, configDefaults, configEnv, configCustom)
 
-const config = Object.assign({}, configDefaults, configEnv, configCustom)
-config.port = Number(config.port)
+const uris = [
+	config.flicClient,
+	config.lifxApi,
+	config.wemoApi,
+]
+
+uris.forEach(uri => uri.port = Number(uri.port))
+
+const assembleUri = ({ hostname, port, protocol }) => (
+	`${protocol}://${hostname}:${port}`
+)
 
 module.exports = {
-	isSecure: () => config.protocol === 'https',
 	isDev: () => config.env === 'development',
 	isProd: () => config.env === 'production',
 
 	getEnv: () => config.env,
 
-	getProtocol: () => config.protocol,
-	getHostname: () => config.hostname,
-	getPort: () => config.port,
+	getFlicClientHostname: () => config.flicClient.hostname,
+	getFlicClientPort: () => config.flicClient.port,
 
-	getSafeUrl: portFunc => portFunc().replace('0.0.0.0', 'localhost'),
-	getServerUrl: () => `${config.protocol}://${config.hostname}:${config.port}`,
-
-	getApiToken: () => config.apiToken,
+	getLifxApiUri: () => assembleUri(config.lifxApi),
+	getWemoApiUri: () => assembleUri(config.wemoApi),
 }
