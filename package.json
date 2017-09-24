@@ -4,6 +4,7 @@
     "api": "node index.js",
     "api:debug": "node --inspect --debug-brk index.js",
     "api:watch": "nodemon index.js",
+    "api:watch:debug": "nodemon --inspect index.js",
     "test:watch": "tape-watch index.test.js -p tap-spec",
     "start": "npm run api:watch"
   },
