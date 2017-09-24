@@ -24,7 +24,7 @@ const deviceTypes = {
 
 const changeState = deviceType => deviceTypes[deviceType]
 
-const executeAction = ({ action, config, device }) => (
+const executeButtonPressAction = ({ action, config, device }) => (
 	logger.log(`${device} ${action}:`, config)
 	|| (
 		changeState(device)(action)(config)
@@ -33,4 +33,4 @@ const executeAction = ({ action, config, device }) => (
 	)
 )
 
-module.exports = executeAction
+module.exports = executeButtonPressAction

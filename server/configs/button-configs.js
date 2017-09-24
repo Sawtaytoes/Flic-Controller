@@ -5,10 +5,11 @@ const COLOR = {
 	WHITE: 'white',
 }
 
-const CLICK = {
-	SINGLE: 'ButtonSingleClick',
-	DOUBLE: 'ButtonDoubleClick',
-	HOLD: 'ButtonHold',
+const PRESS = {
+	SINGLE: '1press',
+	DOUBLE: '2press',
+	SINGLE_HOLD: '1pressHold',
+	DOUBLE_HOLD: '2pressHold',
 }
 
 const DEVICE = {
@@ -22,6 +23,8 @@ const ACTION = {
 	TOGGLE_GROUP: 'toggle-group',
 	TOGGLE_LIGHT: 'toggle-light',
 	TOGGLE_SCENE: 'toggle-scene',
+	TURN_OFF_DEVICE: 'turn-off-device',
+	TURN_OFF_GROUP: 'turn-off-group',
 }
 
 const CONFIG = {
@@ -133,36 +136,41 @@ const CONFIG = {
 }
 
 const getStandardLightingActionSet = roomName => ({
-	[CLICK.SINGLE]: {
+	[PRESS.SINGLE]: {
 		device: DEVICE.LIFX,
 		action: ACTION.TOGGLE_SCENE,
 		config: CONFIG[`NORMAL_${roomName}`],
 	},
-	[CLICK.DOUBLE]: {
+	[PRESS.DOUBLE]: {
 		device: DEVICE.LIFX,
 		action: ACTION.TOGGLE_SCENE,
 		config: CONFIG[`BRIGHT_${roomName}`],
 	},
-	[CLICK.HOLD]: {
+	[PRESS.SINGLE_HOLD]: {
 		device: DEVICE.LIFX,
 		action: ACTION.TOGGLE_SCENE,
 		config: CONFIG[`LATE_NIGHT_${roomName}`],
+	},
+	[PRESS.DOUBLE_HOLD]: {
+		device: DEVICE.LIFX,
+		action: ACTION.TURN_OFF_GROUP,
+		config: CONFIG[roomName],
 	},
 })
 
 const ACTION_SET = {
 	ASHLEE_VANITY: {
-		[CLICK.SINGLE]: {
+		[PRESS.SINGLE]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.ASHLEE_VANITY,
 		},
-		[CLICK.DOUBLE]: {
+		[PRESS.DOUBLE]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.ASHLEE_VANITY,
 		},
-		[CLICK.HOLD]: {
+		[PRESS.SINGLE_HOLD]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.ASHLEE_VANITY,
@@ -172,21 +180,30 @@ const ACTION_SET = {
 	BASEMENT: getStandardLightingActionSet('BASEMENT'),
 
 	COLISSIO: {
-		[CLICK.SINGLE]: {
+		[PRESS.SINGLE]: {
 			device: DEVICE.WEMO,
 			action: ACTION.TOGGLE_DEVICE,
 			config: CONFIG.COLISSIO_SPEAKERS,
 		},
-		[CLICK.DOUBLE]: {
+		[PRESS.DOUBLE]: {
 			device: DEVICE.WEMO,
 			action: ACTION.TOGGLE_DEVICE,
 			config: CONFIG.MICROPHONE_PRE_AMP,
 		},
-		[CLICK.HOLD]: {
+		[PRESS.SINGLE_HOLD]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.LATE_NIGHT_COMPUTING,
 		},
+		[PRESS.DOUBLE_HOLD]: [{
+			device: DEVICE.LIFX,
+			action: ACTION.TURN_OFF_GROUP,
+			config: CONFIG.LIVING_ROOM,
+		}, {
+			device: DEVICE.LIFX,
+			action: ACTION.TURN_OFF_GROUP,
+			config: CONFIG.OFFICE,
+		}],
 	},
 
 	DINING_ROOM: getStandardLightingActionSet('DINING_ROOM'),
@@ -198,17 +215,17 @@ const ACTION_SET = {
 	GUEST_BEDROOM: getStandardLightingActionSet('GUEST_BEDROOM'),
 
 	KITCHEN_SINK: {
-		[CLICK.SINGLE]: {
+		[PRESS.SINGLE]: {
 			device: DEVICE.WEMO,
 			action: ACTION.TOGGLE_DEVICE,
 			config: CONFIG.GARBAGE_DISPOSAL,
 		},
-		[CLICK.DOUBLE]: {
+		[PRESS.DOUBLE]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.WASHING_DISHES,
 		},
-		[CLICK.HOLD]: {
+		[PRESS.SINGLE_HOLD]: {
 			device: DEVICE.WEMO,
 			action: ACTION.TOGGLE_DEVICE,
 			config: CONFIG.GARBAGE_DISPOSAL,
@@ -218,17 +235,17 @@ const ACTION_SET = {
 	HALLWAY: getStandardLightingActionSet('HALLWAY'),
 
 	KEVIN_VANITY: {
-		[CLICK.SINGLE]: {
+		[PRESS.SINGLE]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.KEVIN_VANITY,
 		},
-		[CLICK.DOUBLE]: {
+		[PRESS.DOUBLE]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.KEVIN_VANITY,
 		},
-		[CLICK.HOLD]: {
+		[PRESS.SINGLE_HOLD]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.KEVIN_VANITY,
@@ -240,17 +257,17 @@ const ACTION_SET = {
 	MASTER_BATHROOM: getStandardLightingActionSet('MASTER_BATHROOM'),
 
 	MASTER_BATHROOM_SHOWER: {
-		[CLICK.SINGLE]: {
+		[PRESS.SINGLE]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.MASTER_BATHROOM_SHOWER,
 		},
-		[CLICK.DOUBLE]: {
+		[PRESS.DOUBLE]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.MASTER_BATHROOM_SHOWER,
 		},
-		[CLICK.HOLD]: {
+		[PRESS.SINGLE_HOLD]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.MASTER_BATHROOM_SHOWER,
@@ -263,17 +280,17 @@ const ACTION_SET = {
 	OFFICE: getStandardLightingActionSet('OFFICE'),
 
 	THEATER: {
-		[CLICK.SINGLE]: {
+		[PRESS.SINGLE]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.THEATER,
 		},
-		[CLICK.DOUBLE]: {
+		[PRESS.DOUBLE]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.THEATER,
 		},
-		[CLICK.HOLD]: {
+		[PRESS.SINGLE_HOLD]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
 			config: CONFIG.THEATER,
@@ -282,20 +299,23 @@ const ACTION_SET = {
 }
 
 const combineSets = actionSets => (
-	Object.values(CLICK)
-	.map(clickType => ({
-		clickType,
-		actionSetClickValues: (
+	Object.values(PRESS)
+	.map(pressType => ({
+		pressType,
+		actionSetPressValues: (
 			actionSets
-			.map(actionSet => actionSet[clickType])
-			.filter(actionSetClickValue => actionSetClickValue)
+			.map(actionSet => actionSet[pressType])
+			.filter(actionSetPressValue => actionSetPressValue)
 		)
 	}))
-	.reduce((object, { clickType, actionSetClickValues }) => (
-		Object.assign({}, object, {
-			[clickType]: actionSetClickValues
-		})
-	), {})
+	.reduce(
+		(object, { pressType, actionSetPressValues }) => (
+			Object.assign({}, object, {
+				[pressType]: actionSetPressValues
+			})
+		),
+		{}
+	)
 )
 
 const MULTI_ACTION_SET = {
