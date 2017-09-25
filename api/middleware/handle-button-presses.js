@@ -104,20 +104,15 @@ const listenToButton = flicClient => bluetoothAddress => {
 		)
 	)
 
-	// const buttonUp$ = (
-	// 	buttonUpDown$
-	// 	.filter(buttonPressState => buttonPressState === BUTTON_UP)
-	// )
-
 	buttonUpDown$
 	.buffer(
 		buttonUpDown$
 		.debounceTime(300)
 	)
-	.filter(buttonPressStates => (
-		!buttonPressStates
-		.slice(0, 1)
-		.find(buttonPressState => buttonPressState === BUTTON_UP)
+	.map(buttonPressStates => (
+		buttonPressState[0] === BUTTON_UP
+		? buttonPressStates.slice(1)
+		: buttonPressStates
 	))
 	.map(buttonPressStates => ({
 		numDown: getNumberOfDowns(buttonPressStates),
