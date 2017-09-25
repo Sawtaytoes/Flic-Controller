@@ -24,7 +24,7 @@ const listenForButtonPress = bluetoothAddress => {
 		.debounceTime(300)
 	)
 	.map(buttonPressStates => (
-		buttonPressState[0] === BUTTON_UP
+		buttonPressStates[0] === BUTTON_UP
 		? buttonPressStates.slice(1)
 		: buttonPressStates
 	))
