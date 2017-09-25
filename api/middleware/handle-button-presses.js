@@ -63,9 +63,6 @@ const handleButtonPresses = bluetoothAddress => numPressStates => {
 			.find(() => true)
 		)
 
-		logger.log('action', `${LIFX_API}/${lifxAction}s`)
-		logger.log('json', JSON.stringify({ names: lifxConfigNames }))
-
 		fetch(`${LIFX_API}/${lifxAction}s`, {
 			body: JSON.stringify({ names: lifxConfigNames }),
 			headers: { 'Content-Type': 'application/json' },
@@ -85,6 +82,7 @@ const handleButtonPresses = bluetoothAddress => numPressStates => {
 		})
 
 	} else if (actionSet) {
+		logger.log(actionSet)
 		executeButtonPressAction(actionSet)
 
 	} else {
