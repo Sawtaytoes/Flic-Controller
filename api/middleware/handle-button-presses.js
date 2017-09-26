@@ -1,15 +1,11 @@
-const fetch = require('node-fetch')
 const Rx = require('rxjs/Rx')
 
 const dir = require(`${global.baseDir}global-dirs`)
 const buttonConfigs = require(`${dir.configs}button-configs`)
-const config = require(`${dir.configs}config-settings`)
 const executeButtonPressAction = require(`${dir.utils}execute-button-press-action`)
+const executeButtonPressActions = require(`${dir.utils}execute-button-press-actions`)
 const logger = require(`${dir.utils}logger`)
 const { FlicConnectionChannel } = require(`${dir.lib}fliclibNodeJs`)
-
-const LIFX_API = config.getLifxApiUri()
-const WEMO_API = config.getWemoApiUri()
 
 const BUTTON_UP = 'ButtonUp'
 const BUTTON_DOWN = 'ButtonDown'
@@ -45,54 +41,7 @@ const handleButtonPresses = bluetoothAddress => numPressStates => {
 
 	if (actionSet instanceof Array) {
 		logger.log(actionSet)
-
-		const lifxConfigs = (
-			actionSet
-			.filter(({ device }) => device === 'lifx')
-		)
-
-		const lifxNames = (
-			lifxConfigs
-			.map(({ name }) => name)
-		)
-
-		const lifxAction = (
-			lifxConfigs
-			.slice(0, 1)
-			.map(({ action }) => action)
-			.find(() => true)
-		)
-
-		fetch(`${LIFX_API}/${lifxAction}s`, {
-			body: JSON.stringify({ names: lifxNames }),
-			headers: { 'Content-Type': 'application/json' },
-			method: 'PUT',
-		})
-
-		const wemoConfigs = (
-			actionSet
-			.filter(({ device }) => device === 'wemo')
-		)
-
-		const wemoNames = (
-			wemoConfigs
-			.map(({ name }) => name)
-		)
-
-		const wemoAction = (
-			wemoConfigs
-			.slice(0, 1)
-			.map(({ action }) => action)
-			.find(() => true)
-		)
-
-		fetch(`${WEMO_API}/${wemoAction}s`, {
-			body: JSON.stringify({ names: wemoNames }),
-			headers: { 'Content-Type': 'application/json' },
-			method: 'PUT',
-		})
-		.then(({ status, statusText }) => console.log(status, statusText))
-		.catch(console.error)
+		executeButtonPressActions(actionSet)
 
 	} else if (actionSet) {
 		logger.log(actionSet)
@@ -140,7 +89,7 @@ const listenToButton = flicClient => bluetoothAddress => {
 	// })
 }
 
-const executeButtonPressActions = flicClient => () => (
+const startButtonListeners = flicClient => () => (
 	flicClient.getInfo(info => (
 		info.bdAddrOfVerifiedButtons
 		.map(listenToButton(flicClient))
@@ -148,5 +97,5 @@ const executeButtonPressActions = flicClient => () => (
 )
 
 module.exports = flicClient => (
-	flicClient.once('ready', executeButtonPressActions(flicClient))
+	flicClient.once('ready', startButtonListeners(flicClient))
 )
