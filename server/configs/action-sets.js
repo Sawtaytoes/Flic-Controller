@@ -135,23 +135,23 @@ const NAME = {
 
 const getStandardLightingActionSet = roomName => ({
 	[PRESS.SINGLE]: {
-		device: DEVICE.LIFX,
 		action: ACTION.TOGGLE_SCENE,
+		device: DEVICE.LIFX,
 		name: NAME[`NORMAL_${roomName}`],
 	},
 	[PRESS.DOUBLE]: {
-		device: DEVICE.LIFX,
 		action: ACTION.TOGGLE_SCENE,
+		device: DEVICE.LIFX,
 		name: NAME[`BRIGHT_${roomName}`],
 	},
 	[PRESS.SINGLE_HOLD]: {
-		device: DEVICE.LIFX,
 		action: ACTION.TOGGLE_SCENE,
+		device: DEVICE.LIFX,
 		name: NAME[`LATE_NIGHT_${roomName}`],
 	},
 	[PRESS.DOUBLE_HOLD]: {
-		device: DEVICE.LIFX,
 		action: ACTION.TURN_OFF_GROUP,
+		device: DEVICE.LIFX,
 		name: NAME[roomName],
 	},
 })
@@ -159,18 +159,18 @@ const getStandardLightingActionSet = roomName => ({
 const ACTION_SET = {
 	ASHLEE_VANITY: {
 		[PRESS.SINGLE]: {
-			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
+			device: DEVICE.LIFX,
 			name: NAME.ASHLEE_VANITY,
 		},
 		[PRESS.DOUBLE]: {
-			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
+			device: DEVICE.LIFX,
 			name: NAME.ASHLEE_VANITY,
 		},
 		[PRESS.SINGLE_HOLD]: {
-			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
+			device: DEVICE.LIFX,
 			name: NAME.ASHLEE_VANITY,
 		},
 	},
@@ -179,35 +179,35 @@ const ACTION_SET = {
 
 	COLISSIO: {
 		[PRESS.SINGLE]: {
-			device: DEVICE.WEMO,
 			action: ACTION.TOGGLE_DEVICE,
+			device: DEVICE.WEMO,
 			name: NAME.COLISSIO_SPEAKERS,
 		},
 		[PRESS.DOUBLE]: {
-			device: DEVICE.WEMO,
 			action: ACTION.TOGGLE_DEVICE,
+			device: DEVICE.WEMO,
 			name: NAME.MICROPHONE_PRE_AMP,
 		},
 		[PRESS.SINGLE_HOLD]: {
-			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
+			device: DEVICE.LIFX,
 			name: NAME.LATE_NIGHT_COMPUTING,
 		},
 		[PRESS.DOUBLE_HOLD]: [{
-			device: DEVICE.LIFX,
 			action: ACTION.TURN_OFF_GROUP,
+			device: DEVICE.LIFX,
 			name: NAME.LIVING_ROOM,
 		}, {
-			device: DEVICE.LIFX,
 			action: ACTION.TURN_OFF_GROUP,
+			device: DEVICE.LIFX,
 			name: NAME.OFFICE,
 		}, {
-			device: DEVICE.WEMO,
 			action: ACTION.TURN_OFF_DEVICE,
+			device: DEVICE.WEMO,
 			name: NAME.COLISSIO_SPEAKERS,
 		}, {
-			device: DEVICE.WEMO,
 			action: ACTION.TURN_OFF_DEVICE,
+			device: DEVICE.WEMO,
 			name: NAME.MICROPHONE_PRE_AMP,
 		}],
 	},
@@ -219,8 +219,8 @@ const ACTION_SET = {
 
 	GARAGE: {
 		[PRESS.TRIPLE]: {
-			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_GROUP,
+			device: DEVICE.LIFX,
 			name: NAME.GARAGE,
 		},
 	},
@@ -230,18 +230,18 @@ const ACTION_SET = {
 
 	KITCHEN_SINK: {
 		[PRESS.SINGLE]: {
-			device: DEVICE.WEMO,
 			action: ACTION.TOGGLE_DEVICE,
+			device: DEVICE.WEMO,
 			name: NAME.GARBAGE_DISPOSAL,
 		},
 		[PRESS.DOUBLE]: {
-			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
+			device: DEVICE.LIFX,
 			name: NAME.WASHING_DISHES,
 		},
 		[PRESS.SINGLE_HOLD]: {
-			device: DEVICE.WEMO,
 			action: ACTION.TOGGLE_DEVICE,
+			device: DEVICE.WEMO,
 			name: NAME.GARBAGE_DISPOSAL,
 		},
 	},
@@ -250,18 +250,18 @@ const ACTION_SET = {
 
 	KEVIN_VANITY: {
 		[PRESS.SINGLE]: {
-			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
+			device: DEVICE.LIFX,
 			name: NAME.KEVIN_VANITY,
 		},
 		[PRESS.DOUBLE]: {
-			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
+			device: DEVICE.LIFX,
 			name: NAME.KEVIN_VANITY,
 		},
 		[PRESS.SINGLE_HOLD]: {
-			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
+			device: DEVICE.LIFX,
 			name: NAME.KEVIN_VANITY,
 		},
 	},
@@ -272,18 +272,18 @@ const ACTION_SET = {
 
 	MASTER_BATHROOM_SHOWER: {
 		[PRESS.SINGLE]: {
-			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
+			device: DEVICE.LIFX,
 			name: NAME.MASTER_BATHROOM_SHOWER,
 		},
 		[PRESS.DOUBLE]: {
-			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
+			device: DEVICE.LIFX,
 			name: NAME.MASTER_BATHROOM_SHOWER,
 		},
 		[PRESS.SINGLE_HOLD]: {
-			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
+			device: DEVICE.LIFX,
 			name: NAME.MASTER_BATHROOM_SHOWER,
 		},
 	},
@@ -296,18 +296,18 @@ const ACTION_SET = {
 
 	THEATER: {
 		[PRESS.SINGLE]: {
-			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
+			device: DEVICE.LIFX,
 			name: NAME.THEATER,
 		},
 		[PRESS.DOUBLE]: {
-			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
+			device: DEVICE.LIFX,
 			name: NAME.THEATER,
 		},
 		[PRESS.SINGLE_HOLD]: {
-			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
+			device: DEVICE.LIFX,
 			name: NAME.THEATER,
 		},
 	},
