@@ -2,8 +2,7 @@ const Rx = require('rxjs/Rx')
 
 const dir = require(`${global.baseDir}global-dirs`)
 const buttonConfigs = require(`${dir.configs}button-configs`)
-const executeButtonPressAction = require(`${dir.utils}execute-button-press-action`)
-const executeButtonPressActions = require(`${dir.utils}execute-button-press-actions`)
+const executeActionSets = require(`${dir.utils}execute-action-sets`).default
 const logger = require(`${dir.utils}logger`)
 const { FlicConnectionChannel } = require(`${dir.lib}fliclibNodeJs`)
 
@@ -34,22 +33,13 @@ const getPressType = ({ numDown, numUp }) => (
 const handleButtonPresses = bluetoothAddress => numPressStates => {
 	const flicButton = buttonConfigs[bluetoothAddress]
 
-	if (!flicButton) return
+	if (!flicButton) {
+		logger.logError("No configuration exists for this button.")
+	}
 
 	const pressType = getPressType(numPressStates)
-	const actionSet = flicButton[pressType]
 
-	if (actionSet instanceof Array) {
-		logger.log(actionSet)
-		executeButtonPressActions(actionSet)
-
-	} else if (actionSet) {
-		logger.log(actionSet)
-		executeButtonPressAction(actionSet)
-
-	} else {
-		logger.logError('Error: You need to assign an action set to this click type')
-	}
+	executeActionSets(flicButton[pressType])
 }
 
 const listenToButton = flicClient => bluetoothAddress => {

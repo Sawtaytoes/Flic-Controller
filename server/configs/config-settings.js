@@ -72,6 +72,5 @@ module.exports = {
 	getFlicClientHostname: () => config.flicClient.hostname,
 	getFlicClientPort: () => config.flicClient.port,
 
-	getLifxApiUri: () => assembleUri(config.lifxApi),
-	getWemoApiUri: () => assembleUri(config.wemoApi),
+	getDeviceApiUri: deviceType => assembleUri(config[`${deviceType}Api`]),
 }
