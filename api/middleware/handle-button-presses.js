@@ -69,17 +69,30 @@ const handleButtonPresses = bluetoothAddress => numPressStates => {
 			method: 'PUT',
 		})
 
-		const wemoDeviceNames = (
+		const wemoConfigs = (
 			actionSet
 			.filter(({ device }) => device === 'wemo')
+		)
+
+		const wemoDeviceNames = (
+			wemoConfigs
 			.map(({ config }) => config)
 		)
 
-		fetch(`${WEMO_API}/toggle-devices`, {
-			body: JSON.stringify({ devices: wemoDeviceNames }),
+		const wemoAction = (
+			wemoConfigs
+			.slice(0, 1)
+			.map(({ action }) => action)
+			.find(() => true)
+		)
+
+		fetch(`${WEMO_API}/${wemoAction}s`, {
+			body: JSON.stringify({ names: wemoDeviceNames }),
 			headers: { 'Content-Type': 'application/json' },
 			method: 'PUT',
 		})
+		.then(({ status, statusText }) => console.log(status, statusText))
+		.catch(console.error)
 
 	} else if (actionSet) {
 		logger.log(actionSet)

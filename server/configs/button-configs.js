@@ -208,6 +208,14 @@ const ACTION_SET = {
 			device: DEVICE.LIFX,
 			action: ACTION.TURN_OFF_GROUP,
 			config: CONFIG.OFFICE,
+		}, {
+			device: DEVICE.WEMO,
+			action: ACTION.TURN_OFF_DEVICE,
+			config: CONFIG.DESKTOP_PC_SPEAKERS,
+		}, {
+			device: DEVICE.WEMO,
+			action: ACTION.TURN_OFF_DEVICE,
+			config: CONFIG.MICROPHONE_PRE_AMP,
 		}],
 	},
 
