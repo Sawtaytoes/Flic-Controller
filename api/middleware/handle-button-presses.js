@@ -63,28 +63,39 @@ const handleButtonPresses = bluetoothAddress => numPressStates => {
 			.find(() => true)
 		)
 
-		logger.log('action', `${LIFX_API}/${lifxAction}s`)
-		logger.log('json', JSON.stringify({ names: lifxConfigNames }))
-
 		fetch(`${LIFX_API}/${lifxAction}s`, {
 			body: JSON.stringify({ names: lifxConfigNames }),
 			headers: { 'Content-Type': 'application/json' },
 			method: 'PUT',
 		})
 
-		const wemoDeviceNames = (
+		const wemoConfigs = (
 			actionSet
 			.filter(({ device }) => device === 'wemo')
+		)
+
+		const wemoDeviceNames = (
+			wemoConfigs
 			.map(({ config }) => config)
 		)
 
-		fetch(`${WEMO_API}/toggle-devices`, {
-			body: JSON.stringify({ devices: wemoDeviceNames }),
+		const wemoAction = (
+			wemoConfigs
+			.slice(0, 1)
+			.map(({ action }) => action)
+			.find(() => true)
+		)
+
+		fetch(`${WEMO_API}/${wemoAction}s`, {
+			body: JSON.stringify({ names: wemoDeviceNames }),
 			headers: { 'Content-Type': 'application/json' },
 			method: 'PUT',
 		})
+		.then(({ status, statusText }) => console.log(status, statusText))
+		.catch(console.error)
 
 	} else if (actionSet) {
+		logger.log(actionSet)
 		executeButtonPressAction(actionSet)
 
 	} else {
@@ -104,21 +115,17 @@ const listenToButton = flicClient => bluetoothAddress => {
 		)
 	)
 
-	// const buttonUp$ = (
-	// 	buttonUpDown$
-	// 	.filter(buttonPressState => buttonPressState === BUTTON_UP)
-	// )
-
 	buttonUpDown$
 	.buffer(
 		buttonUpDown$
 		.debounceTime(300)
 	)
-	.filter(buttonPressStates => (
-		!buttonPressStates
-		.slice(0, 1)
-		.find(buttonPressState => buttonPressState === BUTTON_UP)
+	.map(buttonPressStates => (
+		buttonPressStates[0] === BUTTON_UP
+		? buttonPressStates.slice(1)
+		: buttonPressStates
 	))
+	.filter(buttonPressStates => buttonPressStates.length > 0)
 	.map(buttonPressStates => ({
 		numDown: getNumberOfDowns(buttonPressStates),
 		numUp: getNumberOfUps(buttonPressStates),

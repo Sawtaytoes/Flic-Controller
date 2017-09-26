@@ -8,8 +8,10 @@ const COLOR = {
 const PRESS = {
 	SINGLE: '1press',
 	DOUBLE: '2press',
+	TRIPLE: '3press',
 	SINGLE_HOLD: '1pressHold',
 	DOUBLE_HOLD: '2pressHold',
+	TRIPLE_HOLD: '3pressHold',
 }
 
 const DEVICE = {
@@ -41,7 +43,7 @@ const CONFIG = {
 	LATE_NIGHT_DINING_ROOM: 'Late Night Dining Room',
 
 	// Eat-In Kitchen
-	EAT_IN_KITCHEN: 'Master Eat-In Kitchen',
+	EAT_IN_KITCHEN: 'Eat-In Kitchen',
 	NORMAL_EAT_IN_KITCHEN: 'Normal Eat-In Kitchen',
 	BRIGHT_EAT_IN_KITCHEN: 'Bright Eat-In Kitchen',
 	LATE_NIGHT_EAT_IN_KITCHEN: 'Late Night Eat-In Kitchen',
@@ -52,18 +54,15 @@ const CONFIG = {
 	BRIGHT_ENTRYWAY: 'Bright Entryway',
 	LATE_NIGHT_ENTRYWAY: 'Late Night Entryway',
 
-	// Spare Bedroom
-	SPARE_BEDROOM: 'Spare Bedroom',
-	NORMAL_SPARE_BEDROOM: 'Normal Spare Bedroom',
-	BRIGHT_SPARE_BEDROOM: 'Bright Spare Bedroom',
-	LATE_NIGHT_SPARE_BEDROOM: 'Late Night Spare Bedroom',
-
 	// Family Room
-	FAMILY_ROOM: 'Master Family Room',
+	FAMILY_ROOM: 'Family Room',
 	NORMAL_FAMILY_ROOM: 'Normal Family Room',
 	BRIGHT_FAMILY_ROOM: 'Bright Family Room',
 	LATE_NIGHT_FAMILY_ROOM: 'Late Night Family Room',
 	THEATER: 'Theater',
+
+	// Garage
+	GARAGE: 'Garage',
 
 	// Guest Bathroom
 	GUEST_BATHROOM: 'Guest Bathroom',
@@ -84,7 +83,7 @@ const CONFIG = {
 	LATE_NIGHT_HALLWAY: 'Late Night Hallway',
 
 	// Kitchen
-	KITCHEN: 'Master Kitchen',
+	KITCHEN: 'Kitchen',
 	NORMAL_KITCHEN: 'Normal Kitchen',
 	BRIGHT_KITCHEN: 'Bright Kitchen',
 	LATE_NIGHT_KITCHEN: 'Late Night Kitchen',
@@ -133,6 +132,12 @@ const CONFIG = {
 	LATE_NIGHT_COMPUTING: 'Late Night Computing',
 	COLISSIO_SPEAKERS: 'Colissio Speakers',
 	MICROPHONE_PRE_AMP: 'Microphone Pre-amp',
+
+	// Spare Bedroom
+	SPARE_BEDROOM: 'Spare Bedroom',
+	NORMAL_SPARE_BEDROOM: 'Normal Spare Bedroom',
+	BRIGHT_SPARE_BEDROOM: 'Bright Spare Bedroom',
+	LATE_NIGHT_SPARE_BEDROOM: 'Late Night Spare Bedroom',
 }
 
 const getStandardLightingActionSet = roomName => ({
@@ -203,14 +208,30 @@ const ACTION_SET = {
 			device: DEVICE.LIFX,
 			action: ACTION.TURN_OFF_GROUP,
 			config: CONFIG.OFFICE,
+		}, {
+			device: DEVICE.WEMO,
+			action: ACTION.TURN_OFF_DEVICE,
+			config: CONFIG.COLISSIO_SPEAKERS,
+		}, {
+			device: DEVICE.WEMO,
+			action: ACTION.TURN_OFF_DEVICE,
+			config: CONFIG.MICROPHONE_PRE_AMP,
 		}],
 	},
 
 	DINING_ROOM: getStandardLightingActionSet('DINING_ROOM'),
 	EAT_IN_KITCHEN: getStandardLightingActionSet('EAT_IN_KITCHEN'),
 	ENTRYWAY: getStandardLightingActionSet('ENTRYWAY'),
-	SPARE_BEDROOM: getStandardLightingActionSet('SPARE_BEDROOM'),
 	FAMILY_ROOM: getStandardLightingActionSet('FAMILY_ROOM'),
+
+	GARAGE: {
+		[PRESS.TRIPLE]: {
+			device: DEVICE.LIFX,
+			action: ACTION.TOGGLE_GROUP,
+			config: CONFIG.GARAGE,
+		},
+	},
+
 	GUEST_BATHROOM: getStandardLightingActionSet('GUEST_BATHROOM'),
 	GUEST_BEDROOM: getStandardLightingActionSet('GUEST_BEDROOM'),
 
@@ -278,6 +299,7 @@ const ACTION_SET = {
 	MASTER_BEDROOM: getStandardLightingActionSet('MASTER_BEDROOM'),
 	MASTER_BEDROOM_CLOSET: getStandardLightingActionSet('MASTER_BEDROOM_CLOSET'),
 	OFFICE: getStandardLightingActionSet('OFFICE'),
+	SPARE_BEDROOM: getStandardLightingActionSet('SPARE_BEDROOM'),
 
 	THEATER: {
 		[PRESS.SINGLE]: {
@@ -332,6 +354,7 @@ const MULTI_ACTION_SET = {
 	ALL_KITCHEN: combineSets([
 		ACTION_SET.EAT_IN_KITCHEN,
 		ACTION_SET.FAMILY_ROOM,
+		ACTION_SET.GARAGE,
 		ACTION_SET.KITCHEN,
 	]),
 
@@ -363,7 +386,7 @@ const buttonConfigs = {
 	}),
 
 	'80:e4:da:72:a8:62': Object.assign({}, MULTI_ACTION_SET.ALL_KITCHEN, {
-		location: "Kevin's Desk",
+		location: "Storage",
 		color: COLOR.WHITE,
 	}),
 
@@ -430,11 +453,6 @@ const buttonConfigs = {
 	'80:e4:da:72:a8:bf': Object.assign({}, ACTION_SET.EAT_IN_KITCHEN, {
 		location: "Eat-In Kitchen Table",
 		color: COLOR.WHITE,
-	}),
-
-	'80:e4:da:72:5f:2b': Object.assign({}, ACTION_SET.SPARE_BEDROOM, {
-		location: "Spare Bedroom Wall",
-		color: COLOR.BLACK,
 	}),
 
 	'80:e4:da:72:4c:01': Object.assign({}, ACTION_SET.FAMILY_ROOM, {
@@ -515,6 +533,11 @@ const buttonConfigs = {
 	'80:e4:da:72:af:40': Object.assign({}, ACTION_SET.MASTER_BATHROOM_TOILET, {
 		location: "Master Bathroom Toilet Area",
 		color: COLOR.TEAL,
+	}),
+
+	'80:e4:da:72:5f:2b': Object.assign({}, ACTION_SET.SPARE_BEDROOM, {
+		location: "Spare Bedroom Wall",
+		color: COLOR.BLACK,
 	}),
 
 	'80:e4:da:72:63:f5': Object.assign({}, ACTION_SET.THEATER, {
