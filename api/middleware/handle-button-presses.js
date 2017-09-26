@@ -51,9 +51,9 @@ const handleButtonPresses = bluetoothAddress => numPressStates => {
 			.filter(({ device }) => device === 'lifx')
 		)
 
-		const lifxConfigNames = (
+		const lifxNames = (
 			lifxConfigs
-			.map(({ config }) => config)
+			.map(({ name }) => name)
 		)
 
 		const lifxAction = (
@@ -64,7 +64,7 @@ const handleButtonPresses = bluetoothAddress => numPressStates => {
 		)
 
 		fetch(`${LIFX_API}/${lifxAction}s`, {
-			body: JSON.stringify({ names: lifxConfigNames }),
+			body: JSON.stringify({ names: lifxNames }),
 			headers: { 'Content-Type': 'application/json' },
 			method: 'PUT',
 		})
@@ -74,9 +74,9 @@ const handleButtonPresses = bluetoothAddress => numPressStates => {
 			.filter(({ device }) => device === 'wemo')
 		)
 
-		const wemoDeviceNames = (
+		const wemoNames = (
 			wemoConfigs
-			.map(({ config }) => config)
+			.map(({ name }) => name)
 		)
 
 		const wemoAction = (
@@ -87,7 +87,7 @@ const handleButtonPresses = bluetoothAddress => numPressStates => {
 		)
 
 		fetch(`${WEMO_API}/${wemoAction}s`, {
-			body: JSON.stringify({ names: wemoDeviceNames }),
+			body: JSON.stringify({ names: wemoNames }),
 			headers: { 'Content-Type': 'application/json' },
 			method: 'PUT',
 		})
