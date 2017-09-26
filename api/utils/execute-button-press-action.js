@@ -24,11 +24,11 @@ const deviceTypes = {
 
 const changeState = deviceType => deviceTypes[deviceType]
 
-const executeButtonPressAction = ({ action, config, device }) => (
-	logger.log(`${device} ${action}:`, config)
+const executeButtonPressAction = ({ action, device, name }) => (
+	logger.log(`${device} ${action}:`, name)
 	|| (
-		changeState(device)(action)(config)
-		.then(() => logger.log(`Action ${action}/${config} Executed Successfully`))
+		changeState(device)(action)(name)
+		.then(() => logger.log(`Action ${action}/${name} Executed Successfully`))
 		.catch(err => logger.logError(err))
 	)
 )

@@ -29,7 +29,7 @@ const ACTION = {
 	TURN_OFF_GROUP: 'turn-off-group',
 }
 
-const CONFIG = {
+const NAME = {
 	// Basement
 	BASEMENT: 'Basement',
 	NORMAL_BASEMENT: 'Normal Basement',
@@ -144,22 +144,22 @@ const getStandardLightingActionSet = roomName => ({
 	[PRESS.SINGLE]: {
 		device: DEVICE.LIFX,
 		action: ACTION.TOGGLE_SCENE,
-		config: CONFIG[`NORMAL_${roomName}`],
+		name: NAME[`NORMAL_${roomName}`],
 	},
 	[PRESS.DOUBLE]: {
 		device: DEVICE.LIFX,
 		action: ACTION.TOGGLE_SCENE,
-		config: CONFIG[`BRIGHT_${roomName}`],
+		name: NAME[`BRIGHT_${roomName}`],
 	},
 	[PRESS.SINGLE_HOLD]: {
 		device: DEVICE.LIFX,
 		action: ACTION.TOGGLE_SCENE,
-		config: CONFIG[`LATE_NIGHT_${roomName}`],
+		name: NAME[`LATE_NIGHT_${roomName}`],
 	},
 	[PRESS.DOUBLE_HOLD]: {
 		device: DEVICE.LIFX,
 		action: ACTION.TURN_OFF_GROUP,
-		config: CONFIG[roomName],
+		name: NAME[roomName],
 	},
 })
 
@@ -168,17 +168,17 @@ const ACTION_SET = {
 		[PRESS.SINGLE]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.ASHLEE_VANITY,
+			name: NAME.ASHLEE_VANITY,
 		},
 		[PRESS.DOUBLE]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.ASHLEE_VANITY,
+			name: NAME.ASHLEE_VANITY,
 		},
 		[PRESS.SINGLE_HOLD]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.ASHLEE_VANITY,
+			name: NAME.ASHLEE_VANITY,
 		},
 	},
 
@@ -188,34 +188,34 @@ const ACTION_SET = {
 		[PRESS.SINGLE]: {
 			device: DEVICE.WEMO,
 			action: ACTION.TOGGLE_DEVICE,
-			config: CONFIG.COLISSIO_SPEAKERS,
+			name: NAME.COLISSIO_SPEAKERS,
 		},
 		[PRESS.DOUBLE]: {
 			device: DEVICE.WEMO,
 			action: ACTION.TOGGLE_DEVICE,
-			config: CONFIG.MICROPHONE_PRE_AMP,
+			name: NAME.MICROPHONE_PRE_AMP,
 		},
 		[PRESS.SINGLE_HOLD]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.LATE_NIGHT_COMPUTING,
+			name: NAME.LATE_NIGHT_COMPUTING,
 		},
 		[PRESS.DOUBLE_HOLD]: [{
 			device: DEVICE.LIFX,
 			action: ACTION.TURN_OFF_GROUP,
-			config: CONFIG.LIVING_ROOM,
+			name: NAME.LIVING_ROOM,
 		}, {
 			device: DEVICE.LIFX,
 			action: ACTION.TURN_OFF_GROUP,
-			config: CONFIG.OFFICE,
+			name: NAME.OFFICE,
 		}, {
 			device: DEVICE.WEMO,
 			action: ACTION.TURN_OFF_DEVICE,
-			config: CONFIG.COLISSIO_SPEAKERS,
+			name: NAME.COLISSIO_SPEAKERS,
 		}, {
 			device: DEVICE.WEMO,
 			action: ACTION.TURN_OFF_DEVICE,
-			config: CONFIG.MICROPHONE_PRE_AMP,
+			name: NAME.MICROPHONE_PRE_AMP,
 		}],
 	},
 
@@ -228,7 +228,7 @@ const ACTION_SET = {
 		[PRESS.TRIPLE]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_GROUP,
-			config: CONFIG.GARAGE,
+			name: NAME.GARAGE,
 		},
 	},
 
@@ -239,17 +239,17 @@ const ACTION_SET = {
 		[PRESS.SINGLE]: {
 			device: DEVICE.WEMO,
 			action: ACTION.TOGGLE_DEVICE,
-			config: CONFIG.GARBAGE_DISPOSAL,
+			name: NAME.GARBAGE_DISPOSAL,
 		},
 		[PRESS.DOUBLE]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.WASHING_DISHES,
+			name: NAME.WASHING_DISHES,
 		},
 		[PRESS.SINGLE_HOLD]: {
 			device: DEVICE.WEMO,
 			action: ACTION.TOGGLE_DEVICE,
-			config: CONFIG.GARBAGE_DISPOSAL,
+			name: NAME.GARBAGE_DISPOSAL,
 		},
 	},
 
@@ -259,17 +259,17 @@ const ACTION_SET = {
 		[PRESS.SINGLE]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.KEVIN_VANITY,
+			name: NAME.KEVIN_VANITY,
 		},
 		[PRESS.DOUBLE]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.KEVIN_VANITY,
+			name: NAME.KEVIN_VANITY,
 		},
 		[PRESS.SINGLE_HOLD]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.KEVIN_VANITY,
+			name: NAME.KEVIN_VANITY,
 		},
 	},
 
@@ -281,17 +281,17 @@ const ACTION_SET = {
 		[PRESS.SINGLE]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.MASTER_BATHROOM_SHOWER,
+			name: NAME.MASTER_BATHROOM_SHOWER,
 		},
 		[PRESS.DOUBLE]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.MASTER_BATHROOM_SHOWER,
+			name: NAME.MASTER_BATHROOM_SHOWER,
 		},
 		[PRESS.SINGLE_HOLD]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.MASTER_BATHROOM_SHOWER,
+			name: NAME.MASTER_BATHROOM_SHOWER,
 		},
 	},
 
@@ -305,17 +305,17 @@ const ACTION_SET = {
 		[PRESS.SINGLE]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.THEATER,
+			name: NAME.THEATER,
 		},
 		[PRESS.DOUBLE]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.THEATER,
+			name: NAME.THEATER,
 		},
 		[PRESS.SINGLE_HOLD]: {
 			device: DEVICE.LIFX,
 			action: ACTION.TOGGLE_SCENE,
-			config: CONFIG.THEATER,
+			name: NAME.THEATER,
 		},
 	},
 }
