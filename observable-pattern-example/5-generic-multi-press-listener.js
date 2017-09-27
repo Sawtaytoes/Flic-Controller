@@ -1,4 +1,8 @@
-import { doSomething } from './actions'
+import {
+	BUTTON_DOWN,
+	BUTTON_UP,
+	doButtonPressAction,
+} from './actions'
 
 const timeLimit = 300
 
@@ -9,37 +13,30 @@ const numButtonPresses = {
 	numUp: 0,
 }
 
-const resetButtonPresses = callback => () => {
+const resetButtonPresses = () => {
 	numButtonPresses.numDown = 0
 	numButtonPresses.numUp = 0
-
-	callback()
 }
 
-const doButtonPressAction = (bluetoothAddress, numButtonPresses) => () => (
-	doSomething
-)
-
 const handleButtonPress = buttonState => {
-	if (buttonState === 'ButtonDown') {
+	if (buttonState === BUTTON_DOWN) {
 		numButtonPresses.numDown += 1
 	}
 
-	else if (buttonState === 'ButtonUp') {
+	else if (buttonState === BUTTON_UP) {
 		numButtonPresses.numUp += 1
 	}
 
 	clearTimeout(timeoutId)
 
-	timeoutId = (
-		setTimeout(
-			resetButtonPresses(
-				doButtonPressAction(
-					bluetoothAddress,
-					numButtonPresses
-				)
-			),
-			timeLimit
+	new Promise(resolve => (
+		timeoutId = setTimeout(resolve, timeLimit)
+	))
+	.then(resetButtonPresses)
+	.then(
+		doButtonPressAction(
+			bluetoothAddress,
+			{ ...numButtonPresses }
 		)
 	)
 }
