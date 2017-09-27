@@ -1,4 +1,7 @@
-import { doSomething } from './actions'
+import {
+	BUTTON_UP,
+	doButtonPressAction,
+} from './actions'
 
 const createButtonObserver = bluetoothAddress => observer => (
 	new FlicConnectionChannel(bluetoothAddress)
@@ -7,8 +10,6 @@ const createButtonObserver = bluetoothAddress => observer => (
 		buttonPressState => observer.next(buttonPressState)
 	)
 )
-
-const doButtonPressAction = (bluetoothAddress, numButtonPresses) => doSomething
 
 const listenForButtonPress = bluetoothAddress => {
 	const buttonUpDown$ = (
@@ -23,19 +24,16 @@ const listenForButtonPress = bluetoothAddress => {
 		buttonUpDown$
 		.debounceTime(300)
 	)
-	.map(buttonPressStates => (
-		buttonPressStates[0] === BUTTON_UP
-		? buttonPressStates.slice(1)
-		: buttonPressStates
+	.map(buttonStates => (
+		buttonStates[0] === BUTTON_UP
+		? buttonStates.slice(1)
+		: buttonStates
 	))
-	.map(buttonPressStates => ({
-		numDown: getNumberOfDowns(buttonPressStates),
-		numUp: getNumberOfUps(buttonPressStates),
+	.map(buttonStates => ({
+		numDown: getNumberOfDowns(buttonStates),
+		numUp: getNumberOfUps(buttonStates),
 	}))
-	.subscribe(numButtonPresses => (
-		doButtonPressAction(
-			bluetoothAddress,
-			numButtonPresses
-		)
+	.subscribe(
+		doButtonPressAction(bluetoothAddress)
 	)
 }

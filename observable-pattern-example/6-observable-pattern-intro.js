@@ -1,4 +1,7 @@
-import { singlePressAction } from './actions'
+import {
+	BUTTON_DOWN,
+	singlePressAction,
+} from './actions'
 
 const createButtonObserver = bluetoothAddress => observer => (
 	new FlicConnectionChannel(bluetoothAddress)
@@ -13,5 +16,6 @@ const listenForButtonPress = bluetoothAddress => {
 	.create(
 		createButtonObserver(bluetoothAddress)
 	)
+	.filter(buttonState => buttonState === BUTTON_DOWN)
 	.subscribe(singlePressAction)
 }
