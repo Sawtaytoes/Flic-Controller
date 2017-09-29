@@ -17,6 +17,13 @@ const createButtonObserver = flicConnectionChannel => observer => (
 	)
 )
 
+const createButtonObservable = (flicConnectionChannel, customObserver) => (
+	Rx.Observable
+	.create(
+		(customObserver || createButtonObserver)(flicConnectionChannel)
+	)
+)
+
 const getNumberOfPresses = type => buttonPressStates => (
 	buttonPressStates.filter(buttonPressState => buttonPressState === type).length
 )
@@ -47,12 +54,7 @@ const listenToButton = flicClient => bluetoothAddress => {
 
 	flicClient.addConnectionChannel(flicConnectionChannel)
 
-	const buttonUpDown$ = (
-		Rx.Observable
-		.create(
-			createButtonObserver(flicConnectionChannel)
-		)
-	)
+	const buttonUpDown$ = createButtonObservable(flicConnectionChannel)
 
 	buttonUpDown$
 	.buffer(
@@ -72,11 +74,6 @@ const listenToButton = flicClient => bluetoothAddress => {
 	.subscribe(
 		handleButtonPresses(bluetoothAddress)
 	)
-
-	// flicConnectionChannel
-	// .on('connectionStatusChanged', (connectionStatus, disconnectReason) => {
-	// 	logger.log(bluetoothAddress + " " + connectionStatus + (connectionStatus == "Disconnected" ? " " + disconnectReason : ""))
-	// })
 }
 
 const startButtonListeners = flicClient => () => (
