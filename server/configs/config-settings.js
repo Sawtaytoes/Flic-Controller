@@ -10,7 +10,7 @@ try {
 }
 
 const configDefaults = {
-	env: 'production', // Can be 'development' or 'production'.
+	env: 'production',
 
 	flicClient: {
 		hostname: 'localhost',
@@ -18,19 +18,21 @@ const configDefaults = {
 	},
 
 	lifxApi: {
-		protocol: 'http',
 		hostname: 'localhost',
 		port: 36001,
+		protocol: 'http',
 	},
 
 	wemoApi: {
-		protocol: 'http',
 		hostname: 'localhost',
 		port: 36002,
+		protocol: 'http',
 	},
 }
 
 const configEnv = {
+	env: process.env.NODE_ENV,
+
 	flicClient: {
 		hostname: process.env.FLIC_CLIENT_HOSTNAME,
 		port: process.env.FLIC_CLIENT_PORT,
@@ -72,6 +74,5 @@ module.exports = {
 	getFlicClientHostname: () => config.flicClient.hostname,
 	getFlicClientPort: () => config.flicClient.port,
 
-	getLifxApiUri: () => assembleUri(config.lifxApi),
-	getWemoApiUri: () => assembleUri(config.wemoApi),
+	getDeviceApiUri: deviceType => assembleUri(config[`${deviceType}Api`]),
 }

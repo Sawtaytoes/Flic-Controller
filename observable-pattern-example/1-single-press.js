@@ -1,7 +1,10 @@
-import { singlePressAction } from './actions'
+import {
+	BUTTON_DOWN,
+	singlePressAction,
+} from './actions'
 
 const handleButtonPress = buttonState => (
-	buttonState === 'ButtonDown'
+	buttonState === BUTTON_DOWN
 	&& singlePressAction()
 )
 
