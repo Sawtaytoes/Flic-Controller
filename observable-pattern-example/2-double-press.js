@@ -1,4 +1,5 @@
 import {
+	BUTTON_DOWN,
 	doublePressAction,
 	singlePressAction,
 } from './actions'

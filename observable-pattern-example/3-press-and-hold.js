@@ -1,4 +1,6 @@
 import {
+	BUTTON_DOWN,
+	BUTTON_UP,
 	holdPressAction,
 	singlePressAction,
 } from './actions'
@@ -11,12 +13,12 @@ let timeoutId = 0
 const isWithinTimeLimit = () => Date.now() - startTime < timeLimit
 
 const handleButtonPress = buttonState => {
-	if (buttonState === 'ButtonDown') {
+	if (buttonState === BUTTON_DOWN) {
 		startTime = Date.now()
 		timeoutId = setTimeout(holdPressAction, timeLimit)
 	}
 
-	else if (buttonState === 'ButtonUp') {
+	else if (buttonState === BUTTON_UP) {
 		if (isWithinTimeLimit()) {
 			clearTimeout(timeoutId)
 			startTime = 0
