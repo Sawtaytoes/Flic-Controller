@@ -17,7 +17,7 @@ yarn start
 
 ## Requirements
 
-- [fliclib-linux-dist](https://github.com/50ButtonsEach/fliclib-linux-dist/releases)
+- [fliclib-linux-hci](https://github.com/50ButtonsEach/fliclib-linux-hci)
 - Linux (required by fliclib-linux-dist)
 - Node.js
 
