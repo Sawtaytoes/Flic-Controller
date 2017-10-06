@@ -19,9 +19,9 @@ const logReady = () => logger.log('Connected to daemon!')
 
 module.exports = flicClient => (
 	flicClient
+	.once('ready', logReady)
 	.on('bluetoothControllerStateChange', logBluetoothControllerChange)
 	.on('close', logClose)
 	.on('error', logError)
 	.on('newVerifiedButton', logNewButton)
-	.once('ready', logReady)
 )
