@@ -2,10 +2,10 @@ const fs = require('fs')
 const merge = require('lodash/merge')
 
 const dir = require(`${global.baseDir}directories`)
-const defaultConfig = require(`${dir.configs}defaultConfig`)
-const envConfig = require(`${dir.configs}envConfig`)
+const defaultConfig = require(`${dir.configs}default`)
+const envConfig = require(`${dir.configs}env`)
 
-const configFilePath = `${dir.configs}customConfig.js`
+const configFilePath = `${dir.configs}custom.js`
 const customConfig = (
 	fs.existsSync(configFilePath)
 	? require(configFilePath)
