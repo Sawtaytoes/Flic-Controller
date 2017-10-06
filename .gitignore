@@ -6,8 +6,7 @@
 
 ## Configs ##
 .env
-server/configs/config.js
-# lights-config.js
+configs/customConfig.js
 
 ## Logs ##
 logs

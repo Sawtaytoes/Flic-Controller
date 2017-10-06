@@ -1,4 +1,4 @@
-const dir = require(`${global.baseDir}global-dirs`)
+const dir = require(`${global.baseDir}directories`)
 const logger = require(`${dir.utils}logger`)
 
 const logBluetoothControllerChange = state => (
