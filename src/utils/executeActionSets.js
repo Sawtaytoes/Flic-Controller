@@ -1,7 +1,7 @@
 const fetch = require('node-fetch')
 
 const dir = require(`${global.baseDir}directories`)
-const config = require(`${dir.configs}config`)
+const config = require(`${dir.configs}`)
 const logger = require(`${dir.utils}logger`)
 
 const buildWebRequests = actionSet => (
