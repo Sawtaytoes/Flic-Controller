@@ -1,7 +1,7 @@
 const Rx = require('rxjs/Rx')
 
 const dir = require(`${global.baseDir}directories`)
-const buttonConfigs = require(`${dir.configs}buttonConfigs`)
+const buttonConfigs = require(`${dir.configs}buttons`)
 const executeActionSets = require(`${dir.utils}executeActionSets`).default
 const logger = require(`${dir.utils}logger`)
 const { FlicConnectionChannel } = require(`${dir.fliclib}fliclibNodeJs`)
