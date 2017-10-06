@@ -1,9 +1,9 @@
-const dir = require(`${global.baseDir}global-dirs`)
+const dir = require(`${global.baseDir}directories`)
 
 const {
 	ACTION_SET,
 	MULTI_ACTION_SET,
-} = require(`${dir.configs}action-sets`)
+} = require(`${dir.configs}actionSets`)
 
 const COLOR = {
 	BLACK: 'black',

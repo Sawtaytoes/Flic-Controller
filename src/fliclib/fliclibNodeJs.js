@@ -78,12 +78,12 @@ var FlicRawClient = function(inetAddress, port) {
 			RemovedByThisClient: 0,
 			ForceDisconnectedByThisClient: 1,
 			ForceDisconnectedByOtherClient: 2,
-			
+
 			ButtonIsPrivate: 3,
 			VerifyTimeout: 4,
 			InternetBackendError: 5,
 			InvalidData: 6,
-			
+
 			CouldntLoadDevice: 7
 		},
 
@@ -123,29 +123,29 @@ var FlicRawClient = function(inetAddress, port) {
 			Attached: 2
 		}
 	};
-	
+
 	var socket = net.connect({host: inetAddress, port: port});
 	socket.once("connect", onOpen);
 	socket.on("close", onClose);
 	socket.on("error", onError);
 	socket.on("data", onData);
-	
+
 	var currentPacketData = null;
-	
+
 	var me = this;
-	
+
 	function onOpen(event) {
 		me.onOpen(event);
 	}
-	
+
 	function onClose(had_error) {
 		me.onClose(had_error);
 	}
-	
+
 	function onError(error) {
 		me.onError(error);
 	}
-	
+
 	function onData(data) {
 		currentPacketData = currentPacketData == null ? data : Buffer.concat([currentPacketData, data], currentPacketData.length + data.length);
 		while (currentPacketData.length >= 2) {
@@ -161,7 +161,7 @@ var FlicRawClient = function(inetAddress, port) {
 			}
 		}
 	}
-	
+
 	function onMessage(pkt) {
 		var pos = 0;
 		function readUInt8() {
@@ -221,7 +221,7 @@ var FlicRawClient = function(inetAddress, port) {
 			}
 			return str;
 		}
-		
+
 		var opcode = readUInt8();
 		switch (opcode) {
 			case FlicEventOpcodes.AdvertisementPacket: {
@@ -356,7 +356,7 @@ var FlicRawClient = function(inetAddress, port) {
 			}
 		}
 	}
-	
+
 	this.sendCommand = function(opcode, obj) {
 		var arrayBuffer = new ArrayBuffer(100);
 		var arr = new Uint8Array(arrayBuffer);
@@ -380,7 +380,7 @@ var FlicRawClient = function(inetAddress, port) {
 		function writeEnum(type, v) {
 			writeUInt8(enumValues[type][v]);
 		}
-		
+
 		writeUInt8(opcode);
 		switch (opcode) {
 			case FlicCommandOpcodes.GetInfo: {
@@ -430,11 +430,11 @@ var FlicRawClient = function(inetAddress, port) {
 		var buffer = createBuffer(arrayBuffer, 0, pos);
 		socket.write(buffer);
 	};
-	
+
 	this.close = function() {
 		socket.destroy();
 	};
-	
+
 	// Public event listeners that is to be assigned
 	this.onOpen = function() {};
 	this.onClose = function(hadError) {};
@@ -447,20 +447,20 @@ var FlicRawClient = function(inetAddress, port) {
  *
  * A logical connection to a Flic button.
  * First create a connection channel, then add it to a FlicClient.
- * 
+ *
  * Constructor: bdAddr, options
  *   options is a dictionary containing the optional parameters latencyMode and autoDisconnectTime
- * 
+ *
  * Properties:
  * latencyMode
  * autoDisconnectTime
- * 
+ *
  * Events:
- * 
+ *
  * createResponse: error, connectionStatus
  * removed: removedReason
  * connectionStatusChanged: connectionStatus, disconnectReason
- * 
+ *
  * buttonUpOrDown: clickType, wasQueued, timeDiff
  * buttonClickOrHold: clickType, wasQueued, timeDiff
  * buttonSingleOrDoubleClick: clickType, wasQueued, timeDiff
@@ -468,20 +468,20 @@ var FlicRawClient = function(inetAddress, port) {
  */
 var FlicConnectionChannel = (function() {
 	var counter = 0;
-	
+
 	return function(bdAddr, options) {
 		options = options || {};
-		var latencyMode = (latencyMode in options) ? options.latencyMode : "NormalLatency";
-		var autoDisconnectTime = (autoDisconnectTime in options) ? options.autoDisconnectTime : 511;
-		
+		var latencyMode = ("latencyMode" in options) ? options.latencyMode : "NormalLatency";
+		var autoDisconnectTime = ("autoDisconnectTime" in options) ? options.autoDisconnectTime : 511;
+
 		EventEmitter.call(this);
 		var id = counter++;
 		var me = this;
-		
+
 		var client = null;
-		
+
 		this._getId = function() { return id; };
-		
+
 		this._attach = function(rawClient) {
 			client = rawClient;
 			rawClient.sendCommand(FlicCommandOpcodes.CreateConnectionChannel, {
@@ -524,7 +524,7 @@ var FlicConnectionChannel = (function() {
 					break;
 			}
 		};
-		
+
 		Object.defineProperty(this, "latencyMode", {
 			get: function() {
 				return latencyMode;
@@ -540,7 +540,7 @@ var FlicConnectionChannel = (function() {
 				}
 			}
 		});
-		
+
 		Object.defineProperty(this, "autoDisconnectTime", {
 			get: function() {
 				return autoDisconnectTime;
@@ -564,24 +564,24 @@ util.inherits(FlicConnectionChannel, EventEmitter);
  * FlicScanner
  *
  * First create a FlicScanner, then add it to the FlicClient.
- * 
+ *
  * Constructor: no parameters
- * 
+ *
  * Events:
  * advertisementPacket: bdAddr, name, rssi, isPrivate, alreadyVerified
  */
 var FlicScanner = (function() {
 	var counter = 0;
-	
+
 	return function() {
-		
+
 		EventEmitter.call(this);
 		var me = this;
-		
+
 		var id = counter++;
-		
+
 		this._getId = function() { return id; };
-		
+
 		this._attach = function(rawClient) {
 			rawClient.sendCommand(FlicCommandOpcodes.CreateScanner, {
 				scanId: id
@@ -607,9 +607,9 @@ util.inherits(FlicScanner, EventEmitter);
  * FlicScanWizard
  *
  * First create a FlicScanWizard, then add it to the FlicClient.
- * 
+ *
  * Constructor: no parameters
- * 
+ *
  * Events:
  * foundPrivateButton: (no parameters)
  * foundPublicButton: bdAddr, name
@@ -618,18 +618,18 @@ util.inherits(FlicScanner, EventEmitter);
  */
 var FlicScanWizard = (function() {
 	var counter = 0;
-	
+
 	return function() {
-		
+
 		EventEmitter.call(this);
 		var me = this;
-		
+
 		var id = counter++;
 		var _bdaddr = null;
 		var _name = null;
-		
+
 		this._getId = function() { return id; };
-		
+
 		this._attach = function(rawClient) {
 			rawClient.sendCommand(FlicCommandOpcodes.CreateScanWizard, {
 				scanWizardId: id
@@ -670,9 +670,9 @@ util.inherits(FlicScanWizard, EventEmitter);
  * FlicClient
  *
  * High level class for communicating with flicd through a WebSocket proxy.
- * 
+ *
  * Constructor: host, [port]
- * 
+ *
  * Methods:
  * addScanner: FlicScanner
  * removeScanner: FlicScanner
@@ -691,8 +691,8 @@ util.inherits(FlicScanWizard, EventEmitter);
  * getButtonUUID: bdaddr, callback
  *   Callback parameters: bdaddr, uuid
  * close
- * 
- * 
+ *
+ *
  * Events:
  * ready: (no parameters)
  * close: hadError
@@ -704,17 +704,17 @@ util.inherits(FlicScanWizard, EventEmitter);
  */
 var FlicClient = function(host, port) {
 	var rawClient = new FlicRawClient(host, port || 5551);
-	
+
 	EventEmitter.call(this);
 	var me = this;
-	
+
 	var scanners = {};
 	var scanWizards = {};
 	var connectionChannels = {};
-	
+
 	var getInfoResponseCallbackQueue = [];
 	var getButtonUUIDCallbackQueue = [];
-	
+
 	rawClient.onOpen = function() {
 		me.emit("ready");
 	};
@@ -726,7 +726,7 @@ var FlicClient = function(host, port) {
 		}
 		me.emit("close", hadError);
 	};
-	
+
 	rawClient.onEvent = function(opcode, event) {
 		switch (opcode) {
 			case FlicEventOpcodes.AdvertisementPacket: {
@@ -793,13 +793,13 @@ var FlicClient = function(host, port) {
 			}
 		}
 	};
-	
+
 	rawClient.onError = function(error) {
 		me.emit("error", error);
 	}
-	
+
 	// Public methods:
-	
+
 	this.addScanner = function(flicScanner) {
 		if (flicScanner._getId() in scanners) {
 			return;
@@ -814,7 +814,7 @@ var FlicClient = function(host, port) {
 		delete scanners[flicScanner._getId()];
 		flicScanner._detach(rawClient);
 	};
-	
+
 	this.addScanWizard = function(flicScanWizard) {
 		if (flicScanWizard._getId() in scanWizards) {
 			return;
@@ -828,7 +828,7 @@ var FlicClient = function(host, port) {
 		}
 		flicScanWizard._detach(rawClient);
 	};
-	
+
 	this.addConnectionChannel = function(connectionChannel) {
 		if (connectionChannel._getId() in connectionChannels) {
 			return;
@@ -842,17 +842,17 @@ var FlicClient = function(host, port) {
 		}
 		connectionChannel._detach(rawClient);
 	};
-	
+
 	this.getInfo = function(callback) {
 		getInfoResponseCallbackQueue.push(callback);
 		rawClient.sendCommand(FlicCommandOpcodes.GetInfo, {});
 	};
-	
+
 	this.getButtonUUID = function(bdAddr, callback) {
 		getButtonUUIDCallbackQueue.push(callback);
 		rawClient.sendCommand(FlicCommandOpcodes.GetButtonUUID, {bdAddr: bdAddr});
 	};
-	
+
 	this.close = function() {
 		rawClient.close();
 	};

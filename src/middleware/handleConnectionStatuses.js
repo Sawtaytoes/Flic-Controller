@@ -1,7 +1,7 @@
-const dir = require(`${global.baseDir}global-dirs`)
+const dir = require(`${global.baseDir}directories`)
 const logger = require(`${dir.utils}logger`)
 
-const listenToConnectionStatuses = flicConnectionChannel => {
+const listenToConnectionStatuses = (flicConnectionChannel, bluetoothAddress) => {
 	flicConnectionChannel
 	.on(
 		'connectionStatusChanged',
