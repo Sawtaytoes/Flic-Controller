@@ -97,7 +97,7 @@ const NAME = {
 	LATE_NIGHT_MASTER_BATHROOM: 'Late Night Master Bathroom',
 	ASHLEE_VANITY: 'Ashlee\'s Vanity',
 	KEVIN_VANITY: 'Kevin\'s Vanity',
-	MASTER_SHOWER: 'Shower',
+	MASTER_SHOWER: 'Master Shower',
 
 	// Master Toilet
 	MASTER_TOILET: 'Master Toilet',
