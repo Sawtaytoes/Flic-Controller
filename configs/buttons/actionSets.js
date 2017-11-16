@@ -97,13 +97,13 @@ const NAME = {
 	LATE_NIGHT_MASTER_BATHROOM: 'Late Night Master Bathroom',
 	ASHLEE_VANITY: 'Ashlee\'s Vanity',
 	KEVIN_VANITY: 'Kevin\'s Vanity',
-	MASTER_BATHROOM_SHOWER: 'Shower',
+	MASTER_SHOWER: 'Shower',
 
-	// Master Bathroom Toilet
-	MASTER_BATHROOM_TOILET: 'Master Bathroom Toilet',
-	NORMAL_MASTER_BATHROOM_TOILET: 'Normal Master Bathroom Toilet',
-	BRIGHT_MASTER_BATHROOM_TOILET: 'Bright Master Bathroom Toilet',
-	LATE_NIGHT_MASTER_BATHROOM_TOILET: 'Late Night Master Bathroom Toilet',
+	// Master Toilet
+	MASTER_TOILET: 'Master Toilet',
+	NORMAL_MASTER_TOILET: 'Normal Master Toilet',
+	BRIGHT_MASTER_TOILET: 'Bright Master Toilet',
+	LATE_NIGHT_MASTER_TOILET: 'Late Night Master Toilet',
 
 	// Master Bedroom
 	MASTER_BEDROOM: 'Master Bedroom',
@@ -111,11 +111,11 @@ const NAME = {
 	BRIGHT_MASTER_BEDROOM: 'Bright Master Bedroom',
 	LATE_NIGHT_MASTER_BEDROOM: 'Late Night Master Bedroom',
 
-	// Master Bedroom Closet
-	MASTER_BEDROOM_CLOSET: 'Master Bedroom Closet',
-	NORMAL_MASTER_BEDROOM_CLOSET: 'Normal Master Bedroom Closet',
-	BRIGHT_MASTER_BEDROOM_CLOSET: 'Bright Master Bedroom Closet',
-	LATE_NIGHT_MASTER_BEDROOM_CLOSET: 'Late Night Master Bedroom Closet',
+	// Master Closet
+	MASTER_CLOSET: 'Master Closet',
+	NORMAL_MASTER_CLOSET: 'Normal Master Closet',
+	BRIGHT_MASTER_CLOSET: 'Bright Master Closet',
+	LATE_NIGHT_MASTER_CLOSET: 'Late Night Master Closet',
 
 	// Office
 	OFFICE: 'Office',
@@ -270,27 +270,27 @@ const ACTION_SET = {
 	LIVING_ROOM: getStandardLightingActionSet('LIVING_ROOM'),
 	MASTER_BATHROOM: getStandardLightingActionSet('MASTER_BATHROOM'),
 
-	MASTER_BATHROOM_SHOWER: {
+	MASTER_SHOWER: {
 		[PRESS.SINGLE]: {
 			action: ACTION.TOGGLE_SCENE,
 			device: DEVICE.LIFX,
-			name: NAME.MASTER_BATHROOM_SHOWER,
+			name: NAME.MASTER_SHOWER,
 		},
 		[PRESS.DOUBLE]: {
 			action: ACTION.TOGGLE_SCENE,
 			device: DEVICE.LIFX,
-			name: NAME.MASTER_BATHROOM_SHOWER,
+			name: NAME.MASTER_SHOWER,
 		},
 		[PRESS.SINGLE_HOLD]: {
 			action: ACTION.TOGGLE_SCENE,
 			device: DEVICE.LIFX,
-			name: NAME.MASTER_BATHROOM_SHOWER,
+			name: NAME.MASTER_SHOWER,
 		},
 	},
 
-	MASTER_BATHROOM_TOILET: getStandardLightingActionSet('MASTER_BATHROOM_TOILET'),
+	MASTER_TOILET: getStandardLightingActionSet('MASTER_TOILET'),
 	MASTER_BEDROOM: getStandardLightingActionSet('MASTER_BEDROOM'),
-	MASTER_BEDROOM_CLOSET: getStandardLightingActionSet('MASTER_BEDROOM_CLOSET'),
+	MASTER_CLOSET: getStandardLightingActionSet('MASTER_CLOSET'),
 	OFFICE: getStandardLightingActionSet('OFFICE'),
 	SPARE_BEDROOM: getStandardLightingActionSet('SPARE_BEDROOM'),
 
@@ -368,7 +368,7 @@ const MULTI_ACTION_SET = {
 		ACTION_SET.HALLWAY,
 		ACTION_SET.MASTER_BATHROOM,
 		ACTION_SET.MASTER_BEDROOM,
-		ACTION_SET.MASTER_BEDROOM_CLOSET,
+		ACTION_SET.MASTER_CLOSET,
 	]),
 }
 

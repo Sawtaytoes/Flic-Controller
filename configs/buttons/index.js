@@ -182,19 +182,19 @@ const buttonConfigs = {
 	},
 
 	'80:e4:da:72:a5:96': {
-		...ACTION_SET.MASTER_BEDROOM_CLOSET,
+		...ACTION_SET.MASTER_CLOSET,
 		color: COLOR.TEAL,
 		location: "Master Bedroom Closet Doorway",
 	},
 
 	'80:e4:da:72:a8:60': {
-		...ACTION_SET.MASTER_BATHROOM_SHOWER,
+		...ACTION_SET.MASTER_SHOWER,
 		color: COLOR.WHITE,
 		location: "Master Bedroom Shower Entryway",
 	},
 
 	'80:e4:da:72:af:40': {
-		...ACTION_SET.MASTER_BATHROOM_TOILET,
+		...ACTION_SET.MASTER_TOILET,
 		color: COLOR.TEAL,
 		location: "Master Bathroom Toilet Area",
 	},
