@@ -200,8 +200,8 @@ const getRepeatedLightingActionSet = (sceneName, roomName) => ({
 const ACTION_SET = {
 	ASHLEE_VANITY: (
 		getRepeatedLightingActionSet(
-			NAME.ASHLEE_VANITY,
-			NAME.MASTER_BATHROOM
+			'ASHLEE_VANITY',
+			'MASTER_BATHROOM'
 		)
 	),
 
@@ -281,39 +281,41 @@ const ACTION_SET = {
 
 	KEVIN_VANITY: (
 		getRepeatedLightingActionSet(
-			NAME.KEVIN_VANITY,
-			NAME.MASTER_BATHROOM
+			'KEVIN_VANITY',
+			'MASTER_BATHROOM'
 		)
 	),
 
 	KITCHEN: getStandardLightingActionSet('KITCHEN'),
+	KITCHEN_BATHROOM: getStandardLightingActionSet('KITCHEN_BATHROOM'),
 	LIVING_ROOM: getStandardLightingActionSet('LIVING_ROOM'),
 	MASTER_BATHROOM: getStandardLightingActionSet('MASTER_BATHROOM'),
 	MASTER_BEDROOM: getStandardLightingActionSet('MASTER_BEDROOM'),
 	MASTER_CLOSET: getStandardLightingActionSet('MASTER_CLOSET'),
+	MASTER_TOILET: getStandardLightingActionSet('MASTER_TOILET'),
+	OFFICE: getStandardLightingActionSet('OFFICE'),
 
-	MASTER_SHOWER: (
+	SHOWER: (
 		getRepeatedLightingActionSet(
-			NAME.SHOWER,
-			NAME.MASTER_BATHROOM
+			'SHOWER',
+			'MASTER_BATHROOM'
 		)
 	),
 
-	MASTER_TOILET: getStandardLightingActionSet('MASTER_TOILET'),
-	OFFICE: getStandardLightingActionSet('OFFICE'),
 	SPARE_BEDROOM: getStandardLightingActionSet('SPARE_BEDROOM'),
 	SPARE_VANITY: getStandardLightingActionSet('SPARE_VANITY'),
 
 	THEATER: (
 		getRepeatedLightingActionSet(
-			NAME.THEATER,
-			NAME.FAMILY_ROOM
+			'THEATER',
+			'FAMILY_ROOM'
 		)
 	),
 }
 
 const combineSets = actionSets => (
-	Object.values(PRESS)
+	Object
+	.values(PRESS)
 	.map(pressType => ({
 		pressType,
 		actionSetPressValues: (
