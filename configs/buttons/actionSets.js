@@ -69,6 +69,12 @@ const NAME = {
 	BRIGHT_GUEST_BEDROOM: 'Bright Guest Bedroom',
 	LATE_NIGHT_GUEST_BEDROOM: 'Late Night Guest Bedroom',
 
+	// Guest Vanity
+	GUEST_VANITY: 'Guest Vanity',
+	NORMAL_GUEST_VANITY: 'Normal Guest Vanity',
+	BRIGHT_GUEST_VANITY: 'Bright Guest Vanity',
+	LATE_NIGHT_GUEST_VANITY: 'Late Night Guest Vanity',
+
 	// Hallway
 	HALLWAY: 'Hallway',
 	NORMAL_HALLWAY: 'Normal Hallway',
@@ -84,6 +90,12 @@ const NAME = {
 	WASHING_DISHES: 'Washing Dishes',
 	WAX_WARMER: 'Kitchen Wax Warmer',
 
+	// Kitchen Bathroom
+	KITCHEN_BATHROOM: 'Kitchen Bathroom',
+	NORMAL_KITCHEN_BATHROOM: 'Normal Kitchen Bathroom',
+	BRIGHT_KITCHEN_BATHROOM: 'Bright Kitchen Bathroom',
+	LATE_NIGHT_KITCHEN_BATHROOM: 'Late Night Kitchen Bathroom',
+
 	// Living Room
 	LIVING_ROOM: 'Living Room',
 	NORMAL_LIVING_ROOM: 'Normal Living Room',
@@ -91,13 +103,13 @@ const NAME = {
 	LATE_NIGHT_LIVING_ROOM: 'Late Night Living Room',
 
 	// Master Bathroom
+	ASHLEE_VANITY: 'Ashlee\'s Vanity',
+	BRIGHT_MASTER_BATHROOM: 'Bright Master Bathroom',
+	KEVIN_VANITY: 'Kevin\'s Vanity',
+	LATE_NIGHT_MASTER_BATHROOM: 'Late Night Master Bathroom',
 	MASTER_BATHROOM: 'Master Bathroom',
 	NORMAL_MASTER_BATHROOM: 'Normal Master Bathroom',
-	BRIGHT_MASTER_BATHROOM: 'Bright Master Bathroom',
-	LATE_NIGHT_MASTER_BATHROOM: 'Late Night Master Bathroom',
-	ASHLEE_VANITY: 'Ashlee\'s Vanity',
-	KEVIN_VANITY: 'Kevin\'s Vanity',
-	MASTER_SHOWER: 'Master Shower',
+	SHOWER: 'Shower',
 
 	// Master Toilet
 	MASTER_TOILET: 'Master Toilet',
@@ -131,6 +143,12 @@ const NAME = {
 	NORMAL_SPARE_BEDROOM: 'Normal Spare Bedroom',
 	BRIGHT_SPARE_BEDROOM: 'Bright Spare Bedroom',
 	LATE_NIGHT_SPARE_BEDROOM: 'Late Night Spare Bedroom',
+
+	// Spare Vanity
+	SPARE_VANITY: 'Spare Vanity',
+	NORMAL_SPARE_VANITY: 'Normal Spare Vanity',
+	BRIGHT_SPARE_VANITY: 'Bright Spare Vanity',
+	LATE_NIGHT_SPARE_VANITY: 'Late Night Spare Vanity',
 }
 
 const getStandardLightingActionSet = roomName => ({
@@ -156,24 +174,36 @@ const getStandardLightingActionSet = roomName => ({
 	},
 })
 
-const ACTION_SET = {
-	ASHLEE_VANITY: {
-		[PRESS.SINGLE]: {
-			action: ACTION.TOGGLE_SCENE,
-			device: DEVICE.LIFX,
-			name: NAME.ASHLEE_VANITY,
-		},
-		[PRESS.DOUBLE]: {
-			action: ACTION.TOGGLE_SCENE,
-			device: DEVICE.LIFX,
-			name: NAME.ASHLEE_VANITY,
-		},
-		[PRESS.SINGLE_HOLD]: {
-			action: ACTION.TOGGLE_SCENE,
-			device: DEVICE.LIFX,
-			name: NAME.ASHLEE_VANITY,
-		},
+const getRepeatedLightingActionSet = (sceneName, roomName) => ({
+	[PRESS.SINGLE]: {
+		action: ACTION.TOGGLE_SCENE,
+		device: DEVICE.LIFX,
+		name: NAME[sceneName],
 	},
+	[PRESS.DOUBLE]: {
+		action: ACTION.TOGGLE_SCENE,
+		device: DEVICE.LIFX,
+		name: NAME[sceneName],
+	},
+	[PRESS.SINGLE_HOLD]: {
+		action: ACTION.TOGGLE_SCENE,
+		device: DEVICE.LIFX,
+		name: NAME[sceneName],
+	},
+	[PRESS.DOUBLE_HOLD]: {
+		action: ACTION.TURN_OFF_GROUP,
+		device: DEVICE.LIFX,
+		name: NAME[roomName],
+	},
+})
+
+const ACTION_SET = {
+	ASHLEE_VANITY: (
+		getRepeatedLightingActionSet(
+			NAME.ASHLEE_VANITY,
+			NAME.MASTER_BATHROOM
+		)
+	),
 
 	BASEMENT: getStandardLightingActionSet('BASEMENT'),
 
@@ -227,6 +257,7 @@ const ACTION_SET = {
 
 	GUEST_BATHROOM: getStandardLightingActionSet('GUEST_BATHROOM'),
 	GUEST_BEDROOM: getStandardLightingActionSet('GUEST_BEDROOM'),
+	GUEST_VANITY: getStandardLightingActionSet('GUEST_VANITY'),
 
 	KITCHEN_SINK: {
 		[PRESS.SINGLE]: {
@@ -248,69 +279,37 @@ const ACTION_SET = {
 
 	HALLWAY: getStandardLightingActionSet('HALLWAY'),
 
-	KEVIN_VANITY: {
-		[PRESS.SINGLE]: {
-			action: ACTION.TOGGLE_SCENE,
-			device: DEVICE.LIFX,
-			name: NAME.KEVIN_VANITY,
-		},
-		[PRESS.DOUBLE]: {
-			action: ACTION.TOGGLE_SCENE,
-			device: DEVICE.LIFX,
-			name: NAME.KEVIN_VANITY,
-		},
-		[PRESS.SINGLE_HOLD]: {
-			action: ACTION.TOGGLE_SCENE,
-			device: DEVICE.LIFX,
-			name: NAME.KEVIN_VANITY,
-		},
-	},
+	KEVIN_VANITY: (
+		getRepeatedLightingActionSet(
+			NAME.KEVIN_VANITY,
+			NAME.MASTER_BATHROOM
+		)
+	),
 
 	KITCHEN: getStandardLightingActionSet('KITCHEN'),
 	LIVING_ROOM: getStandardLightingActionSet('LIVING_ROOM'),
 	MASTER_BATHROOM: getStandardLightingActionSet('MASTER_BATHROOM'),
-
-	MASTER_SHOWER: {
-		[PRESS.SINGLE]: {
-			action: ACTION.TOGGLE_SCENE,
-			device: DEVICE.LIFX,
-			name: NAME.MASTER_SHOWER,
-		},
-		[PRESS.DOUBLE]: {
-			action: ACTION.TOGGLE_SCENE,
-			device: DEVICE.LIFX,
-			name: NAME.MASTER_SHOWER,
-		},
-		[PRESS.SINGLE_HOLD]: {
-			action: ACTION.TOGGLE_SCENE,
-			device: DEVICE.LIFX,
-			name: NAME.MASTER_SHOWER,
-		},
-	},
-
-	MASTER_TOILET: getStandardLightingActionSet('MASTER_TOILET'),
 	MASTER_BEDROOM: getStandardLightingActionSet('MASTER_BEDROOM'),
 	MASTER_CLOSET: getStandardLightingActionSet('MASTER_CLOSET'),
+
+	MASTER_SHOWER: (
+		getRepeatedLightingActionSet(
+			NAME.SHOWER,
+			NAME.MASTER_BATHROOM
+		)
+	),
+
+	MASTER_TOILET: getStandardLightingActionSet('MASTER_TOILET'),
 	OFFICE: getStandardLightingActionSet('OFFICE'),
 	SPARE_BEDROOM: getStandardLightingActionSet('SPARE_BEDROOM'),
+	SPARE_VANITY: getStandardLightingActionSet('SPARE_VANITY'),
 
-	THEATER: {
-		[PRESS.SINGLE]: {
-			action: ACTION.TOGGLE_SCENE,
-			device: DEVICE.LIFX,
-			name: NAME.THEATER,
-		},
-		[PRESS.DOUBLE]: {
-			action: ACTION.TOGGLE_SCENE,
-			device: DEVICE.LIFX,
-			name: NAME.THEATER,
-		},
-		[PRESS.SINGLE_HOLD]: {
-			action: ACTION.TOGGLE_SCENE,
-			device: DEVICE.LIFX,
-			name: NAME.THEATER,
-		},
-	},
+	THEATER: (
+		getRepeatedLightingActionSet(
+			NAME.THEATER,
+			NAME.FAMILY_ROOM
+		)
+	),
 }
 
 const combineSets = actionSets => (
@@ -334,42 +333,54 @@ const combineSets = actionSets => (
 )
 
 const MULTI_ACTION_SET = {
-	ALL_DOWNSTAIRS: combineSets([
-		ACTION_SET.DINING_ROOM,
-		ACTION_SET.EAT_IN_KITCHEN,
-		ACTION_SET.ENTRYWAY,
-		ACTION_SET.FAMILY_ROOM,
-		ACTION_SET.KITCHEN,
-		ACTION_SET.LIVING_ROOM,
-		ACTION_SET.OFFICE,
-	]),
+	ALL_DOWNSTAIRS: (
+		combineSets([
+			ACTION_SET.DINING_ROOM,
+			ACTION_SET.EAT_IN_KITCHEN,
+			ACTION_SET.ENTRYWAY,
+			ACTION_SET.FAMILY_ROOM,
+			ACTION_SET.KITCHEN,
+			ACTION_SET.KITCHEN_BATHROOM,
+			ACTION_SET.LIVING_ROOM,
+			ACTION_SET.OFFICE,
+		])
+	),
 
-	ALL_KITCHEN: combineSets([
-		ACTION_SET.EAT_IN_KITCHEN,
-		ACTION_SET.FAMILY_ROOM,
-		ACTION_SET.GARAGE,
-		ACTION_SET.KITCHEN,
-	]),
+	ALL_KITCHEN: (
+		combineSets([
+			ACTION_SET.EAT_IN_KITCHEN,
+			ACTION_SET.FAMILY_ROOM,
+			ACTION_SET.KITCHEN,
+		])
+	),
 
-	ALL_LIVING_ROOM: combineSets([
-		ACTION_SET.LIVING_ROOM,
-		ACTION_SET.OFFICE,
-	]),
+	ALL_LIVING_ROOM: (
+		combineSets([
+			ACTION_SET.LIVING_ROOM,
+			ACTION_SET.OFFICE,
+		])
+	),
 
-	ALL_STAIRWAY: combineSets([
-		ACTION_SET.ENTRYWAY,
-		ACTION_SET.HALLWAY,
-	]),
+	ALL_STAIRWAY: (
+		combineSets([
+			ACTION_SET.ENTRYWAY,
+			ACTION_SET.HALLWAY,
+		])
+	),
 
-	ALL_UPSTAIRS: combineSets([
-		ACTION_SET.SPARE_BEDROOM,
-		ACTION_SET.GUEST_BATHROOM,
-		ACTION_SET.GUEST_BEDROOM,
-		ACTION_SET.HALLWAY,
-		ACTION_SET.MASTER_BATHROOM,
-		ACTION_SET.MASTER_BEDROOM,
-		ACTION_SET.MASTER_CLOSET,
-	]),
+	ALL_UPSTAIRS: (
+		combineSets([
+			ACTION_SET.GUEST_BATHROOM,
+			ACTION_SET.GUEST_BEDROOM,
+			ACTION_SET.GUEST_VANITY,
+			ACTION_SET.HALLWAY,
+			ACTION_SET.MASTER_BATHROOM,
+			ACTION_SET.MASTER_BEDROOM,
+			ACTION_SET.MASTER_CLOSET,
+			ACTION_SET.SPARE_BEDROOM,
+			ACTION_SET.SPARE_VANITY,
+		])
+	),
 }
 
 module.exports = {
