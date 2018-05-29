@@ -210,6 +210,12 @@ const buttonConfigs = {
 		color: COLOR.GREEN,
 		location: "Family Room Couch Table",
 	},
+
+	'80:e4:da:73:5f:8b': {
+		...ACTION_SET.MASTER_BEDROOM,
+		color: COLOR.BLACK,
+		location: "Master Bedroom Entrance",
+	},
 }
 
 module.exports = buttonConfigs
