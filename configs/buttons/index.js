@@ -208,7 +208,7 @@ const buttonConfigs = {
 	'80:e4:da:72:63:f5': {
 		...ACTION_SET.THEATER,
 		color: COLOR.GREEN,
-		location: "TV Area",
+		location: "Family Room Couch Table",
 	},
 }
 
