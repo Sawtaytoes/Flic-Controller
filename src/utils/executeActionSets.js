@@ -8,13 +8,22 @@ const buildWebRequests = actionSet => (
 	Array.from(
 		actionSet
 		.map(({ action, device, name }) => ({
-			url: `${config.getDeviceApiUri(device)}/${action}`,
 			name,
+			url: `${config.getDeviceApiUri(device)}/${action}`,
 		}))
 		.reduce(
 			(map, { url, name }) => (
 				map.has(url)
-				? map.set(url, map.get(url).concat(name))
+				? (
+					map.set(
+						url,
+						(
+							map
+							.get(url)
+							.concat(name)
+						)
+					)
+				)
 				: map.set(url, [name])
 			),
 			new Map()
