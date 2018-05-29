@@ -216,6 +216,12 @@ const buttonConfigs = {
 		color: COLOR.BLACK,
 		location: "Master Bedroom Entrance",
 	},
+
+	'80:e4:da:73:66:dd': {
+		...ACTION_SET.KITCHEN_BATHROOM,
+		color: COLOR.WHITE,
+		location: "Kitchen Bathroom",
+	},
 }
 
 module.exports = buttonConfigs
