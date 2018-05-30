@@ -188,7 +188,7 @@ const buttonConfigs = {
 	},
 
 	'80:e4:da:72:a8:60': {
-		...ACTION_SET.MASTER_SHOWER,
+		...ACTION_SET.SHOWER,
 		color: COLOR.WHITE,
 		location: "Master Bedroom Shower Entryway",
 	},
