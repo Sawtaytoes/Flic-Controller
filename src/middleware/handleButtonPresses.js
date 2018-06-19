@@ -53,10 +53,7 @@ const listenToButton = flicClient => bluetoothAddress => {
 	const flicConnectionChannel = (
 		new FlicConnectionChannel(
 			bluetoothAddress,
-			{
-				autoDisconnectTime: 15,
-				latencyMode: 'LowLatency',
-			}
+			{ latencyMode: 'LowLatency' }
 		)
 	)
 
