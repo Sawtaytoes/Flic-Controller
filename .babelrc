@@ -1,0 +1,14 @@
+{
+  "plugins": [
+    "transform-class-properties",
+    "transform-object-rest-spread",
+    "transform-runtime",
+  ],
+  "presets": [
+    [
+      "env", {
+        "modules": false,
+      }
+    ],
+  ],
+}

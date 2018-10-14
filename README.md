@@ -1,24 +1,43 @@
-# Flic HTTP Controller
+# Flic Controller
+WebSockets-based Flic Controller software. This is the server portion which executes commands. There is a related piece which listens for button presses and sends them to this controller.
 
-Toggle home automation devices over LAN. This project provides a framework to create your own similar system. It currently supports two other projects: _LIFX Controller_ and _WeMo Controller_.
+For an example use case, look at [`./app.js`](app.js).
 
-- [Configuration](docs/configuration.md)
-- [Process Monitoring](docs/process-monitoring.md)
-- [Project Commands](docs/project-commands.md)
+## Installation
 
-
-## Start the Process
-> _**NOTE:** You can swap the command `yarn` for `npm run`._
-
-```shell
-yarn start
+### `npm`
+```sh
+npm i
 ```
 
+### `yarn`
+```sh
+yarn
+```
 
-## Requirements
+## Sample
 
-- [fliclib-linux-hci](https://github.com/50ButtonsEach/fliclib-linux-hci)
-- Linux (required by fliclib-linux-dist)
-- Node.js
+### Execute Button Presses
+To test joining a channel, load up a browser, and go to `about:blank`.
 
-> _**NOTE:** When running on a **Raspberry Pi**, it's recommended to use **Raspbian**. Ubuntu 16.04 does not have proper driver support for the Broadcom Bluetooth chip._
+Then paste this into the devtools console:
+```js
+webSocket = new WebSocket('ws://localhost:3000', 'v1')
+webSocket.onmessage = console.log
+webSocket.onerror = console.error
+webSocket.onclose = console.info
+webSocket.onopen = () => {
+	console.log('READY')
+	
+	webSocket
+	.send(
+		JSON
+		.stringify({
+			buttonId: '80:e4:da:86:44:9e',
+			pressCount: 1,
+			pressType: 'hold',
+			type: 'REQUEST::EXECUTE_BUTTON_PRESSES',
+		})
+	)
+}
+```
