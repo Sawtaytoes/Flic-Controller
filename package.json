@@ -1,7 +1,7 @@
 {
   "name": "flic-controller",
   "version": "0.0.0",
-  "description": "Utilities for creating applications using WebSockets.",
+  "description": "Flic controller software using WebSockets.",
   "license": "MITNFA",
   "scripts": {
     "debug": "nodemon --inspect app.js",
