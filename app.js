@@ -1,6 +1,7 @@
 // Include this import before other local imports.
 require('@ghadyani-framework/setup-module-aliases')(__dirname)
 
+const fetch = require('node-fetch')
 const { applyMiddleware, createStore } = require('redux')
 const { createActionLoggerMiddleware } = require('@ghadyani-framework/redux-utils')
 const { createConfigurationSet, runTasks } = require('@ghadyani-framework/node')
@@ -22,7 +23,13 @@ const actionLoggerMiddleware = (
 	})
 )
 
-const epicMiddleware = createEpicMiddleware()
+const epicMiddleware = (
+	createEpicMiddleware({
+		dependencies: {
+			fetch,
+		},
+	})
+)
 
 const middleware = (
 	applyMiddleware(
