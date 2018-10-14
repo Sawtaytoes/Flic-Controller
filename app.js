@@ -55,6 +55,7 @@ of(store)
 		runTasks(
 			'lint',
 			'serve',
+			'listen',
 		)
 	),
 )
