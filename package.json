@@ -38,7 +38,7 @@
   "dependencies": {
     "@ghadyani-framework/node": "^3.0.1",
     "@ghadyani-framework/redux-utils": "^1.1.2",
-    "@ghadyani-framework/websocket": "^3.0.1",
+    "@ghadyani-framework/websocket": "^3.0.3",
     "node-fetch": "^2.2.0"
   }
 }
