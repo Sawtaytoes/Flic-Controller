@@ -1,4 +1,6 @@
 module.exports = {
+	applicationName: 'flicController',
+
 	lifxApi: {
 		hostname: '',
 		port: 80,
