@@ -1,4 +1,13 @@
 module.exports = {
-	applicationName: 'lifxController',
-	lifxApiAddress: 'https://api.lifx.com/v1/',
+	lifxApi: {
+		hostname: '',
+		port: 80,
+		protocol: 'http',
+	},
+
+	wemoApi: {
+		hostname: '',
+		port: 80,
+		protocol: 'http',
+	},
 }
