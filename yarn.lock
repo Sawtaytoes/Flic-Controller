@@ -401,10 +401,10 @@
   resolved "https://registry.yarnpkg.com/@ghadyani-framework/setup-module-aliases/-/setup-module-aliases-0.0.2.tgz#559b9b443590606df2a5749c9d542b6bde885f06"
   integrity sha512-vPTtVDgC+E5raZCJ4Jmi/Of67Ck4MxcXLEej12lIs4AiW03KOy9n6q9pt3zgZB0JwGEiRIvhb+IkOlBBmYHLTg==
 
-"@ghadyani-framework/websocket@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@ghadyani-framework/websocket/-/websocket-3.0.1.tgz#cd8f7e393636f6cb78879df48a649b6080b9cbcd"
-  integrity sha512-P0oiZd3BWZ0rN4hHVYh03+UK9J1Xs6Rg2VP6EgbOqaYHyqhhhfkIj1zkrjlYhUYuVd4ihLUbt9i9/5G/5BcDnw==
+"@ghadyani-framework/websocket@^3.0.3":
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@ghadyani-framework/websocket/-/websocket-3.0.3.tgz#dfeed5584d808826d9b13fdb028f9d99fb4d6f6b"
+  integrity sha512-btMMowv0wpntsz6/hfaGZn7F+C6RQZ9QtVVDCkFMTRBut4SO9Fw8AiFdlrkbGl4d8GYdA3E/nUu0fMZ4VwLEzQ==
   dependencies:
     ws "^6.1.0"
   optionalDependencies:
