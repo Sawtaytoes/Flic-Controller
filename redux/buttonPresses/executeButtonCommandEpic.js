@@ -162,37 +162,37 @@ const executeButtonCommandEpic = (
 										),
 									)
 								)),
-								toArray(),
-								tap(() => (
-									console
-									.info(
-										chalk
-										.green(
-											"Completed executing button commands."
-										)
-									)
-								)),
-								tap(responses => (
-									responses
-									.map(({
-										error,
-									}) => (
-										error
-									))
-									.filter(Boolean)
-									.forEach((
-										error,
-									) => (
-										console
-										.error(
-											chalk
-											.redBright(
-												error
-											)
-										)
-									))
-								)),
 							)
+						)),
+						toArray(),
+						tap(() => (
+							console
+							.info(
+								chalk
+								.green(
+									"Completed executing button commands."
+								)
+							)
+						)),
+						tap(responses => (
+							responses
+							.map(({
+								error,
+							}) => (
+								error
+							))
+							.filter(Boolean)
+							.forEach((
+								error,
+							) => (
+								console
+								.error(
+									chalk
+									.redBright(
+										error
+									)
+								)
+							))
 						)),
 					)
 				)),
