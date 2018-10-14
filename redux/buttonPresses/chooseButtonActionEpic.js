@@ -1,4 +1,4 @@
-const { map, switchMap, take, tap } = require('rxjs/operators')
+const { map, switchMap, take } = require('rxjs/operators')
 const { of } = require('rxjs')
 const { ofType } = require('redux-observable')
 const { sendMessage } = require('@ghadyani-framework/websocket/redux/messages/actions')
