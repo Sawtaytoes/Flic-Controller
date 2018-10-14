@@ -63,7 +63,6 @@ const executeButtonCommandEpic = (
 	action$
 	.pipe(
 		ofType(EXECUTE_BUTTON_COMMAND),
-		tap(console.log),
 		pluck('actionSets'),
 		map(actionSets => (
 			(
@@ -102,7 +101,6 @@ const executeButtonCommandEpic = (
 							combineSimilarRequests,
 							new Map(),
 						),
-						tap(console.log),
 						switchMap(requests => (
 							Array
 							.from(requests)
