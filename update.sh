@@ -8,4 +8,4 @@ export NODE_ENV=production
 git reset --hard HEAD
 git pull
 yarn
-pm2 gracefulReload ${PWD##*/}
+pm2 reload ${PWD##*/}
