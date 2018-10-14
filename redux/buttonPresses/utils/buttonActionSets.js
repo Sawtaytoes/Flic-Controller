@@ -8,8 +8,8 @@ const PRESS = {
 }
 
 const DEVICE = {
-	LIFX: 'lifx',
-	WEMO: 'wemo',
+	LIFX: 'lifxApi',
+	WEMO: 'wemoApi',
 }
 
 const ACTION = {
@@ -322,12 +322,12 @@ const combineSets = actionSets => (
 			actionSets
 			.map(actionSet => actionSet[pressType])
 			.filter(actionSetPressValue => actionSetPressValue)
-		)
+		),
 	}))
 	.reduce(
 		(object, { pressType, actionSetPressValues }) => (
 			Object.assign({}, object, {
-				[pressType]: actionSetPressValues
+				[pressType]: actionSetPressValues,
 			})
 		),
 		{}
