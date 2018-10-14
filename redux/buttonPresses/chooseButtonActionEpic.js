@@ -54,7 +54,6 @@ const chooseButtonActionEpic = (
 			])
 			.pipe(
 				take(1),
-				tap(console.log),
 				map(([
 					buttonConfig,
 					pressActionName,
