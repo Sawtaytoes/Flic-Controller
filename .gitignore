@@ -1,26 +1,24 @@
-## Project Files ##
-~res
+# Configs
+localConfig.js
 
-## Cache ##
+# Generated
 .cache
+.eslintcache
+public/bundles
 
-## Configs ##
-.env
-configs/custom.js
-
-## Logs ##
+# Logs
 logs
-*.log
+*.log*
 npm-debug.log*
 
-## npm ##
-node_modules
-
-## New Relic ##
-newrelic.js
-
-## Misc ##
+# Misc
 .DS_Store
 [Tt]humbs.db
 *.dmp
 ._*
+
+# npm
+node_modules
+
+# Visual Studio
+.vs
