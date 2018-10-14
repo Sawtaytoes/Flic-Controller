@@ -1520,11 +1520,6 @@ event-stream@~3.3.0:
     stream-combiner "~0.0.4"
     through "~2.3.1"
 
-eventemitter3@^2.0.2:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-2.0.3.tgz#b5e1079b59fb5e1ba2771c0a993be060a58c99ba"
-  integrity sha1-teEHm1n7XhuidxwKmTvgYKWMmbo=
-
 execa@^0.10.0:
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/execa/-/execa-0.10.0.tgz#ff456a8f53f90f8eccc71a96d11bdfc7f082cb50"
@@ -2538,7 +2533,7 @@ lodash.merge@^4.6.0:
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.1.tgz#adc25d9cb99b9391c59624f379fbba60d7111d54"
   integrity sha512-AOYza4+Hf5z1/0Hztxpm2/xiPZgi/cjMqdnKTUWTBSKchJlxXXuUSxCCl8rJlf4g6yww/j6mA8nC8Hw/EZWxKQ==
 
-lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0, lodash@^4.5.0:
+lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0:
   version "4.17.10"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
   integrity sha512-UejweD1pDoXu+AD825lWwp4ZGtSwgnpZxb3JDViD7StjQz+Nb/6l093lx4OQ0foGWNRoc19mWy7BzL+UAK2iVg==
@@ -2816,19 +2811,6 @@ node-gyp-build@~3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/node-gyp-build/-/node-gyp-build-3.4.0.tgz#f8f62507e65f152488b28aac25d04b9d79748cf7"
   integrity sha512-YoviGBJYGrPdLOKDIQB0sKxuKy/EEsxzooNkOZak4vSTKT/qH0Pa6dj3t1MJjEQGsefih61IyHDmO1WW7xOFfw==
-
-node-lifx-lan@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/node-lifx-lan/-/node-lifx-lan-0.3.1.tgz#11dd1cb8bae11f3ecf9e9b19346838d768e7df46"
-  integrity sha512-1rpu8VsGFwZawVE5JQc1pJWD0slvR1fYbIBgQzGO1vdAjmTeuEYko941mpE7V0/tbTJuahAhWHKSg3dkhb5ZIA==
-
-node-lifx@^0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/node-lifx/-/node-lifx-0.8.0.tgz#2f96993562100b9155e2ec49ddecbfc33c9a3dae"
-  integrity sha1-L5aZNWIQC5FV4uxJ3ey/wzyaPa4=
-  dependencies:
-    eventemitter3 "^2.0.2"
-    lodash "^4.5.0"
 
 node-pre-gyp@^0.10.0:
   version "0.10.3"
