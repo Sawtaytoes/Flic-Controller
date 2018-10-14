@@ -7,4 +7,4 @@ if [[ ! $numberOfServers ]]; then
 	numberOfServers=0
 fi
 
-pm2 start index.js -i $numberOfServers --name ${PWD##*/} -- server
+pm2 start app.js -i $numberOfServers --name ${PWD##*/} -- server
