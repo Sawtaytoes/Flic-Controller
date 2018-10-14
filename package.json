@@ -1,6 +1,6 @@
 {
   "name": "flic-controller",
-  "version": "0.0.0",
+  "version": "2.0.0",
   "description": "Flic controller software using WebSockets.",
   "license": "MITNFA",
   "scripts": {
