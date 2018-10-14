@@ -6,8 +6,8 @@ const { sendMessage } = require('@ghadyani-framework/websocket/redux/messages/ac
 const buttonConfigs = require('./utils/buttonConfigs')
 
 const {
-	executeButtonCommand,
-	RECORD_BUTTON_PRESS_SET,
+	executeCommand,
+	EXECUTE_BUTTON_PRESSES,
 } = require('./actions')
 
 const getPressActionName = ({
@@ -32,7 +32,7 @@ const chooseButtonActionEpic = (
 ) => (
 	action$
 	.pipe(
-		ofType(RECORD_BUTTON_PRESS_SET),
+		ofType(EXECUTE_BUTTON_PRESSES),
 		switchMap(({
 			buttonId,
 			connection,
@@ -68,7 +68,7 @@ const chooseButtonActionEpic = (
 				map(actionSets => (
 					actionSets
 					? (
-						executeButtonCommand(
+						executeCommand(
 							actionSets
 						)
 					)
@@ -83,7 +83,7 @@ const chooseButtonActionEpic = (
 									.concat(' ')
 									.concat(`when ${pressType}ing ${pressCount} times.`)
 								),
-								type: 'RESPONSE::ERROR',
+								type: 'RESPONSE::ERROR_MESSAGE',
 							},
 						})
 					)

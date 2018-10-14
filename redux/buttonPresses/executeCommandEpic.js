@@ -6,7 +6,7 @@ const { from, of } = require('rxjs')
 const { ofType } = require('redux-observable')
 const { stateSelector } = require('@ghadyani-framework/redux-utils')
 
-const { EXECUTE_BUTTON_COMMAND } = require('./actions')
+const { EXECUTE_COMMAND } = require('./actions')
 
 const configurationSetProps = {
 	namespace: defaultConfigurationsNamespace,
@@ -55,14 +55,14 @@ const combineSimilarRequests = (
 	)
 )
 
-const executeButtonCommandEpic = (
+const executeCommandEpic = (
 	action$,
 	state$,
 	{ fetch },
 ) => (
 	action$
 	.pipe(
-		ofType(EXECUTE_BUTTON_COMMAND),
+		ofType(EXECUTE_COMMAND),
 		pluck('actionSets'),
 		map(actionSets => (
 			(
@@ -154,12 +154,12 @@ const executeButtonCommandEpic = (
 											)
 										),
 										(
-											JSON
-											.stringify({
-												url,
-												fetchOptions,
-											})
+											'\n'
 										),
+										({
+											...fetchOptions,
+											url,
+										}),
 									)
 								)),
 							)
@@ -170,7 +170,7 @@ const executeButtonCommandEpic = (
 							.info(
 								chalk
 								.green(
-									"Completed executing button commands."
+									"Completed executing button command(s)."
 								)
 							)
 						)),
@@ -202,4 +202,4 @@ const executeButtonCommandEpic = (
 	)
 )
 
-module.exports = executeButtonCommandEpic
+module.exports = executeCommandEpic
