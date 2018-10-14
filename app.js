@@ -15,12 +15,10 @@ const {
 	rootReducer,
 } = require('$redux')
 
-const { actionsBlacklist } = require('./')
+require('./')
 
 const actionLoggerMiddleware = (
-	createActionLoggerMiddleware({
-		actionsBlacklist,
-	})
+	createActionLoggerMiddleware()
 )
 
 const epicMiddleware = (
