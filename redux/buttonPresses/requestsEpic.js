@@ -2,8 +2,8 @@ const { map } = require('rxjs/operators')
 const { ofRequestType } = require('@ghadyani-framework/websocket')
 
 const {
-	RECORD_BUTTON_PRESS_SET,
-	recordButtonPressSet,
+	EXECUTE_BUTTON_PRESSES,
+	executeButtonPresses,
 } = require('./actions')
 
 const requestsEpic = (
@@ -11,7 +11,7 @@ const requestsEpic = (
 ) => (
 	action$
 	.pipe(
-		ofRequestType(RECORD_BUTTON_PRESS_SET),
+		ofRequestType(EXECUTE_BUTTON_PRESSES),
 		map(({
 			buttonId,
 			connection,
@@ -23,7 +23,7 @@ const requestsEpic = (
 			pressCount,
 			pressType,
 		})),
-		map(recordButtonPressSet),
+		map(executeButtonPresses),
 	)
 )
 

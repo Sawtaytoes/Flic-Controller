@@ -1,14 +1,18 @@
 const { combineEpics } = require('redux-observable')
 
 const chooseButtonActionEpic = require('./chooseButtonActionEpic')
-const executeButtonCommandEpic = require('./executeButtonCommandEpic')
+const executeButtonPressesEpic = require('./executeButtonPressesEpic')
+const executeCommandEpic = require('./executeCommandEpic')
 const requestsEpic = require('./requestsEpic')
+const startButtonListenerEpic = require('./startButtonListenerEpic')
 
 const buttonPressesEpic = (
 	combineEpics(
 		chooseButtonActionEpic,
-		executeButtonCommandEpic,
+		executeButtonPressesEpic,
+		executeCommandEpic,
 		requestsEpic,
+		startButtonListenerEpic,
 	)
 )
 

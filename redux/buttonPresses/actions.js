@@ -1,14 +1,19 @@
-const EXECUTE_BUTTON_COMMAND = 'BUTTON_PRESSES::EXECUTE_BUTTON_COMMAND'
-const RECORD_BUTTON_PRESS_SET = 'BUTTON_PRESSES::RECORD_BUTTON_PRESS_SET'
+const CAPTURE_BUTTON_PRESS = 'BUTTON_PRESSES::CAPTURE_BUTTON_PRESS'
+const EXECUTE_BUTTON_PRESSES = 'BUTTON_PRESSES::EXECUTE_BUTTON_PRESSES'
+const EXECUTE_COMMAND = 'BUTTON_PRESSES::EXECUTE_COMMAND'
 
-const executeButtonCommand = (
-	actionSets,
-) => ({
-	actionSets,
-	type: EXECUTE_BUTTON_COMMAND,
+const captureButtonPress = ({
+	bluetoothAddress,
+	buttonPressState,
+	hostname,
+}) => ({
+	buttonId: bluetoothAddress,
+	buttonPressState,
+	hostname,
+	type: CAPTURE_BUTTON_PRESS,
 })
 
-const recordButtonPressSet = ({
+const executeButtonPresses = ({
 	buttonId,
 	connection,
 	pressCount,
@@ -18,12 +23,21 @@ const recordButtonPressSet = ({
 	connection,
 	pressCount,
 	pressType,
-	type: RECORD_BUTTON_PRESS_SET,
+	type: EXECUTE_BUTTON_PRESSES,
+})
+
+const executeCommand = (
+	actionSets,
+) => ({
+	actionSets,
+	type: EXECUTE_COMMAND,
 })
 
 module.exports = {
-	EXECUTE_BUTTON_COMMAND,
-	executeButtonCommand,
-	RECORD_BUTTON_PRESS_SET,
-	recordButtonPressSet,
+	CAPTURE_BUTTON_PRESS,
+	captureButtonPress,
+	EXECUTE_BUTTON_PRESSES,
+	EXECUTE_COMMAND,
+	executeButtonPresses,
+	executeCommand,
 }
