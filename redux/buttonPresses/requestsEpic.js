@@ -14,10 +14,14 @@ const requestsEpic = (
 		ofRequestType(RECORD_BUTTON_PRESS_SET),
 		map(({
 			buttonId,
-			pressSet,
+			connection,
+			pressCount,
+			pressType,
 		}) => ({
 			buttonId,
-			pressSet,
+			connection,
+			pressCount,
+			pressType,
 		})),
 		map(recordButtonPressSet),
 	)

@@ -1,11 +1,16 @@
 const RECORD_BUTTON_PRESS_SET = 'BUTTON_PRESSES::RECORD_BUTTON_PRESS_SET'
 
 const recordButtonPressSet = (
+const recordButtonPressSet = ({
 	buttonId,
-	pressSet,
-) => ({
+	connection,
+	pressCount,
+	pressType,
+}) => ({
 	buttonId,
-	pressSet,
+	connection,
+	pressCount,
+	pressType,
 	type: RECORD_BUTTON_PRESS_SET,
 })
 
