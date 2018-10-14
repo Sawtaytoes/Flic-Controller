@@ -1,11 +1,7 @@
-// Global Dir Hack
-global.baseDir = `${__dirname}/`
+#!/usr/bin/env node
+require('@ghadyani-framework/setup-module-aliases')(__dirname)
+require('$utils/createCacheDirectory')
 
-const dir = require(`${global.baseDir}directories`)
-const flicClient = require(`${dir.services}flicClient`)
-
-const handleButtonPresses = require(`${dir.middleware}handleButtonPresses`)
-const logChanges = require(`${dir.middleware}logChanges`)
-
-handleButtonPresses(flicClient)
-logChanges(flicClient)
+module.exports = {
+	actionsBlacklist: require('$redux/actionsBlacklist'),
+}
