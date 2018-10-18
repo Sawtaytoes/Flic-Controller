@@ -1,52 +1,19 @@
 const { bindCallback, fromEvent, of } = require('rxjs')
-const { configurationSetSelector } = require('@ghadyani-framework/node/redux/configurations/selectors')
-const { defaultConfigurationsNamespace } = require('@ghadyani-framework/node/redux/configurations/actions')
-const { FlicClient, FlicConnectionChannel } = require('$lib/fliclibNodeJs')
-const { map, mergeMap, switchMap, tap } = require('rxjs/operators')
-const { ofTaskName } = require('@ghadyani-framework/node')
+const { FlicConnectionChannel } = require('$lib/fliclibNodeJs')
+const { buffer, debounceTime, map, mergeMap, switchMap, tap } = require('rxjs/operators')
 const { ofType } = require('redux-observable')
-const { START_TASK } = require('@ghadyani-framework/node/redux/tasks/actions')
-const { stateSelector } = require('@ghadyani-framework/redux-utils')
 
-const { captureButtonPress } = require('./actions')
-
-const configurationSetProps = {
-	namespace: defaultConfigurationsNamespace,
-}
+const {
+	ADD_FLIC_CLIENT,
+	captureButtonPresses,
+} = require('./actions')
 
 const startButtonListenerEpic = (
 	action$,
-	state$,
 ) => (
 	action$
 	.pipe(
-		ofType(START_TASK),
-		ofTaskName(
-			'listen',
-			'undefined',
-		),
-		switchMap(() => (
-			stateSelector({
-				props: configurationSetProps,
-				selector: configurationSetSelector,
-				state$,
-			})
-		)),
-		switchMap(({ flicButtonServers }) => (
-			flicButtonServers
-		)),
-		map(({
-			hostname,
-			port,
-		}) => ({
-			flicClient: (
-				new FlicClient(
-					hostname,
-					port,
-				)
-			),
-			hostname,
-		})),
+		ofType(ADD_FLIC_CLIENT),
 		mergeMap(({
 			flicClient,
 			hostname,
@@ -80,18 +47,32 @@ const startButtonListenerEpic = (
 								flicConnectionChannel,
 							)
 						)),
-						switchMap(flicConnectionChannel => (
+						map(flicConnectionChannel => (
 							fromEvent(
 								flicConnectionChannel,
 								'buttonUpOrDown',
 							)
 						)),
-						map(([buttonPressState]) => ({
+						switchMap(buttonPress$ => (
+							buttonPress$
+							.pipe(
+								map(([buttonPressState]) => (
+									buttonPressState
+								)),
+								buffer(
+									buttonPress$
+									.pipe(
+										debounceTime(300),
+									)
+								),
+							)
+						)),
+						map(buttonPressStates => ({
 							bluetoothAddress,
-							buttonPressState,
+							buttonPressStates,
 							hostname,
 						})),
-						map(captureButtonPress),
+						map(captureButtonPresses),
 					)
 				)),
 			)
