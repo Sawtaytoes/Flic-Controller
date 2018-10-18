@@ -1,9 +1,10 @@
 const chalk = require('chalk')
-const { buffer, debounceTime, filter, map, tap } = require('rxjs/operators')
+const { filter, map, mergeMap, tap } = require('rxjs/operators')
+const { of } = require('rxjs')
 const { ofType } = require('redux-observable')
 
 const {
-	CAPTURE_BUTTON_PRESS,
+	CAPTURE_BUTTON_PRESSES,
 	executeButtonPresses,
 } = require('./actions')
 
@@ -22,67 +23,51 @@ const getNumberOfPresses = (
 	.length
 )
 
-const getNumberOfButtonDowns = getNumberOfPresses(BUTTON_DOWN)
-const getNumberOfButtonUps = getNumberOfPresses(BUTTON_UP)
+const getNumberOfButtonDowns = (
+	getNumberOfPresses(BUTTON_DOWN)
+)
+
+const getNumberOfButtonUps = (
+	getNumberOfPresses(BUTTON_UP)
+)
 
 const executeButtonPressesEpic = (
 	action$,
 ) => (
 	action$
 	.pipe(
-		ofType(CAPTURE_BUTTON_PRESS),
-		buffer(
-			action$
-			.pipe(
-				ofType(CAPTURE_BUTTON_PRESS),
-				debounceTime(300),
-			)
-		),
-		// Ignore first item if it was someone lifting up their finger.
-		map(buttonPresses => (
-			(
-				buttonPresses[0]
-				.buttonPressState === BUTTON_UP
-			)
-			? buttonPresses.slice(1)
-			: buttonPresses
-		)),
-		filter(buttonPresses => (
-			buttonPresses
-			.length > 0
-		)),
-		map(buttonPresses => ({
-			buttonId: (
-				buttonPresses[0]
-				.buttonId
-			),
-			buttonPressStates: (
-				buttonPresses
-				.map(({ buttonPressState }) => (
-					buttonPressState
-				))
-			),
-			hostname: (
-				buttonPresses[0]
-				.hostname
-			),
-		})),
-		map(({
+		ofType(CAPTURE_BUTTON_PRESSES),
+		mergeMap(({
 			buttonPressStates,
 			...props
-		}) => ({
-			...props,
-			numberOfButtonDowns: (
-				getNumberOfButtonDowns(
-					buttonPressStates,
-				)
-			),
-			numberOfButtonUps: (
-				getNumberOfButtonUps(
-					buttonPressStates,
-				)
-			),
-		})),
+		}) => (
+			of(buttonPressStates)
+			.pipe(
+				map(buttonPressStates => (
+					// Ignore first item if it was someone lifting up their finger.
+					buttonPressStates[0] === BUTTON_UP
+					? buttonPressStates.slice(1)
+					: buttonPressStates
+				)),
+				filter(buttonPressStates => (
+					buttonPressStates
+					.length > 0
+				)),
+				map(buttonPressStates => ({
+					...props,
+					numberOfButtonDowns: (
+						getNumberOfButtonDowns(
+							buttonPressStates,
+						)
+					),
+					numberOfButtonUps: (
+						getNumberOfButtonUps(
+							buttonPressStates,
+						)
+					),
+				})),
+			)
+		)),
 		tap(props => (
 			console
 			.info(

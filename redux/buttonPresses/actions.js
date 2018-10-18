@@ -1,16 +1,26 @@
-const CAPTURE_BUTTON_PRESS = 'BUTTON_PRESSES::CAPTURE_BUTTON_PRESS'
+const ADD_FLIC_CLIENT = 'BUTTON_PRESSES::ADD_FLIC_CLIENT'
+const CAPTURE_BUTTON_PRESSES = 'BUTTON_PRESSES::CAPTURE_BUTTON_PRESSES'
 const EXECUTE_BUTTON_PRESSES = 'BUTTON_PRESSES::EXECUTE_BUTTON_PRESSES'
 const EXECUTE_COMMAND = 'BUTTON_PRESSES::EXECUTE_COMMAND'
 
-const captureButtonPress = ({
+const addFlicClient = ({
+	flicClient,
+	hostname,
+}) => ({
+	flicClient,
+	hostname,
+	type: ADD_FLIC_CLIENT,
+})
+
+const captureButtonPresses = ({
 	bluetoothAddress,
-	buttonPressState,
+	buttonPressStates,
 	hostname,
 }) => ({
 	buttonId: bluetoothAddress,
-	buttonPressState,
+	buttonPressStates,
 	hostname,
-	type: CAPTURE_BUTTON_PRESS,
+	type: CAPTURE_BUTTON_PRESSES,
 })
 
 const executeButtonPresses = ({
@@ -34,8 +44,10 @@ const executeCommand = (
 })
 
 module.exports = {
-	CAPTURE_BUTTON_PRESS,
-	captureButtonPress,
+	ADD_FLIC_CLIENT,
+	addFlicClient,
+	CAPTURE_BUTTON_PRESSES,
+	captureButtonPresses,
 	EXECUTE_BUTTON_PRESSES,
 	EXECUTE_COMMAND,
 	executeButtonPresses,
