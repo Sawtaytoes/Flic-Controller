@@ -18,7 +18,7 @@ yarn
 ## Sample
 
 ### Execute Button Presses
-To test joining a channel, load up a browser, and go to `about:blank`.
+To test executing button presses, load up a browser, and go to `about:blank`.
 
 Then paste this into the devtools console:
 ```js
