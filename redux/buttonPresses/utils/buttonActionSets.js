@@ -69,11 +69,17 @@ const NAME = {
 	BRIGHT_GUEST_BEDROOM: 'Bright Guest Bedroom',
 	LATE_NIGHT_GUEST_BEDROOM: 'Late Night Guest Bedroom',
 
-	// Guest Vanity
-	GUEST_VANITY: 'Guest Vanity',
-	NORMAL_GUEST_VANITY: 'Normal Guest Vanity',
-	BRIGHT_GUEST_VANITY: 'Bright Guest Vanity',
-	LATE_NIGHT_GUEST_VANITY: 'Late Night Guest Vanity',
+	// Guest Bedroom Closet
+	GUEST_BEDROOM_CLOSET: 'Guest Bedroom Closet',
+	NORMAL_GUEST_BEDROOM_CLOSET: 'Normal Guest Bedroom Closet',
+	BRIGHT_GUEST_BEDROOM_CLOSET: 'Bright Guest Bedroom Closet',
+	LATE_NIGHT_GUEST_BEDROOM_CLOSET: 'Late Night Guest Bedroom Closet',
+
+	// Guest Bedroom Vanity
+	GUEST_BEDROOM_VANITY: 'Guest Bedroom Vanity',
+	NORMAL_GUEST_BEDROOM_VANITY: 'Normal Guest Bedroom Vanity',
+	BRIGHT_GUEST_BEDROOM_VANITY: 'Bright Guest Bedroom Vanity',
+	LATE_NIGHT_GUEST_BEDROOM_VANITY: 'Late Night Guest Bedroom Vanity',
 
 	// Hallway
 	HALLWAY: 'Hallway',
@@ -103,12 +109,13 @@ const NAME = {
 	LATE_NIGHT_LIVING_ROOM: 'Late Night Living Room',
 
 	// Master Bathroom
-	ASHLEE_VANITY: 'Ashlee\'s Vanity',
-	BRIGHT_MASTER_BATHROOM: 'Bright Master Bathroom',
-	KEVIN_VANITY: 'Kevin\'s Vanity',
-	LATE_NIGHT_MASTER_BATHROOM: 'Late Night Master Bathroom',
 	MASTER_BATHROOM: 'Master Bathroom',
+	BRIGHT_MASTER_BATHROOM: 'Bright Master Bathroom',
+	LATE_NIGHT_MASTER_BATHROOM: 'Late Night Master Bathroom',
 	NORMAL_MASTER_BATHROOM: 'Normal Master Bathroom',
+
+	ASHLEE_VANITY: 'Ashlee\'s Vanity',
+	KEVIN_VANITY: 'Kevin\'s Vanity',
 	SHOWER: 'Shower',
 
 	// Master Toilet
@@ -134,8 +141,9 @@ const NAME = {
 	NORMAL_OFFICE: 'Normal Office',
 	BRIGHT_OFFICE: 'Bright Office',
 	LATE_NIGHT_OFFICE: 'Late Night Office',
-	LATE_NIGHT_COMPUTING: 'Late Night Computing',
+
 	COLISSIO_SPEAKERS: 'Colissio Speakers',
+	LATE_NIGHT_COMPUTING: 'Late Night Computing',
 	MICROPHONE_PRE_AMP: 'Microphone Pre-amp',
 
 	// Spare Bedroom
@@ -144,14 +152,22 @@ const NAME = {
 	BRIGHT_SPARE_BEDROOM: 'Bright Spare Bedroom',
 	LATE_NIGHT_SPARE_BEDROOM: 'Late Night Spare Bedroom',
 
-	// Spare Vanity
-	SPARE_VANITY: 'Spare Vanity',
-	NORMAL_SPARE_VANITY: 'Normal Spare Vanity',
-	BRIGHT_SPARE_VANITY: 'Bright Spare Vanity',
-	LATE_NIGHT_SPARE_VANITY: 'Late Night Spare Vanity',
+	// Spare Bedroom Closet
+	SPARE_BEDROOM_CLOSET: 'Spare Bedroom Closet',
+	NORMAL_SPARE_BEDROOM_CLOSET: 'Normal Spare Bedroom Closet',
+	BRIGHT_SPARE_BEDROOM_CLOSET: 'Bright Spare Bedroom Closet',
+	LATE_NIGHT_SPARE_BEDROOM_CLOSET: 'Late Night Spare Bedroom Closet',
+
+	// Spare Bedroom Vanity
+	SPARE_BEDROOM_VANITY: 'Spare Bedroom Vanity',
+	NORMAL_SPARE_BEDROOM_VANITY: 'Normal Spare Bedroom Vanity',
+	BRIGHT_SPARE_BEDROOM_VANITY: 'Bright Spare Bedroom Vanity',
+	LATE_NIGHT_SPARE_BEDROOM_VANITY: 'Late Night Spare Bedroom Vanity',
 }
 
-const getStandardLightingActionSet = roomName => ({
+const getStandardLightingActionSet = (
+	roomName,
+) => ({
 	[PRESS.SINGLE]: {
 		action: ACTION.TOGGLE_SCENE,
 		device: DEVICE.LIFX,
@@ -174,7 +190,10 @@ const getStandardLightingActionSet = roomName => ({
 	},
 })
 
-const getRepeatedLightingActionSet = (sceneName, roomName) => ({
+const getRepeatedLightingActionSet = ({
+	roomName,
+	sceneName,
+}) => ({
 	[PRESS.SINGLE]: {
 		action: ACTION.TOGGLE_SCENE,
 		device: DEVICE.LIFX,
@@ -198,11 +217,67 @@ const getRepeatedLightingActionSet = (sceneName, roomName) => ({
 })
 
 const ACTION_SET = {
+	ALL_GUEST_BEDROOM: {
+		[PRESS.TRIPLE_HOLD]: [{
+			action: ACTION.TURN_OFF_GROUP,
+			device: DEVICE.LIFX,
+			name: NAME.GUEST_BATHROOM,
+		}, {
+			action: ACTION.TURN_OFF_GROUP,
+			device: DEVICE.LIFX,
+			name: NAME.GUEST_BEDROOM,
+		}, {
+			action: ACTION.TURN_OFF_GROUP,
+			device: DEVICE.LIFX,
+			name: NAME.GUEST_BEDROOM_CLOSET,
+		}, {
+			action: ACTION.TURN_OFF_GROUP,
+			device: DEVICE.LIFX,
+			name: NAME.GUEST_BEDROOM_VANITY,
+		}],
+	},
+
+	ALL_MASTER_BEDROOM: {
+		[PRESS.TRIPLE_HOLD]: [{
+			action: ACTION.TURN_OFF_GROUP,
+			device: DEVICE.LIFX,
+			name: NAME.MASTER_BATHROOM,
+		}, {
+			action: ACTION.TURN_OFF_GROUP,
+			device: DEVICE.LIFX,
+			name: NAME.MASTER_BEDROOM,
+		}, {
+			action: ACTION.TURN_OFF_GROUP,
+			device: DEVICE.LIFX,
+			name: NAME.MASTER_CLOSET,
+		}],
+	},
+
+	ALL_SPARE_BEDROOM: {
+		[PRESS.TRIPLE_HOLD]: [{
+			action: ACTION.TURN_OFF_GROUP,
+			device: DEVICE.LIFX,
+			name: NAME.SPARE_BATHROOM,
+		}, {
+			action: ACTION.TURN_OFF_GROUP,
+			device: DEVICE.LIFX,
+			name: NAME.SPARE_BEDROOM,
+		}, {
+			action: ACTION.TURN_OFF_GROUP,
+			device: DEVICE.LIFX,
+			name: NAME.SPARE_BEDROOM_CLOSET,
+		}, {
+			action: ACTION.TURN_OFF_GROUP,
+			device: DEVICE.LIFX,
+			name: NAME.SPARE_BEDROOM_VANITY,
+		}],
+	},
+
 	ASHLEE_VANITY: (
-		getRepeatedLightingActionSet(
-			'ASHLEE_VANITY',
-			'MASTER_BATHROOM'
-		)
+		getRepeatedLightingActionSet({
+			roomName: 'ASHLEE_VANITY',
+			sceneName: 'MASTER_BATHROOM',
+		})
 	),
 
 	BASEMENT: getStandardLightingActionSet('BASEMENT'),
@@ -257,7 +332,8 @@ const ACTION_SET = {
 
 	GUEST_BATHROOM: getStandardLightingActionSet('GUEST_BATHROOM'),
 	GUEST_BEDROOM: getStandardLightingActionSet('GUEST_BEDROOM'),
-	GUEST_VANITY: getStandardLightingActionSet('GUEST_VANITY'),
+	GUEST_BEDROOM_CLOSET: getStandardLightingActionSet('GUEST_BEDROOM_CLOSET'),
+	GUEST_BEDROOM_VANITY: getStandardLightingActionSet('GUEST_BEDROOM_VANITY'),
 
 	KITCHEN_SINK: {
 		[PRESS.SINGLE]: {
@@ -280,10 +356,10 @@ const ACTION_SET = {
 	HALLWAY: getStandardLightingActionSet('HALLWAY'),
 
 	KEVIN_VANITY: (
-		getRepeatedLightingActionSet(
-			'KEVIN_VANITY',
-			'MASTER_BATHROOM'
-		)
+		getRepeatedLightingActionSet({
+			roomName: 'KEVIN_VANITY',
+			sceneName: 'MASTER_BATHROOM',
+		})
 	),
 
 	KITCHEN: getStandardLightingActionSet('KITCHEN'),
@@ -296,24 +372,27 @@ const ACTION_SET = {
 	OFFICE: getStandardLightingActionSet('OFFICE'),
 
 	SHOWER: (
-		getRepeatedLightingActionSet(
-			'SHOWER',
-			'MASTER_BATHROOM'
-		)
+		getRepeatedLightingActionSet({
+			roomName: 'SHOWER',
+			sceneName: 'MASTER_BATHROOM',
+		})
 	),
 
 	SPARE_BEDROOM: getStandardLightingActionSet('SPARE_BEDROOM'),
-	SPARE_VANITY: getStandardLightingActionSet('SPARE_VANITY'),
+	SPARE_BEDROOM_CLOSET: getStandardLightingActionSet('SPARE_BEDROOM_CLOSET'),
+	SPARE_BEDROOM_VANITY: getStandardLightingActionSet('SPARE_BEDROOM_VANITY'),
 
 	THEATER: (
-		getRepeatedLightingActionSet(
-			'THEATER',
-			'FAMILY_ROOM'
-		)
+		getRepeatedLightingActionSet({
+			roomName: 'THEATER',
+			sceneName: 'FAMILY_ROOM',
+		})
 	),
 }
 
-const combineSets = actionSets => (
+const combineSets = (
+	actionSets,
+) => (
 	Object
 	.values(PRESS)
 	.map(pressType => ({
@@ -371,17 +450,24 @@ const MULTI_ACTION_SET = {
 		])
 	),
 
-	ALL_UPSTAIRS: (
+	GUEST_BEDROOM: (
 		combineSets([
-			ACTION_SET.GUEST_BATHROOM,
+			ACTION_SET.ALL_GUEST_BEDROOM,
 			ACTION_SET.GUEST_BEDROOM,
-			ACTION_SET.GUEST_VANITY,
-			ACTION_SET.HALLWAY,
-			ACTION_SET.MASTER_BATHROOM,
+		])
+	),
+
+	MASTER_BEDROOM: (
+		combineSets([
+			ACTION_SET.ALL_MASTER_BEDROOM,
 			ACTION_SET.MASTER_BEDROOM,
-			ACTION_SET.MASTER_CLOSET,
+		])
+	),
+
+	SPARE_BEDROOM: (
+		combineSets([
+			ACTION_SET.ALL_SPARE_BEDROOM,
 			ACTION_SET.SPARE_BEDROOM,
-			ACTION_SET.SPARE_VANITY,
 		])
 	),
 }
