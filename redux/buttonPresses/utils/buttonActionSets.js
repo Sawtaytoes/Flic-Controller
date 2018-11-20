@@ -332,7 +332,14 @@ const ACTION_SET = {
 
 	GUEST_BATHROOM: getStandardLightingActionSet('GUEST_BATHROOM'),
 	GUEST_BEDROOM: getStandardLightingActionSet('GUEST_BEDROOM'),
-	GUEST_BEDROOM_CLOSET: getStandardLightingActionSet('GUEST_BEDROOM_CLOSET'),
+
+	GUEST_BEDROOM_CLOSET: (
+		getRepeatedLightingActionSet({
+			roomName: 'GUEST_BEDROOM_CLOSET',
+			sceneName: 'NORMAL_GUEST_BEDROOM_CLOSET',
+		})
+	),
+
 	GUEST_BEDROOM_VANITY: getStandardLightingActionSet('GUEST_BEDROOM_VANITY'),
 
 	KITCHEN_SINK: {
@@ -379,8 +386,20 @@ const ACTION_SET = {
 	),
 
 	SPARE_BEDROOM: getStandardLightingActionSet('SPARE_BEDROOM'),
-	SPARE_BEDROOM_CLOSET: getStandardLightingActionSet('SPARE_BEDROOM_CLOSET'),
-	SPARE_BEDROOM_VANITY: getStandardLightingActionSet('SPARE_BEDROOM_VANITY'),
+
+	SPARE_BEDROOM_CLOSET: (
+		getRepeatedLightingActionSet({
+			roomName: 'SPARE_BEDROOM_CLOSET',
+			sceneName: 'NORMAL_SPARE_BEDROOM_CLOSET',
+		})
+	),
+
+	SPARE_BEDROOM_VANITY: (
+		getRepeatedLightingActionSet({
+			roomName: 'SPARE_BEDROOM_VANITY',
+			sceneName: 'NORMAL_SPARE_BEDROOM_VANITY',
+		})
+	),
 
 	THEATER: (
 		getRepeatedLightingActionSet({
