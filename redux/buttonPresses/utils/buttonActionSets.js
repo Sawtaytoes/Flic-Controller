@@ -102,6 +102,12 @@ const NAME = {
 	BRIGHT_KITCHEN_BATHROOM: 'Bright Kitchen Bathroom',
 	LATE_NIGHT_KITCHEN_BATHROOM: 'Late Night Kitchen Bathroom',
 
+	// Laundry Room
+	LAUNDRY_ROOM: 'Laundry Room',
+	NORMAL_LAUNDRY_ROOM: 'Normal Laundry Room',
+	BRIGHT_LAUNDRY_ROOM: 'Bright Laundry Room',
+	LATE_NIGHT_LAUNDRY_ROOM: 'Late Night Laundry Room',
+
 	// Living Room
 	LIVING_ROOM: 'Living Room',
 	NORMAL_LIVING_ROOM: 'Normal Living Room',
@@ -371,6 +377,14 @@ const ACTION_SET = {
 
 	KITCHEN: getStandardLightingActionSet('KITCHEN'),
 	KITCHEN_BATHROOM: getStandardLightingActionSet('KITCHEN_BATHROOM'),
+
+	LAUNDRY_ROOM: (
+		getRepeatedLightingActionSet({
+			roomName: 'LAUNDRY_ROOM',
+			sceneName: 'NORMAL_LAUNDRY_ROOM',
+		})
+	),
+
 	LIVING_ROOM: getStandardLightingActionSet('LIVING_ROOM'),
 	MASTER_BATHROOM: getStandardLightingActionSet('MASTER_BATHROOM'),
 	MASTER_BEDROOM: getStandardLightingActionSet('MASTER_BEDROOM'),
