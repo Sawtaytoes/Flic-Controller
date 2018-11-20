@@ -54,9 +54,9 @@ const buttonConfigs = {
 	},
 
 	'80:e4:da:72:a8:bc': {
-		// ...MULTI_ACTION_SET.ALL_UPSTAIRS,
+		...ACTION_SET.LAUNDRY_ROOM,
 		color: COLOR.WHITE,
-		location: "Storage",
+		location: "Laundry Room Entryway",
 	},
 
 	'80:e4:da:72:a8:e3': {
