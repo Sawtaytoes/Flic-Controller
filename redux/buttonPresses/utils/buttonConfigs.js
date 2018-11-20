@@ -5,8 +5,8 @@ const {
 
 const COLOR = {
 	BLACK: 'black',
+	CYAN: 'cyan',
 	GREEN: 'green',
-	TEAL: 'teal',
 	WHITE: 'white',
 }
 
@@ -18,9 +18,9 @@ const buttonConfigs = {
 	},
 
 	'80:e4:da:72:a8:62': {
-		...MULTI_ACTION_SET.ALL_KITCHEN,
+		...ACTION_SET.GUEST_BEDROOM_CLOSET,
 		color: COLOR.WHITE,
-		location: "Storage",
+		location: "Guest Bedroom Closet Entryway",
 	},
 
 	'80:e4:da:72:60:ce': {
@@ -54,15 +54,15 @@ const buttonConfigs = {
 	},
 
 	'80:e4:da:72:a8:bc': {
-		...MULTI_ACTION_SET.ALL_UPSTAIRS,
+		// ...MULTI_ACTION_SET.ALL_UPSTAIRS,
 		color: COLOR.WHITE,
 		location: "Storage",
 	},
 
 	'80:e4:da:72:a8:e3': {
-		...MULTI_ACTION_SET.ALL_UPSTAIRS,
+		...ACTION_SET.SPARE_BEDROOM_CLOSET,
 		color: COLOR.WHITE,
-		location: "Storage",
+		location: "Spare Bedroom Closet Entryway",
 	},
 
 	'80:e4:da:72:3c:c9': {
@@ -120,7 +120,7 @@ const buttonConfigs = {
 	},
 
 	'80:e4:da:72:45:77': {
-		...ACTION_SET.GUEST_BEDROOM,
+		...MULTI_ACTION_SET.GUEST_BEDROOM,
 		color: COLOR.BLACK,
 		location: "Guest Bedroom Wall",
 	},
@@ -156,32 +156,32 @@ const buttonConfigs = {
 	},
 
 	'80:e4:da:72:ab:3d': {
-		...ACTION_SET.MASTER_BATHROOM,
-		color: COLOR.TEAL,
-		location: "Storage",
+		...ACTION_SET.SPARE_BEDROOM_VANITY,
+		color: COLOR.CYAN,
+		location: "Spare Bedroom Vanity",
 	},
 
 	'80:e4:da:72:a3:49': {
 		...ACTION_SET.MASTER_BATHROOM,
-		color: COLOR.TEAL,
-		location: "Master Bathroom Bathtub",
+		color: COLOR.CYAN,
+		location: "Master Bathroom Entrance",
 	},
 
 	'80:e4:da:72:4d:eb': {
-		...ACTION_SET.MASTER_BEDROOM,
+		...MULTI_ACTION_SET.MASTER_BEDROOM,
 		color: COLOR.BLACK,
 		location: "Ashlee's Bedstand",
 	},
 
 	'80:e4:da:72:40:7c': {
-		...ACTION_SET.MASTER_BEDROOM,
+		...MULTI_ACTION_SET.MASTER_BEDROOM,
 		color: COLOR.BLACK,
 		location: "Kevin's Bedstand",
 	},
 
 	'80:e4:da:72:a5:96': {
 		...ACTION_SET.MASTER_CLOSET,
-		color: COLOR.TEAL,
+		color: COLOR.CYAN,
 		location: "Master Bedroom Closet Doorway",
 	},
 
@@ -193,12 +193,12 @@ const buttonConfigs = {
 
 	'80:e4:da:72:af:40': {
 		...ACTION_SET.MASTER_TOILET,
-		color: COLOR.TEAL,
+		color: COLOR.CYAN,
 		location: "Master Bathroom Toilet Area",
 	},
 
 	'80:e4:da:72:5f:2b': {
-		...ACTION_SET.SPARE_BEDROOM,
+		...MULTI_ACTION_SET.SPARE_BEDROOM,
 		color: COLOR.BLACK,
 		location: "Spare Bedroom Wall",
 	},
@@ -209,10 +209,22 @@ const buttonConfigs = {
 		location: "Family Room Couch Table",
 	},
 
+	'80:e4:da:73:5d:fd': {
+		...MULTI_ACTION_SET.ALL_STAIRWAY,
+		color: COLOR.BLACK,
+		location: "Office Entrance",
+	},
+
 	'80:e4:da:73:5f:8b': {
-		...ACTION_SET.MASTER_BEDROOM,
+		...MULTI_ACTION_SET.MASTER_BEDROOM,
 		color: COLOR.BLACK,
 		location: "Master Bedroom Entrance",
+	},
+
+	'80:e4:da:73:60:00': {
+		...ACTION_SET.GUEST_BEDROOM_VANITY,
+		color: COLOR.CYAN,
+		location: "Guest Bedroom Vanity",
 	},
 
 	'80:e4:da:73:66:dd': {
