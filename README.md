@@ -15,9 +15,39 @@ npm i
 yarn
 ```
 
-## Sample
+## Configuration
+Create a `localConfig.js` in the project root. Here, you'll add your app configurations; namely, the flicButtonServers, LIFX API server, and WeMo API server.
 
-### Execute Button Presses
+Your `localConfig.js` will look something like this:
+
+```js
+module.exports = {
+	flicButtonServers: [{
+		hostname: 'raspberry-pi-1',
+		port: 5551,
+	}, {
+		hostname: 'raspberry-pi-2',
+		port: 5551,
+	}, {
+		hostname: 'raspberry-pi-2',
+		port: 5551,
+	}],
+
+	lifxApi: {
+		hostname: 'lifx.example.com',
+		port: 80,
+		protocol: 'http',
+	},
+
+	wemoApi: {
+		hostname: 'wemo.example.com',
+		port: 80,
+		protocol: 'http',
+	},
+}
+```
+
+## Testing Button Presses
 To test executing button presses, load up a browser, and go to `about:blank`.
 
 Then paste this into the devtools console:
