@@ -122,6 +122,7 @@ const NAME = {
 
 	ASHLEE_VANITY: 'Ashlee\'s Vanity',
 	KEVIN_VANITY: 'Kevin\'s Vanity',
+	LATE_NIGHT_MASTER_BATHROOM_VANITY: 'Late Night Master Bathroom Vanity',
 	SHOWER: 'Shower',
 
 	// Master Bedroom
@@ -394,6 +395,15 @@ const ACTION_SET = {
 
 	LIVING_ROOM: getStandardLightingActionSet('LIVING_ROOM'),
 	MASTER_BATHROOM: getStandardLightingActionSet('MASTER_BATHROOM'),
+
+	MASTER_BATHROOM_VANITY: {
+		[PRESS.TRIPLE]: {
+			action: ACTION.TOGGLE_SCENE,
+			device: DEVICE.LIFX,
+			name: NAME.MASTER_BATHROOM_VANITY,
+		},
+	},
+
 	MASTER_BEDROOM: getStandardLightingActionSet('MASTER_BEDROOM'),
 	MASTER_CLOSET: getStandardLightingActionSet('MASTER_CLOSET'),
 	MASTER_TOILET: getStandardLightingActionSet('MASTER_TOILET'),
@@ -514,9 +524,11 @@ const MULTI_ACTION_SET = {
 			ACTION_SET.GUEST_BEDROOM,
 		])
 	),
+
+	MASTER_BATHROOM: (
 		combineSets([
-			ACTION_SET.ALL_GUEST_BEDROOM,
-			ACTION_SET.GUEST_BEDROOM,
+			ACTION_SET.MASTER_BATHROOM,
+			ACTION_SET.MASTER_BATHROOM_VANITY,
 		])
 	),
 
