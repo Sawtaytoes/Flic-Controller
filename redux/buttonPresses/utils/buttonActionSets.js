@@ -502,10 +502,6 @@ const MULTI_ACTION_SET = {
 	),
 
 	ALL_STAIRWAY: (
-		console.log(combineSets([
-			ACTION_SET.ENTRYWAY,
-			ACTION_SET.HALLWAY,
-		]))||
 		combineSets([
 			ACTION_SET.ENTRYWAY,
 			ACTION_SET.HALLWAY,
@@ -513,10 +509,11 @@ const MULTI_ACTION_SET = {
 	),
 
 	GUEST_BEDROOM: (
-		console.log(combineSets([
+		combineSets([
 			ACTION_SET.ALL_GUEST_BEDROOM,
 			ACTION_SET.GUEST_BEDROOM,
-		]))||
+		])
+	),
 		combineSets([
 			ACTION_SET.ALL_GUEST_BEDROOM,
 			ACTION_SET.GUEST_BEDROOM,
