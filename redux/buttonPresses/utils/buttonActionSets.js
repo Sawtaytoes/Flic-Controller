@@ -437,11 +437,10 @@ const combineSets = (
 		),
 	}))
 	.reduce(
-		(object, { pressType, actionSetPressValues }) => (
-			Object.assign({}, object, {
-				[pressType]: actionSetPressValues,
-			})
-		),
+		(combined, { pressType, actionSetPressValues }) => ({
+			...combined,
+			[pressType]: actionSetPressValues,
+		}),
 		{}
 	)
 )
