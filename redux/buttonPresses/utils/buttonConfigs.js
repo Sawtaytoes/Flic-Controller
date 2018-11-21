@@ -162,7 +162,7 @@ const buttonConfigs = {
 	},
 
 	'80:e4:da:72:a3:49': {
-		...ACTION_SET.MASTER_BATHROOM,
+		...MULTI_ACTION_SET.MASTER_BATHROOM,
 		color: COLOR.CYAN,
 		location: "Master Bathroom Entrance",
 	},
