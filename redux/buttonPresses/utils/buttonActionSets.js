@@ -439,16 +439,35 @@ const combineSets = (
 		pressType,
 		actionSetPressValues: (
 			actionSets
-			.map(actionSet => actionSet[pressType])
-			.filter(actionSetPressValue => actionSetPressValue)
+			.map(actionSet => (
+				actionSet[pressType]
+			))
+			.filter(actionSetPressValue => (
+				actionSetPressValue
+			))
+			.map(actionSetPressValues => (
+				Array
+				.isArray(actionSetPressValues)
+				? actionSetPressValues
+				: [actionSetPressValues]
+			))
 		),
 	}))
 	.reduce(
-		(combined, { pressType, actionSetPressValues }) => ({
+		(
+			combined,
+			{
+				actionSetPressValues,
+				pressType,
+			}
+		) => ({
 			...combined,
-			[pressType]: actionSetPressValues,
+			[pressType]: (
+				(combined[pressType] || [])
+				.concat(...actionSetPressValues)
+			),
 		}),
-		{}
+		{},
 	)
 )
 
@@ -483,6 +502,10 @@ const MULTI_ACTION_SET = {
 	),
 
 	ALL_STAIRWAY: (
+		console.log(combineSets([
+			ACTION_SET.ENTRYWAY,
+			ACTION_SET.HALLWAY,
+		]))||
 		combineSets([
 			ACTION_SET.ENTRYWAY,
 			ACTION_SET.HALLWAY,
@@ -490,6 +513,10 @@ const MULTI_ACTION_SET = {
 	),
 
 	GUEST_BEDROOM: (
+		console.log(combineSets([
+			ACTION_SET.ALL_GUEST_BEDROOM,
+			ACTION_SET.GUEST_BEDROOM,
+		]))||
 		combineSets([
 			ACTION_SET.ALL_GUEST_BEDROOM,
 			ACTION_SET.GUEST_BEDROOM,
