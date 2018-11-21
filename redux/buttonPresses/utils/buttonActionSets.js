@@ -124,12 +124,6 @@ const NAME = {
 	KEVIN_VANITY: 'Kevin\'s Vanity',
 	SHOWER: 'Shower',
 
-	// Master Toilet
-	MASTER_TOILET: 'Master Toilet',
-	NORMAL_MASTER_TOILET: 'Normal Master Toilet',
-	BRIGHT_MASTER_TOILET: 'Bright Master Toilet',
-	LATE_NIGHT_MASTER_TOILET: 'Late Night Master Toilet',
-
 	// Master Bedroom
 	MASTER_BEDROOM: 'Master Bedroom',
 	NORMAL_MASTER_BEDROOM: 'Normal Master Bedroom',
@@ -141,6 +135,12 @@ const NAME = {
 	NORMAL_MASTER_CLOSET: 'Normal Master Closet',
 	BRIGHT_MASTER_CLOSET: 'Bright Master Closet',
 	LATE_NIGHT_MASTER_CLOSET: 'Late Night Master Closet',
+
+	// Master Toilet
+	MASTER_TOILET: 'Master Toilet',
+	NORMAL_MASTER_TOILET: 'Normal Master Toilet',
+	BRIGHT_MASTER_TOILET: 'Bright Master Toilet',
+	LATE_NIGHT_MASTER_TOILET: 'Late Night Master Toilet',
 
 	// Office
 	OFFICE: 'Office',
