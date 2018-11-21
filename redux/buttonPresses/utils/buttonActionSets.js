@@ -130,6 +130,8 @@ const NAME = {
 	BRIGHT_MASTER_BEDROOM: 'Bright Master Bedroom',
 	LATE_NIGHT_MASTER_BEDROOM: 'Late Night Master Bedroom',
 
+	LATE_NIGHT_MASTER_BEDROOM_NURSERY: 'Late Night Master Bedroom Nursery',
+
 	// Master Closet
 	MASTER_CLOSET: 'Master Closet',
 	NORMAL_MASTER_CLOSET: 'Normal Master Closet',
@@ -244,6 +246,11 @@ const ACTION_SET = {
 	},
 
 	ALL_MASTER_BEDROOM: {
+		[PRESS.TRIPLE]: {
+			action: ACTION.TOGGLE_SCENE,
+			device: DEVICE.LIFX,
+			name: NAME.LATE_NIGHT_MASTER_BEDROOM_NURSERY,
+		},
 		[PRESS.TRIPLE_HOLD]: [{
 			action: ACTION.TURN_OFF_GROUP,
 			device: DEVICE.LIFX,
