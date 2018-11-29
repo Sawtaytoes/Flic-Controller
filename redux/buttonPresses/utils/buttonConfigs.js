@@ -227,6 +227,12 @@ const buttonConfigs = {
 		location: "Guest Bedroom Vanity",
 	},
 
+	'80:e4:da:73:64:ab': {
+		...ACTION_SET.LIVING_ROOM,
+		color: COLOR.WHITE,
+		location: "Living Room Entrance",
+	},
+
 	'80:e4:da:73:66:dd': {
 		...ACTION_SET.KITCHEN_BATHROOM,
 		color: COLOR.WHITE,
