@@ -289,8 +289,8 @@ const ACTION_SET = {
 
 	PARENT_VANITY: (
 		getRepeatedLightingActionSet({
-			roomName: 'PARENT_VANITY',
-			sceneName: 'MASTER_BATHROOM',
+			roomName: 'MASTER_BATHROOM',
+			sceneName: 'PARENT_VANITY',
 		})
 	),
 
@@ -378,8 +378,8 @@ const ACTION_SET = {
 
 	KEVIN_VANITY: (
 		getRepeatedLightingActionSet({
-			roomName: 'KEVIN_VANITY',
-			sceneName: 'MASTER_BATHROOM',
+			roomName: 'MASTER_BATHROOM',
+			sceneName: 'KEVIN_VANITY',
 		})
 	),
 
@@ -411,8 +411,8 @@ const ACTION_SET = {
 
 	SHOWER: (
 		getRepeatedLightingActionSet({
-			roomName: 'SHOWER',
-			sceneName: 'MASTER_BATHROOM',
+			roomName: 'MASTER_BATHROOM',
+			sceneName: 'SHOWER',
 		})
 	),
 
@@ -434,8 +434,8 @@ const ACTION_SET = {
 
 	THEATER: (
 		getRepeatedLightingActionSet({
-			roomName: 'THEATER',
-			sceneName: 'FAMILY_ROOM',
+			roomName: 'FAMILY_ROOM',
+			sceneName: 'THEATER',
 		})
 	),
 }
