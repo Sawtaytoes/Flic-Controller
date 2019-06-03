@@ -13,7 +13,7 @@ const configurationSetProps = {
 	namespace: defaultConfigurationsNamespace,
 }
 
-const startFlicClient = (
+const startFlicClientEpic = (
 	action$,
 	state$,
 ) => (
@@ -50,4 +50,4 @@ const startFlicClient = (
 	)
 )
 
-module.exports = startFlicClient
+module.exports = startFlicClientEpic

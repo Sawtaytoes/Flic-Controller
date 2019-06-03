@@ -5,7 +5,7 @@ const executeButtonPressesEpic = require('./executeButtonPressesEpic')
 const executeCommandEpic = require('./executeCommandEpic')
 const requestsEpic = require('./requestsEpic')
 const startButtonListenerEpic = require('./startButtonListenerEpic')
-const startFlicClient = require('./startFlicClient')
+const startFlicClientEpic = require('./startFlicClientEpic')
 
 const buttonPressesEpic = (
 	combineEpics(
@@ -14,7 +14,7 @@ const buttonPressesEpic = (
 		executeCommandEpic,
 		requestsEpic,
 		startButtonListenerEpic,
-		startFlicClient,
+		startFlicClientEpic,
 	)
 )
 
