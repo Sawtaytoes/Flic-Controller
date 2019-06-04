@@ -1,3 +1,4 @@
+const { catchEpicError } = require('@ghadyani-framework/redux-utils')
 const { map } = require('rxjs/operators')
 const { ofRequestType } = require('@ghadyani-framework/websocket')
 
@@ -24,6 +25,7 @@ const requestsEpic = (
 			pressType,
 		})),
 		map(executeButtonPresses),
+		catchEpicError(),
 	)
 )
 

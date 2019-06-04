@@ -1,3 +1,4 @@
+const { catchEpicError } = require('@ghadyani-framework/redux-utils')
 const { map, switchMap, take } = require('rxjs/operators')
 const { of } = require('rxjs')
 const { ofType } = require('redux-observable')
@@ -90,6 +91,7 @@ const chooseButtonActionEpic = (
 				)),
 			)
 		)),
+		catchEpicError(),
 	)
 )
 

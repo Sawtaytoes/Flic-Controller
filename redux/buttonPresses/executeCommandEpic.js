@@ -1,8 +1,9 @@
 const chalk = require('chalk')
+const { catchEpicError } = require('@ghadyani-framework/redux-utils')
 const { catchError, ignoreElements, map, mergeMap, pluck, reduce, switchMap, tap, toArray } = require('rxjs/operators')
 const { configurationSetSelector } = require('@ghadyani-framework/node/redux/configurations/selectors')
 const { defaultConfigurationsNamespace } = require('@ghadyani-framework/node/redux/configurations/actions')
-const { from, NEVER, of } = require('rxjs')
+const { from, of } = require('rxjs')
 const { ofType } = require('redux-observable')
 const { stateSelector } = require('@ghadyani-framework/redux-utils')
 
@@ -198,18 +199,7 @@ const executeCommandEpic = (
 				)),
 			)
 		)),
-		catchError(error => {
-			console
-			.error(
-				chalk
-				.red(
-					error
-					.stack
-				)
-			)
-
-			return NEVER
-		}),
+		catchEpicError(),
 		ignoreElements(),
 	)
 )
