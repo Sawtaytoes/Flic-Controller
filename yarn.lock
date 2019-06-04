@@ -311,10 +311,10 @@
     uuid "^3.3.2"
     yargs "^13.2.4"
 
-"@ghadyani-framework/redux-utils@^1.1.3":
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/@ghadyani-framework/redux-utils/-/redux-utils-1.1.3.tgz#4e98239c3af9cc0176b51d245fed1b0b64f5ba0a"
-  integrity sha512-qJpwy/tFKpcv1n2jJRkyPzez5hjPIdj/qrDY9ikrB0pZU+6N+NkXM/O7c13iWdyn8CmxTt51HJa+/+4VeHylCw==
+"@ghadyani-framework/redux-utils@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@ghadyani-framework/redux-utils/-/redux-utils-1.2.0.tgz#3e9ec9e19ded7d92cf602c57b2dc0e21b90f3215"
+  integrity sha512-KasRXQc+TctwDezKjPR85eCUvyMGdaDHztIstoN8RgcEnGNrHg4Jn7OjOgrypohfX7dJ17Kh1uWrLM7cgcs64g==
 
 "@ghadyani-framework/setup-module-aliases@^0.0.2":
   version "0.0.2"
