@@ -1,17 +1,11 @@
 const chalk = require('chalk')
 const { catchEpicError } = require('@redux-observable-backend/redux-utils')
 const { catchError, ignoreElements, map, mergeMap, pluck, reduce, switchMap, tap, toArray } = require('rxjs/operators')
-const { configurationSetSelector } = require('@redux-observable-backend/node/redux/configurations/selectors')
-const { defaultConfigurationsNamespace } = require('@redux-observable-backend/node/redux/configurations/actions')
+const { configurations } = require('@redux-observable-backend/node')
 const { from, of } = require('rxjs')
 const { ofType } = require('redux-observable')
-const { stateSelector } = require('@redux-observable-backend/redux-utils')
 
 const { EXECUTE_COMMAND } = require('./actions')
-
-const configurationSetProps = {
-	namespace: defaultConfigurationsNamespace,
-}
 
 const assembleUrl = ({
 	hostname,
@@ -74,12 +68,13 @@ const executeCommandEpic = (
 			: [actionSets]
 		)),
 		switchMap(actionSets => (
-			stateSelector({
-				props: configurationSetProps,
-				selector: configurationSetSelector,
-				state$,
-			})
+			of(state$.value)
 			.pipe(
+				map(
+					configurations
+					.selectors
+					.selectConfigurationSet()
+				),
 				switchMap(configurationSet => (
 					from(actionSets)
 					.pipe(

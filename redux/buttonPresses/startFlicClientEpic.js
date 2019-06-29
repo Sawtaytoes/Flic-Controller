@@ -1,6 +1,5 @@
-const { catchEpicError, stateSelector } = require('@redux-observable-backend/redux-utils')
-const { configurationSetSelector } = require('@redux-observable-backend/node/redux/configurations/selectors')
-const { defaultConfigurationsNamespace } = require('@redux-observable-backend/node/redux/configurations/actions')
+const { catchEpicError } = require('@redux-observable-backend/redux-utils')
+const { configurations } = require('@redux-observable-backend/node')
 const { FlicClient } = require('$lib/fliclibNodeJs')
 const { map, switchMap } = require('rxjs/operators')
 const { ofTaskName } = require('@redux-observable-backend/node')
@@ -8,10 +7,6 @@ const { ofType } = require('redux-observable')
 const { START_TASK } = require('@redux-observable-backend/node/redux/tasks/actions')
 
 const { addFlicClient } = require('./actions')
-
-const configurationSetProps = {
-	namespace: defaultConfigurationsNamespace,
-}
 
 const startFlicClientEpic = (
 	action$,
@@ -24,13 +19,12 @@ const startFlicClientEpic = (
 			'listen',
 			'undefined',
 		),
-		switchMap(() => (
-			stateSelector({
-				props: configurationSetProps,
-				selector: configurationSetSelector,
-				state$,
-			})
-		)),
+		map(() => state$.value),
+		map(
+			configurations
+			.selectors
+			.selectConfigurationSet()
+		),
 		switchMap(({ flicButtonServers }) => (
 			flicButtonServers
 		)),
