@@ -1,4 +1,6 @@
 #!/usr/bin/env node
-require('@ghadyani-framework/setup-module-aliases')(__dirname)
+require('better-module-alias')(__dirname)
 
-module.exports = {}
+module.exports = {
+	buttonPresses: require('$redux/buttonPresses').buttonPresses,
+}

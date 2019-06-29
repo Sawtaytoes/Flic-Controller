@@ -1,8 +1,8 @@
-const { catchEpicError } = require('@ghadyani-framework/redux-utils')
+const { catchEpicError } = require('@redux-observable-backend/redux-utils')
 const { map, switchMap, take } = require('rxjs/operators')
 const { of } = require('rxjs')
 const { ofType } = require('redux-observable')
-const { sendMessage } = require('@ghadyani-framework/websocket/redux/messages/actions')
+const { sendMessage } = require('@redux-observable-backend/websocket/redux/messages/actions')
 
 const buttonConfigs = require('./utils/buttonConfigs')
 

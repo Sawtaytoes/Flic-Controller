@@ -19,5 +19,8 @@ const buttonPressesEpic = (
 )
 
 module.exports = {
+	buttonPresses: {
+		actions: require('./actions'),
+	},
 	buttonPressesEpic,
 }

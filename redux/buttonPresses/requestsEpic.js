@@ -1,6 +1,6 @@
-const { catchEpicError } = require('@ghadyani-framework/redux-utils')
+const { catchEpicError } = require('@redux-observable-backend/redux-utils')
 const { map } = require('rxjs/operators')
-const { ofRequestType } = require('@ghadyani-framework/websocket')
+const { ofRequestType } = require('@redux-observable-backend/websocket')
 
 const {
 	EXECUTE_BUTTON_PRESSES,
