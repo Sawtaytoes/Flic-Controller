@@ -1,8 +1,8 @@
 const { catchEpicError } = require('@redux-observable-backend/redux-utils')
 const { map, switchMap, take } = require('rxjs/operators')
+const { messages } = require('@redux-observable-backend/websocket')
 const { of } = require('rxjs')
 const { ofType } = require('redux-observable')
-const { sendMessage } = require('@redux-observable-backend/websocket/redux/messages/actions')
 
 const buttonConfigs = require('./utils/buttonConfigs')
 
@@ -74,7 +74,9 @@ const executeButtonPressesEpic = (
 						)
 					)
 					: (
-						sendMessage({
+						messages
+						.actions
+						.sendMessage({
 							connection,
 							message: {
 								errorMessage: (
