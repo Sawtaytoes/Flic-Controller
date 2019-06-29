@@ -37,9 +37,9 @@
   },
   "dependencies": {
     "@redux-observable-backend/core": "^4.1.1",
-    "@redux-observable-backend/node": "^4.1.1",
-    "@redux-observable-backend/redux-utils": "^4.1.0",
-    "@redux-observable-backend/websocket": "^4.1.0",
+    "@redux-observable-backend/node": "^4.2.3",
+    "@redux-observable-backend/redux-utils": "^4.2.3",
+    "@redux-observable-backend/websocket": "^4.2.3",
     "better-module-alias": "^1.0.0",
     "node-fetch": "^2.6.0"
   },
