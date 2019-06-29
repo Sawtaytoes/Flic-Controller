@@ -1,35 +1,31 @@
-const chalk = require('chalk')
 const { catchEpicError } = require('@redux-observable-backend/redux-utils')
-const { filter, map, mergeMap, tap } = require('rxjs/operators')
+const { map, switchMap, take } = require('rxjs/operators')
 const { of } = require('rxjs')
 const { ofType } = require('redux-observable')
+const { sendMessage } = require('@redux-observable-backend/websocket/redux/messages/actions')
+
+const buttonConfigs = require('./utils/buttonConfigs')
 
 const {
-	CAPTURE_BUTTON_PRESSES,
-	executeButtonPresses,
+	executeCommand,
+	EXECUTE_BUTTON_PRESSES,
 } = require('./actions')
 
-const BUTTON_UP = 'ButtonUp'
-const BUTTON_DOWN = 'ButtonDown'
-
-const getNumberOfPresses = (
-	requiredButtonPressState,
-) => (
-	buttonPressStates,
-) => (
-	buttonPressStates
-	.filter(buttonPressState => (
-		buttonPressState === requiredButtonPressState
-	))
-	.length
+const getPressActionName = ({
+	pressCount,
+	pressType,
+}) => (
+	pressType === 'press'
+	? `${pressCount}press`
+	: `${pressCount}pressHold`
 )
 
-const getNumberOfButtonDowns = (
-	getNumberOfPresses(BUTTON_DOWN)
-)
-
-const getNumberOfButtonUps = (
-	getNumberOfPresses(BUTTON_UP)
+const selectButtonConfig = (
+	buttonId,
+) => (
+	buttonConfigs[
+		buttonId
+	]
 )
 
 const executeButtonPressesEpic = (
@@ -37,65 +33,64 @@ const executeButtonPressesEpic = (
 ) => (
 	action$
 	.pipe(
-		ofType(CAPTURE_BUTTON_PRESSES),
-		mergeMap(({
-			buttonPressStates,
-			...props
+		ofType(EXECUTE_BUTTON_PRESSES),
+		switchMap(({
+			buttonId,
+			connection,
+			pressCount,
+			pressType,
 		}) => (
-			of(buttonPressStates)
+			of([
+				(
+					selectButtonConfig(
+						buttonId,
+					)
+				),
+				(
+					getPressActionName({
+						pressCount,
+						pressType,
+					})
+				),
+			])
 			.pipe(
-				map(buttonPressStates => (
-					// Ignore first item if it was someone lifting up their finger.
-					buttonPressStates[0] === BUTTON_UP
-					? buttonPressStates.slice(1)
-					: buttonPressStates
+				take(1),
+				map(([
+					buttonConfig,
+					pressActionName,
+				]) => (
+					buttonConfig
+					&& (
+						buttonConfig[
+							pressActionName
+						]
+					)
 				)),
-				filter(buttonPressStates => (
-					buttonPressStates
-					.length > 0
+				map(actionSets => (
+					actionSets
+					? (
+						executeCommand(
+							actionSets
+						)
+					)
+					: (
+						sendMessage({
+							connection,
+							message: {
+								errorMessage: (
+									"Command does not exist for button:"
+									.concat(' ')
+									.concat(buttonId)
+									.concat(' ')
+									.concat(`when ${pressType}ing ${pressCount} times.`)
+								),
+								type: 'RESPONSE::ERROR_MESSAGE',
+							},
+						})
+					)
 				)),
-				map(buttonPressStates => ({
-					...props,
-					numberOfButtonDowns: (
-						getNumberOfButtonDowns(
-							buttonPressStates,
-						)
-					),
-					numberOfButtonUps: (
-						getNumberOfButtonUps(
-							buttonPressStates,
-						)
-					),
-				})),
 			)
 		)),
-		tap(props => (
-			console
-			.info(
-				(
-					chalk
-					.yellow('[BUTTON PRESSES]')
-					.concat('\n')
-				),
-				(
-					props
-				),
-			)
-		)),
-		map(({
-			buttonId,
-			numberOfButtonDowns,
-			numberOfButtonUps,
-		}) => ({
-			buttonId,
-			pressCount: numberOfButtonDowns,
-			pressType: (
-				numberOfButtonDowns === numberOfButtonUps
-				? 'press'
-				: 'pressHold'
-			),
-		})),
-		map(executeButtonPresses),
 		catchEpicError(),
 	)
 )
