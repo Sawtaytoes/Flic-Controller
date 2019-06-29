@@ -7,8 +7,8 @@ const { ofType } = require('redux-observable')
 const buttonConfigs = require('./utils/buttonConfigs')
 
 const {
-	executeCommand,
 	EXECUTE_BUTTON_PRESSES,
+	executeCommand,
 } = require('./actions')
 
 const getPressActionName = ({
