@@ -1,11 +1,11 @@
-const { catchEpicError, stateSelector } = require('@ghadyani-framework/redux-utils')
-const { configurationSetSelector } = require('@ghadyani-framework/node/redux/configurations/selectors')
-const { defaultConfigurationsNamespace } = require('@ghadyani-framework/node/redux/configurations/actions')
+const { catchEpicError, stateSelector } = require('@redux-observable-backend/redux-utils')
+const { configurationSetSelector } = require('@redux-observable-backend/node/redux/configurations/selectors')
+const { defaultConfigurationsNamespace } = require('@redux-observable-backend/node/redux/configurations/actions')
 const { FlicClient } = require('$lib/fliclibNodeJs')
 const { map, switchMap } = require('rxjs/operators')
-const { ofTaskName } = require('@ghadyani-framework/node')
+const { ofTaskName } = require('@redux-observable-backend/node')
 const { ofType } = require('redux-observable')
-const { START_TASK } = require('@ghadyani-framework/node/redux/tasks/actions')
+const { START_TASK } = require('@redux-observable-backend/node/redux/tasks/actions')
 
 const { addFlicClient } = require('./actions')
 

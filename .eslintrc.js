@@ -2,7 +2,7 @@ const { resolve } = require('path')
 
 module.exports = {
 	extends: [
-		'@ghadyani-framework/node',
+		'@ghadyani-eslint/node',
 	],
 	settings: {
 		'import/resolver': {
