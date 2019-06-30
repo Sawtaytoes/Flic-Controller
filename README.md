@@ -36,7 +36,8 @@ module.exports = {
 	lifxApi: {
 		hostname: 'lifx.example.com',
 		port: 80,
-		protocol: 'http',
+		protocol: 'ws',
+		protocolVersion: 'v1',
 	},
 
 	wemoApi: {
@@ -58,7 +59,7 @@ webSocket.onerror = console.error
 webSocket.onclose = console.info
 webSocket.onopen = () => {
 	console.log('READY')
-	
+
 	webSocket
 	.send(
 		JSON
