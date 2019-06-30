@@ -1,6 +1,6 @@
 const chalk = require('chalk')
 const { catchEpicError } = require('@redux-observable-backend/redux-utils')
-const { catchError, ignoreElements, map, mergeMap, pluck, reduce, switchMap, tap, toArray } = require('rxjs/operators')
+const { catchError, filter, ignoreElements, map, mergeMap, pluck, reduce, switchMap, tap, toArray } = require('rxjs/operators')
 const { configurations } = require('@redux-observable-backend/node')
 const { from, of } = require('rxjs')
 const { ofType } = require('redux-observable')
@@ -67,7 +67,7 @@ const executeCommandEpic = (
 			? actionSets
 			: [actionSets]
 		)),
-		switchMap(actionSets => (
+		mergeMap(actionSets => (
 			of(state$.value)
 			.pipe(
 				map(
