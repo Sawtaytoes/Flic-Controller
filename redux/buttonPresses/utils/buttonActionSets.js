@@ -15,11 +15,10 @@ const DEVICE = {
 const ACTION = {
 	SET_LIGHT_BRIGHTNESS: 'set-light-brightness',
 	TOGGLE_DEVICE: 'toggle-device',
-	TOGGLE_GROUP: 'toggle-group',
-	TOGGLE_LIGHT: 'toggle-light',
-	TOGGLE_SCENE: 'toggle-scene',
+	TOGGLE_GROUP: 'REQUEST::TOGGLE_GROUPS',
+	TOGGLE_SCENE: 'REQUEST::TOGGLE_SCENES',
 	TURN_OFF_DEVICE: 'turn-off-device',
-	TURN_OFF_GROUP: 'turn-off-group',
+	TURN_OFF_GROUP: 'REQUEST::TURN_OFF_GROUPS',
 }
 
 const NAME = {

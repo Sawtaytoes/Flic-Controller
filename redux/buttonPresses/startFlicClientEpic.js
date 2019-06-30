@@ -1,10 +1,8 @@
 const { catchEpicError } = require('@redux-observable-backend/redux-utils')
-const { configurations } = require('@redux-observable-backend/node')
+const { configurations, ofTaskName, tasks } = require('@redux-observable-backend/node')
 const { FlicClient } = require('$lib/fliclibNodeJs')
 const { map, switchMap } = require('rxjs/operators')
-const { ofTaskName } = require('@redux-observable-backend/node')
 const { ofType } = require('redux-observable')
-const { START_TASK } = require('@redux-observable-backend/node/redux/tasks/actions')
 
 const { addFlicClient } = require('./actions')
 
@@ -14,7 +12,11 @@ const startFlicClientEpic = (
 ) => (
 	action$
 	.pipe(
-		ofType(START_TASK),
+		ofType(
+			tasks
+			.actions
+			.START_TASK
+		),
 		ofTaskName(
 			'listen',
 			'undefined',

@@ -8,7 +8,7 @@ const buttonConfigs = require('./utils/buttonConfigs')
 
 const {
 	EXECUTE_BUTTON_PRESSES,
-	executeCommand,
+	splitCommands,
 } = require('./actions')
 
 const getPressActionName = ({
@@ -68,7 +68,7 @@ const executeButtonPressesEpic = (
 				map(actionSets => (
 					actionSets
 					? (
-						executeCommand(
+						splitCommands(
 							actionSets
 						)
 					)
