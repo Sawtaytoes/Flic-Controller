@@ -43,10 +43,10 @@
     chalk "^2.4.2"
     rxjs "^6.5.2"
 
-"@redux-observable-backend/node@^4.2.4":
-  version "4.2.4"
-  resolved "https://registry.yarnpkg.com/@redux-observable-backend/node/-/node-4.2.4.tgz#449a79d8c9aa5e9e681a7d168d1be570bef2b93b"
-  integrity sha512-G413wEntQPGMN9IlNOM1ktHVmhqpfx1DXgN/VI2TWNW8u0z6d0oqxOxVpwk65Ft5zPvHoNBFhgTOQPrfR4UgdA==
+"@redux-observable-backend/node@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@redux-observable-backend/node/-/node-4.3.0.tgz#a8dd97863788b591ffb3fbebd42e10bceac84078"
+  integrity sha512-0EbhUXqg6IJFj+f43skk08+Yia/AoBXL/DDtwolqF0mXVrvO1OFhXvWgISlJfJWm2knvux/O+ExHF9J0kxSt8w==
   dependencies:
     better-module-alias "^1.0.0"
     redux "^4.0.1"
@@ -62,10 +62,10 @@
   dependencies:
     better-module-alias "^1.0.0"
 
-"@redux-observable-backend/websocket@^4.2.5":
-  version "4.2.5"
-  resolved "https://registry.yarnpkg.com/@redux-observable-backend/websocket/-/websocket-4.2.5.tgz#64eefec426d8d261f8d00fa5365a407d7d2b65e9"
-  integrity sha512-Pu3cOYsaqWjV2hLXvc0kWiAl7Q11I9+tyQi3vv8IPEJtWi703tPyw69GEF4NKHEBuKumH1qgxmOQ1lvMbT00/w==
+"@redux-observable-backend/websocket@^4.3.1":
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/@redux-observable-backend/websocket/-/websocket-4.3.1.tgz#4f1acc250c3cc65c7676e0990faf639671236731"
+  integrity sha512-p7E42H7jVQQobuC165auXJ+NZdaKYay/YdteJ+N8aBt8Xlc13P/oZodnCIdFgcIe6JhrVRgiZYfJ+7ixsI2jkg==
   dependencies:
     better-module-alias "^1.0.0"
     ws "^7.0.1"
