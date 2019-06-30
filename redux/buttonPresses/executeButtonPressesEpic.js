@@ -1,5 +1,5 @@
 const { catchEpicError } = require('@redux-observable-backend/redux-utils')
-const { map, switchMap, take } = require('rxjs/operators')
+const { map, mergeMap } = require('rxjs/operators')
 const { messages } = require('@redux-observable-backend/websocket')
 const { of } = require('rxjs')
 const { ofType } = require('redux-observable')
@@ -34,31 +34,30 @@ const executeButtonPressesEpic = (
 	action$
 	.pipe(
 		ofType(EXECUTE_BUTTON_PRESSES),
-		switchMap(({
+		mergeMap(({
 			buttonId,
 			connection,
 			pressCount,
 			pressType,
 		}) => (
-			of([
-				(
+			of({
+				buttonConfig: (
 					selectButtonConfig(
 						buttonId,
 					)
 				),
-				(
+				pressActionName: (
 					getPressActionName({
 						pressCount,
 						pressType,
 					})
 				),
-			])
+			})
 			.pipe(
-				take(1),
-				map(([
+				map(({
 					buttonConfig,
 					pressActionName,
-				]) => (
+				}) => (
 					buttonConfig
 					&& (
 						buttonConfig[
