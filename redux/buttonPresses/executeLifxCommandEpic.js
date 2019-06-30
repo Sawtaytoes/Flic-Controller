@@ -1,6 +1,7 @@
+const chalk = require('chalk')
 const { catchEpicError } = require('@redux-observable-backend/redux-utils')
 const { externalConnections } = require('@redux-observable-backend/websocket')
-const { filter, ignoreElements, map, mergeMap, tap } = require('rxjs/operators')
+const { catchError, ignoreElements, map, mapTo, mergeMap, tap } = require('rxjs/operators')
 const { of } = require('rxjs')
 const { ofType } = require('redux-observable')
 
@@ -28,7 +29,6 @@ const executeLifxCommandEpic = (
 						namespace: 'ws://lol.lifx.kevinghadyani.com:36001@v1',
 					})
 				),
-				filter(Boolean),
 				tap(connection => (
 					connection
 					.next({
@@ -36,6 +36,39 @@ const executeLifxCommandEpic = (
 						type: action,
 					})
 				)),
+				mapTo({}),
+				catchError(error => (
+					of({ error })
+				)),
+				tap(({
+					error,
+				}) => {
+					console
+					.info(
+						(
+							error
+							? (
+								chalk
+								.red(
+									"❌ Failed to send command:"
+								)
+							)
+							: (
+								chalk
+								.green(
+									"✔️ Successfully executed button command:"
+								)
+							)
+						),
+						(
+							'\n'
+						),
+						({
+							action,
+							names,
+						}),
+					)
+				}),
 			)
 		)),
 		catchEpicError(),
