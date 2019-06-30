@@ -2,8 +2,10 @@ const { combineEpics } = require('redux-observable')
 
 const captureButtonPresses = require('./captureButtonPresses')
 const executeButtonPressesEpic = require('./executeButtonPressesEpic')
-const executeCommandEpic = require('./executeCommandEpic')
+const executeLifxCommandEpic = require('./executeLifxCommandEpic')
+const executeWemoCommandEpic = require('./executeWemoCommandEpic')
 const requestsEpic = require('./requestsEpic')
+const splitCommandsEpic = require('./splitCommandsEpic')
 const startButtonListenerEpic = require('./startButtonListenerEpic')
 const startFlicClientEpic = require('./startFlicClientEpic')
 
@@ -11,8 +13,10 @@ const buttonPressesEpic = (
 	combineEpics(
 		captureButtonPresses,
 		executeButtonPressesEpic,
-		executeCommandEpic,
+		executeLifxCommandEpic,
+		executeWemoCommandEpic,
 		requestsEpic,
+		splitCommandsEpic,
 		startButtonListenerEpic,
 		startFlicClientEpic,
 	)
