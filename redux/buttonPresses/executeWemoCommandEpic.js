@@ -66,7 +66,7 @@ const executeWemoCommandEpic = (
 						)),
 						tap(({
 							error,
-						}) => (
+						}) => {
 							console
 							.info(
 								(
@@ -92,7 +92,7 @@ const executeWemoCommandEpic = (
 									url,
 								}),
 							)
-						)),
+						}),
 					)
 				)),
 			)
