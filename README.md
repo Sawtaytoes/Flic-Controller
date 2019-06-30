@@ -22,6 +22,15 @@ Your `localConfig.js` will look something like this:
 
 ```js
 module.exports = {
+	externalConnections: {
+		lifxApi: {
+			hostname: '',
+			port: 80,
+			protocol: 'ws',
+			protocolVersion: 'v1',
+		},
+	},
+
 	flicButtonServers: [{
 		hostname: 'raspberry-pi-1',
 		port: 5551,
@@ -32,13 +41,6 @@ module.exports = {
 		hostname: 'raspberry-pi-2',
 		port: 5551,
 	}],
-
-	lifxApi: {
-		hostname: 'lifx.example.com',
-		port: 80,
-		protocol: 'ws',
-		protocolVersion: 'v1',
-	},
 
 	wemoApi: {
 		hostname: 'wemo.example.com',

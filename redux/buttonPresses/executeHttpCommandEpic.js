@@ -1,14 +1,13 @@
 const chalk = require('chalk')
 const { catchEpicError } = require('@redux-observable-backend/redux-utils')
-const { catchError, ignoreElements, map, mergeMap, pluck, switchMap, tap } = require('rxjs/operators')
+const { catchError, filter, ignoreElements, map, mergeMap, pluck, switchMap, tap } = require('rxjs/operators')
 const { configurations } = require('@redux-observable-backend/node')
 const { from, of } = require('rxjs')
 const { ofType } = require('redux-observable')
 
-const ofDevice = require('./utils/ofDevice')
 const { EXECUTE_COMMAND } = require('./actions')
 
-const executeWemoCommandEpic = (
+const executeHttpCommandEpic = (
 	action$,
 	state$,
 	{ fetch },
@@ -16,9 +15,9 @@ const executeWemoCommandEpic = (
 	action$
 	.pipe(
 		ofType(EXECUTE_COMMAND),
-		ofDevice('wemoApi'),
 		mergeMap(({
 			action,
+			device,
 			names,
 		}) => (
 			of(state$.value)
@@ -28,7 +27,8 @@ const executeWemoCommandEpic = (
 					.selectors
 					.selectConfigurationSet()
 				),
-				pluck('wemoApi'),
+				pluck(device),
+				filter(Boolean),
 				map(({
 					hostname,
 					port,
@@ -102,4 +102,4 @@ const executeWemoCommandEpic = (
 	)
 )
 
-module.exports = executeWemoCommandEpic
+module.exports = executeHttpCommandEpic

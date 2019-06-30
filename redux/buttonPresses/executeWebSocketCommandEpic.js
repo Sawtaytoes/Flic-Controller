@@ -1,23 +1,22 @@
 const chalk = require('chalk')
 const { catchEpicError } = require('@redux-observable-backend/redux-utils')
 const { externalConnections } = require('@redux-observable-backend/websocket')
-const { catchError, ignoreElements, map, mapTo, mergeMap, tap } = require('rxjs/operators')
+const { catchError, filter, ignoreElements, map, mapTo, mergeMap, tap } = require('rxjs/operators')
 const { of } = require('rxjs')
 const { ofType } = require('redux-observable')
 
-const ofDevice = require('./utils/ofDevice')
 const { EXECUTE_COMMAND } = require('./actions')
 
-const executeLifxCommandEpic = (
+const executeWebSocketCommandEpic = (
 	action$,
 	state$,
 ) => (
 	action$
 	.pipe(
 		ofType(EXECUTE_COMMAND),
-		ofDevice('lifxApi'),
 		mergeMap(({
 			action,
+			device,
 			names,
 		}) => (
 			of(state$.value)
@@ -26,9 +25,10 @@ const executeLifxCommandEpic = (
 					externalConnections
 					.selectors
 					.selectExternalConnection({
-						namespace: 'ws://lol.lifx.kevinghadyani.com:36001@v1',
+						namespace: device,
 					})
 				),
+				filter(Boolean),
 				tap(connection => (
 					connection
 					.next({
@@ -76,4 +76,4 @@ const executeLifxCommandEpic = (
 	)
 )
 
-module.exports = executeLifxCommandEpic
+module.exports = executeWebSocketCommandEpic

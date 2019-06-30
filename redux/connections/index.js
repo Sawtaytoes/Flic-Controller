@@ -1,10 +1,10 @@
 const { combineEpics } = require('redux-observable')
 
-const connectToLifxEpic = require('./connectToLifxEpic')
+const connectToServersEpic = require('./connectToServersEpic')
 
 const connectionsEpic = (
 	combineEpics(
-		connectToLifxEpic,
+		connectToServersEpic,
 	)
 )
 

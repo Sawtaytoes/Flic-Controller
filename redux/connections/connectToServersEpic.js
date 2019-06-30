@@ -1,10 +1,10 @@
 const { catchEpicError } = require('@redux-observable-backend/redux-utils')
-const { map, switchMap, tap } = require('rxjs/operators')
+const { map, mergeAll } = require('rxjs/operators')
 const { configurations, ofTaskName, tasks } = require('@redux-observable-backend/node')
 const { externalConnections } = require('@redux-observable-backend/websocket')
 const { ofType } = require('redux-observable')
 
-const connectToLifxEpic = (
+const connectToServersEpic = (
 	action$,
 	state$,
 ) => (
@@ -23,20 +23,15 @@ const connectToLifxEpic = (
 		map(
 			configurations
 			.selectors
-			.selectConfigurationSet()
+			.selectConfigurationSet({
+				namespace: 'externalConnections',
+			})
 		),
-		map(({
-			lifxApi,
-		}) => ({
-			protocolVersion: lifxApi.protocolVersion,
-			url: (
-				lifxApi.protocol
-				.concat('://')
-				.concat(lifxApi.hostname)
-				.concat(':')
-				.concat(lifxApi.port)
-			),
-		})),
+		map(externalConnections => (
+			Object
+			.keys(externalConnections)
+		)),
+		mergeAll(),
 		map(
 			externalConnections
 			.actions
@@ -46,4 +41,4 @@ const connectToLifxEpic = (
 	)
 )
 
-module.exports = connectToLifxEpic
+module.exports = connectToServersEpic
