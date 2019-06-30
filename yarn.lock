@@ -43,10 +43,10 @@
     chalk "^2.4.2"
     rxjs "^6.5.2"
 
-"@redux-observable-backend/node@^4.2.3":
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/@redux-observable-backend/node/-/node-4.2.3.tgz#06789435538eee42a1974b68cbf0699ee32ac4c4"
-  integrity sha512-0a49q6XHK2Sp0dTGsxKINkOZmzCcnjOklrbb7hXi7HPuHrLdfAnMfbwsotEInn/0sVV2OfVbwT2H3K0sDO7pOA==
+"@redux-observable-backend/node@^4.2.4":
+  version "4.2.4"
+  resolved "https://registry.yarnpkg.com/@redux-observable-backend/node/-/node-4.2.4.tgz#449a79d8c9aa5e9e681a7d168d1be570bef2b93b"
+  integrity sha512-G413wEntQPGMN9IlNOM1ktHVmhqpfx1DXgN/VI2TWNW8u0z6d0oqxOxVpwk65Ft5zPvHoNBFhgTOQPrfR4UgdA==
   dependencies:
     better-module-alias "^1.0.0"
     redux "^4.0.1"
@@ -55,17 +55,17 @@
     uuid "^3.3.2"
     yargs "^13.2.4"
 
-"@redux-observable-backend/redux-utils@^4.2.3":
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/@redux-observable-backend/redux-utils/-/redux-utils-4.2.3.tgz#258f3e0c7a39fde3d038fb1caaaaae45f8a93b0c"
-  integrity sha512-w96H1uW0/E0M1T7sdIE3ZE79LHNfIfUD5UNoZdhCD943Zm851GMWiEiAoqUDndgSqa5OYTxMtesigxWAhyIj3w==
+"@redux-observable-backend/redux-utils@^4.2.4":
+  version "4.2.4"
+  resolved "https://registry.yarnpkg.com/@redux-observable-backend/redux-utils/-/redux-utils-4.2.4.tgz#8148ba396233a77189bbe6f324b2564e52f0eee1"
+  integrity sha512-vju8ei4hsEIJJV+mXgghPgrE4pu+JHVQ4a/XtqSS0oeie0++4F3xAIje2fUuERwTy/R+RODYe3An+BUfv1JoMg==
   dependencies:
     better-module-alias "^1.0.0"
 
-"@redux-observable-backend/websocket@^4.2.3":
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/@redux-observable-backend/websocket/-/websocket-4.2.3.tgz#b4d1ada330dedaeb89a54cf145fd37e12efae1dc"
-  integrity sha512-lKgE5PXzwzXQ8mUCNJa4wWpCZ7Y6zI3GzbSsScrKVwTzmjktbHP9QELwq8OxO7otcz4Fyy/OJFJnNItMnmQk5Q==
+"@redux-observable-backend/websocket@^4.2.5":
+  version "4.2.5"
+  resolved "https://registry.yarnpkg.com/@redux-observable-backend/websocket/-/websocket-4.2.5.tgz#64eefec426d8d261f8d00fa5365a407d7d2b65e9"
+  integrity sha512-Pu3cOYsaqWjV2hLXvc0kWiAl7Q11I9+tyQi3vv8IPEJtWi703tPyw69GEF4NKHEBuKumH1qgxmOQ1lvMbT00/w==
   dependencies:
     better-module-alias "^1.0.0"
     ws "^7.0.1"
