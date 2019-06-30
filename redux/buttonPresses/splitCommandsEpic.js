@@ -1,6 +1,6 @@
 const { catchEpicError } = require('@redux-observable-backend/redux-utils')
 const { from } = require('rxjs')
-const { groupBy, map, mergeAll, mergeMap, pluck, toArray } = require('rxjs/operators')
+const { ignoreElements, groupBy, map, mergeAll, mergeMap, pluck, tap, toArray } = require('rxjs/operators')
 const { ofType } = require('redux-observable')
 
 const {
@@ -14,15 +14,24 @@ const splitCommandsEpic = (
 	action$
 	.pipe(
 		ofType(SPLIT_COMMANDS),
-		pluck('actionSets'),
-		groupBy(({ device }) => (
-			device
+		mergeMap(({ actionSets }) => (
+			from(actionSets)
+			.pipe(
+				groupBy(({ device }) => (
+					device
+				)),
+				mergeMap(deviceGroupedActionSets$ => (
+					deviceGroupedActionSets$
+					.pipe(
+						groupBy(({ action }) => (
+							action
+						)),
+						mergeAll(),
+						toArray(),
+					)
+				)),
+			)
 		)),
-		mergeAll(),
-		groupBy(({ action }) => (
-			action
-		)),
-		mergeAll(),
 		mergeMap(groupedActionSets => (
 			from(groupedActionSets)
 			.pipe(
