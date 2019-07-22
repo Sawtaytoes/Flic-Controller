@@ -1,3 +1,5 @@
+**NOTE:** This repo has moved to https://github.com/Sawtaytoes/Smart-Home-Services
+
 # Flic Controller
 WebSockets-based Flic Controller software. This is the server portion which executes commands. There is a related piece which listens for button presses and sends them to this controller.
 
